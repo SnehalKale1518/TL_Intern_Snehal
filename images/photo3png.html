@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Day 1 Screenshots</title>
+<style>
+body{background:#000;font-family:Arial,sans-serif;padding:20px;display:flex;flex-direction:column;gap:40px}
+.label{color:#fff;font-size:18px;font-weight:bold;margin-bottom:10px;padding:8px 16px;background:#ff6b35;border-radius:6px;display:inline-block}
+.hint{color:#aaa;font-size:13px;margin-bottom:12px}
+.screen{border-radius:12px;overflow:hidden;border:2px solid #333;max-width:800px}
+.titlebar{background:#161b22;padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #30363d}
+.dot{width:14px;height:14px;border-radius:50%}
+.urlbar{flex:1;background:#0d1117;border-radius:6px;padding:5px 14px;color:#8b949e;font-size:13px;text-align:center;margin:0 40px}
+.body{background:#0d1117;padding:40px 20px;display:flex;justify-content:center}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:28px;width:340px}
+.logo{text-align:center;margin-bottom:20px}
+.gh-logo{font-size:48px}
+.card h2{color:#f0f6fc;font-size:20px;font-weight:400;text-align:center;margin:0 0 20px}
+.field{margin-bottom:14px}
+.field label{color:#f0f6fc;font-size:13px;font-weight:500;display:block;margin-bottom:6px}
+.field-row{display:flex;justify-content:space-between;margin-bottom:6px}
+.field-row label{color:#f0f6fc;font-size:13px;font-weight:500}
+.field-row span{color:#58a6ff;font-size:12px}
+.input{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:9px 12px;color:#8b949e;font-size:14px;width:100%;box-sizing:border-box}
+.input.filled{color:#f0f6fc;border-color:#238636}
+.input.with-check{display:flex;justify-content:space-between;align-items:center}
+.check{color:#238636;font-size:16px}
+.btn-green{background:#238636;border-radius:6px;padding:11px;text-align:center;color:#fff;font-size:14px;font-weight:500;margin-bottom:16px}
+.divider{border-top:1px solid #30363d;padding-top:16px;text-align:center;color:#8b949e;font-size:12px}
+.link{color:#58a6ff}
+.hint-text{color:#8b949e;font-size:11px;margin:4px 0 0}
+
+/* Terminal */
+.term-body{background:#1a1a2e;padding:20px 24px;font-family:'Courier New',monospace;font-size:14px;line-height:1.9}
+.ps{color:#4ec9b0}
+.path{color:#569cd6}
+.cmd{color:#f0f6fc}
+.arg{color:#ce9178}
+.out{color:#6a9955}
+.cursor{color:#f0f6fc;animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+</style>
+</head>
+<body>
+
+<!-- SCREENSHOT 1 -->
+<div>
+  <div class="label">📸 Photo 1 — Right-click this area → Save image as → photo1.png</div>
+  <div class="hint">Or press Windows+Shift+S and select this box</div>
+  <div class="screen">
+    <div class="titlebar">
+      <div class="dot" style="background:#ff5f57"></div>
+      <div class="dot" style="background:#febc2e"></div>
+      <div class="dot" style="background:#28c840"></div>
+      <div class="urlbar">🔒 github.com/login</div>
+    </div>
+    <div class="body">
+      <div class="card">
+        <div class="logo"><div class="gh-logo">⚫</div></div>
+        <h2>Sign in to GitHub</h2>
+        <div class="field">
+          <label>Username or email address</label>
+          <div class="input filled">snehalkale1518@gmail.com</div>
+        </div>
+        <div class="field">
+          <div class="field-row"><label>Password</label><span>Forgot password?</span></div>
+          <div class="input">••••••••••••</div>
+        </div>
+        <div class="btn-green">Sign in</div>
+        <div class="divider">New to GitHub? <span class="link">Create an account</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREENSHOT 2 -->
+<div>
+  <div class="label">📸 Photo 2 — Right-click this area → Save image as → photo2.png</div>
+  <div class="hint">Or press Windows+Shift+S and select this box</div>
+  <div class="screen">
+    <div class="titlebar">
+      <div class="dot" style="background:#ff5f57"></div>
+      <div class="dot" style="background:#febc2e"></div>
+      <div class="dot" style="background:#28c840"></div>
+      <div class="urlbar">🔒 github.com/signup</div>
+    </div>
+    <div class="body">
+      <div class="card">
+        <div class="logo" style="margin-bottom:8px"><div class="gh-logo">⚫</div></div>
+        <h2>Create your account</h2>
+        <div class="field">
+          <label>Username</label>
+          <div class="input filled with-check">SnehalKale1518 <span class="check">✓</span></div>
+        </div>
+        <div class="field">
+          <label>Email address</label>
+          <div class="input filled with-check">snehalkale1518@gmail.com <span class="check">✓</span></div>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <div class="input">••••••••••••</div>
+          <div class="hint-text">Must be at least 8 characters including a number and lowercase letter.</div>
+        </div>
+        <div class="btn-green">Continue</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREENSHOT 3 -->
+<div>
+  <div class="label">📸 Photo 3 — Right-click this area → Save image as → photo3.png</div>
+  <div class="hint">Or press Windows+Shift+S and select this box</div>
+  <div class="screen">
+    <div class="titlebar" style="background:#252535">
+      <div class="dot" style="background:#ff5f57"></div>
+      <div class="dot" style="background:#febc2e"></div>
+      <div class="dot" style="background:#28c840"></div>
+      <span style="color:#8b8b9e;font-size:13px;margin-left:8px">PowerShell — TL_Intern_Snehal</span>
+    </div>
+    <div class="term-body">
+      <div><span class="ps">PS</span> <span class="path">C:\Users\Saideep4\...\TL_Intern_Snehal</span><span class="cmd">&gt;</span> <span class="cmd">git</span> <span class="arg">add .</span></div>
+      <div><span class="ps">PS</span> <span class="path">C:\Users\Saideep4\...\TL_Intern_Snehal</span><span class="cmd">&gt;</span> <span class="cmd">git</span> <span class="arg">commit -m "Add portfolio files"</span></div>
+      <div class="out">[main b24eb1b] Add portfolio files</div>
+      <div class="out"> 1 file changed, 333 insertions(+), 1 deletion(-)</div>
+      <div><span class="ps">PS</span> <span class="path">C:\Users\Saideep4\...\TL_Intern_Snehal</span><span class="cmd">&gt;</span> <span class="cmd">git</span> <span class="arg">push origin main</span></div>
+      <div class="out">Enumerating objects: 5, done.</div>
+      <div class="out">Counting objects: 100% (5/5), done.</div>
+      <div class="out">Writing objects: 100% (3/3), 9.07 KiB | 2.27 MiB/s, done.</div>
+      <div class="out">To https://github.com/SnehalKale1518/TL_Intern_Snehal.git</div>
+      <div class="out">   dccc78e..b24eb1b  main → main</div>
+      <div><span class="ps">PS</span> <span class="path">C:\Users\Saideep4\...\TL_Intern_Snehal</span><span class="cmd">&gt;</span> <span class="cursor">█</span></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
