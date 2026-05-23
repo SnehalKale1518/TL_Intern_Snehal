@@ -3,555 +3,331 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Snehal Kale — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<title>Snehal Kale</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#05070d;--bg2:#0b0f1a;--bg3:#111827;
-  --fg:#f1f5f9;--fg2:#94a3b8;
-  --c1:#00fff0;--c2:#a855f7;--c3:#f97316;
-  --border:rgba(255,255,255,0.07);
-}
+:root{--bg:#030507;--bg2:#080d12;--bg3:#0e1520;--fg:#ffffff;--fg2:#8899aa;--g1:#ff6b35;--blue:#4cc9f0;--purple:#7b2fff;--pink:#ff006e;--border:rgba(255,255,255,0.06)}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--fg);font-family:'DM Sans',sans-serif;overflow-x:hidden;min-height:100vh}
-body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:0.025;pointer-events:none;z-index:0}
-.grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(0,255,240,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,240,0.03) 1px,transparent 1px);background-size:64px 64px;z-index:0;pointer-events:none}
-.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px)}
-.orb1{width:600px;height:600px;background:rgba(168,85,247,0.12);top:-200px;right:-150px;animation:drift 10s ease-in-out infinite}
-.orb2{width:400px;height:400px;background:rgba(0,255,240,0.07);bottom:-100px;left:-100px;animation:drift 14s ease-in-out infinite reverse}
-@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,40px)}}
-
-/* PAGES */
-.page{display:none;min-height:100vh}
+body{background:var(--bg);color:var(--fg);font-family:'Archivo',sans-serif;overflow-x:hidden;min-height:100vh}
+.hero-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.hero-bg::before{content:'';position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,53,0.08) 0%,transparent 70%);top:-300px;left:-200px;animation:bgmove 15s ease-in-out infinite}
+.hero-bg::after{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(76,201,240,0.06) 0%,transparent 70%);bottom:-200px;right:-100px;animation:bgmove 20s ease-in-out infinite reverse}
+@keyframes bgmove{0%,100%{transform:translate(0,0)}33%{transform:translate(60px,40px)}66%{transform:translate(-40px,60px)}}
+.scanlines{position:fixed;inset:0;z-index:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px)}
+.page{display:none;min-height:100vh;position:relative;z-index:1}
 .page.active{display:block}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 60px;display:flex;justify-content:space-between;align-items:center;background:rgba(5,7,13,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:0.1em;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;cursor:pointer}
-.nav-links{display:flex;gap:36px;align-items:center}
-.nav-links a{color:var(--fg2);text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.3s;cursor:pointer}
-.nav-links a:hover{color:var(--c1)}
-.back-btn{display:flex;align-items:center;gap:6px;color:var(--fg2);font-size:0.85rem;font-weight:600;transition:color 0.3s;padding:7px 16px;border:1px solid var(--border);border-radius:8px;cursor:pointer;background:none}
-.back-btn:hover{color:var(--c1);border-color:rgba(0,255,240,0.3)}
-.nav-crumb{font-size:0.82rem;font-weight:500;color:var(--fg2)}
-.nav-crumb b{color:var(--c1)}
-.save-btn{padding:9px 22px;background:linear-gradient(135deg,var(--c1),var(--c2));color:#000;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:700;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s}
-.save-btn:hover{transform:translateY(-2px)}
-.save-btn.saved{background:linear-gradient(135deg,#34d399,#10b981);color:#fff}
-
-/* ===================== HOME PAGE ===================== */
-#home-content{padding:110px 60px 80px;position:relative;z-index:1}
-.hero-grid{display:grid;grid-template-columns:1fr 340px;gap:80px;align-items:center;max-width:1100px;margin:0 auto}
-
-.tag{display:inline-flex;align-items:center;gap:8px;background:rgba(0,255,240,0.08);border:1px solid rgba(0,255,240,0.2);padding:6px 16px;border-radius:100px;font-size:0.72rem;font-weight:700;color:var(--c1);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:24px;opacity:0;animation:up 0.7s 0.1s forwards}
-.tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--c1);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-.hello{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:var(--fg2);opacity:0;animation:up 0.7s 0.25s forwards}
-.name{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,9vw,7rem);line-height:0.95;letter-spacing:0.02em;margin-bottom:16px;opacity:0;animation:up 0.7s 0.4s forwards}
-.name em{font-style:normal;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.typing-line{height:2rem;margin-bottom:18px;display:flex;align-items:center;gap:4px;opacity:0;animation:up 0.7s 0.55s forwards}
-.typed{font-family:'Space Mono',monospace;font-size:1rem;font-weight:700;color:var(--c3)}
-.caret{width:2px;height:1.1rem;background:var(--c3);animation:caret 0.7s infinite}
-@keyframes caret{0%,100%{opacity:1}50%{opacity:0}}
-.desc{font-size:1rem;font-weight:500;color:var(--fg2);line-height:1.85;max-width:440px;margin-bottom:36px;opacity:0;animation:up 0.7s 0.7s forwards}
-.btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:up 0.7s 0.85s forwards}
-.btn-a{padding:13px 30px;background:linear-gradient(135deg,var(--c1),var(--c2));color:#000;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 24px rgba(0,255,240,0.25)}
-.btn-a:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,255,240,0.4)}
-.btn-b{padding:13px 30px;background:transparent;color:var(--fg);border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;text-decoration:none;transition:border-color 0.2s}
-.btn-b:hover{border-color:var(--c2)}
-
-.photo-wrap{position:relative;opacity:0;animation:fromRight 0.9s 0.5s forwards}
-@keyframes fromRight{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
-.photo-box{width:100%;aspect-ratio:3/4;border-radius:20px;background:var(--bg3);border:1.5px solid var(--border);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color 0.3s}
-.photo-box:hover{border-color:var(--c1)}
-.photo-box img{width:100%;height:100%;object-fit:cover;display:none}
-.photo-ph{display:flex;flex-direction:column;align-items:center;gap:12px;pointer-events:none}
-.photo-ph-icon{width:64px;height:64px;border-radius:50%;background:rgba(0,255,240,0.08);border:2px dashed rgba(0,255,240,0.3);display:flex;align-items:center;justify-content:center;font-size:1.8rem}
-.photo-ph p{font-size:0.8rem;font-weight:600;color:var(--fg2);text-align:center}
-.photo-box input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;font-size:0}
-.photo-ribbon{position:absolute;bottom:-14px;right:-14px;background:linear-gradient(135deg,#fbbf24,#fb923c);color:#000;padding:10px 20px;border-radius:100px;font-size:0.75rem;font-weight:800;box-shadow:0 4px 20px rgba(251,191,36,0.4)}
-
-.sec-wrap{position:relative;z-index:1;border-top:1px solid var(--border)}
-.sec{max-width:1100px;margin:0 auto;padding:80px 60px}
-.sec-head{display:flex;align-items:center;gap:18px;margin-bottom:48px}
-.sec-num{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--c1);letter-spacing:0.2em;opacity:0.6}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:0.05em}
-.sec-line{flex:1;height:1px;background:linear-gradient(to right,rgba(0,255,240,0.3),transparent)}
-
-.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:start}
-.about-text{font-size:1rem;font-weight:500;color:var(--fg2);line-height:1.9}
-.about-text strong{color:var(--fg);font-weight:700}
-.more-btn{margin-top:20px;display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:rgba(0,255,240,0.08);border:1.5px solid rgba(0,255,240,0.25);border-radius:8px;color:var(--c1);font-size:0.87rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s}
-.more-btn:hover{background:rgba(0,255,240,0.15)}
-.more-content{display:none;margin-top:16px;padding:16px 20px;background:var(--bg3);border-radius:10px;border:1px solid var(--border);font-size:0.9rem;color:var(--fg2);line-height:1.8;font-weight:500}
-.skills-wrap{display:flex;flex-direction:column;gap:10px}
-.skill-item{background:var(--bg3);border:1.5px solid var(--border);border-radius:10px;padding:13px 18px;font-size:0.9rem;font-weight:600;color:var(--fg);display:flex;align-items:center;gap:12px;transition:border-color 0.3s,transform 0.2s}
-.skill-item:hover{border-color:var(--c1);transform:translateX(6px)}
-.skill-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--c1),var(--c2));flex-shrink:0}
-
-.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.proj-card{background:var(--bg2);border:1.5px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden;transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s}
-.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform 0.4s}
-.proj-card:nth-child(1)::before{background:linear-gradient(90deg,var(--c1),var(--c2))}
-.proj-card:nth-child(2)::before{background:linear-gradient(90deg,var(--c3),var(--c2))}
-.proj-card:hover::before{transform:scaleX(1)}
-.proj-card:hover{transform:translateY(-6px);border-color:rgba(0,255,240,0.3);box-shadow:0 20px 40px rgba(0,0,0,0.4)}
-.proj-num{font-family:'Bebas Neue',sans-serif;font-size:4rem;line-height:1;margin-bottom:14px}
-.proj-card:nth-child(1) .proj-num{background:linear-gradient(135deg,var(--c1),#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.proj-card:nth-child(2) .proj-num{background:linear-gradient(135deg,var(--c3),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.proj-name{font-size:1.1rem;font-weight:700;color:var(--fg);margin-bottom:12px;line-height:1.35}
-.proj-chip{display:inline-block;background:rgba(0,255,240,0.1);border:1px solid rgba(0,255,240,0.2);color:var(--c1);padding:4px 12px;border-radius:100px;font-size:0.72rem;font-weight:700;letter-spacing:0.06em}
-
-.weeks-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.week-card{background:var(--bg2);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:border-color 0.3s,box-shadow 0.3s,transform 0.3s}
-.week-card:hover{border-color:rgba(0,255,240,0.4);box-shadow:0 0 30px rgba(0,255,240,0.08);transform:translateY(-4px)}
-.week-inner{padding:26px;display:flex;align-items:center;justify-content:space-between}
-.week-left{display:flex;align-items:center;gap:16px}
-.week-pill{padding:6px 14px;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:0.95rem;letter-spacing:0.1em;background:rgba(0,255,240,0.1);border:1px solid rgba(0,255,240,0.2);color:var(--c1)}
-.week-label{font-size:1.05rem;font-weight:700;color:var(--fg)}
-.week-sub{font-size:0.78rem;font-weight:500;color:var(--fg2);margin-top:2px}
-.week-arrow{width:36px;height:36px;border-radius:50%;background:var(--bg3);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--fg2);transition:background 0.3s,color 0.3s,transform 0.3s}
-.week-card:hover .week-arrow{background:rgba(0,255,240,0.1);color:var(--c1);transform:translateX(4px)}
-
-.contact-box{background:var(--bg2);border:1.5px solid var(--border);border-radius:24px;padding:60px;text-align:center;position:relative;overflow:hidden}
-.contact-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:280px;height:1px;background:linear-gradient(90deg,transparent,var(--c1),transparent)}
-.contact-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:0.05em;line-height:1.1;margin-bottom:14px}
-.contact-title span{background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.contact-sub{color:var(--fg2);font-size:1rem;font-weight:500;margin-bottom:36px}
-.contact-link{display:inline-flex;align-items:center;gap:10px;padding:15px 36px;background:linear-gradient(135deg,var(--c1),var(--c2));color:#000;border-radius:10px;text-decoration:none;font-weight:700;font-size:0.95rem;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 24px rgba(0,255,240,0.3)}
-.contact-link:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,255,240,0.45)}
-footer{text-align:center;padding:28px;border-top:1px solid var(--border);color:var(--fg2);font-size:0.8rem;font-weight:500;position:relative;z-index:1}
-
-/* ===================== WEEK PAGE ===================== */
-#week-content{padding:95px 60px 80px;position:relative;z-index:1;max-width:1000px;margin:0 auto}
-.week-hero{text-align:center;margin-bottom:52px}
-.week-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,255,240,0.08);border:1px solid rgba(0,255,240,0.2);padding:5px 16px;border-radius:100px;font-size:0.72rem;font-weight:700;color:var(--c1);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px}
-.week-heading{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,6rem);letter-spacing:0.05em;line-height:1}
-.week-heading span{background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.week-sub-txt{color:var(--fg2);font-size:0.95rem;font-weight:500;margin-top:10px}
-
-.days-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.day-card{background:var(--bg2);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s}
-.day-card:hover{transform:translateY(-6px);border-color:rgba(0,255,240,0.35);box-shadow:0 20px 40px rgba(0,0,0,0.4)}
-.day-top{padding:20px 22px;background:rgba(168,85,247,0.07);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.day-num-badge{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;line-height:1}
-.day-card:nth-child(1) .day-num-badge{background:linear-gradient(135deg,var(--c1),#0ea5e9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.day-card:nth-child(2) .day-num-badge{background:linear-gradient(135deg,var(--c2),var(--c3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.day-card:nth-child(3) .day-num-badge{background:linear-gradient(135deg,var(--c3),#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.day-card:nth-child(4) .day-num-badge{background:linear-gradient(135deg,#34d399,var(--c1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.day-card:nth-child(5) .day-num-badge{background:linear-gradient(135deg,var(--c2),#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.day-card:nth-child(6) .day-num-badge{background:linear-gradient(135deg,#fbbf24,var(--c3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.day-arrow{width:30px;height:30px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--fg2);transition:background 0.3s,color 0.3s,transform 0.3s}
-.day-card:hover .day-arrow{background:rgba(0,255,240,0.1);color:var(--c1);transform:translateX(3px)}
-.day-body{padding:18px 22px}
-.day-name{font-size:1.1rem;font-weight:700;color:var(--fg);margin-bottom:4px}
-.day-lbl{font-size:0.78rem;font-weight:500;color:var(--fg2)}
-.day-footer{padding:12px 22px;border-top:1px solid var(--border);display:flex;gap:6px;flex-wrap:wrap}
-.icon-pill{font-size:0.7rem;font-weight:600;color:var(--fg2);background:var(--bg3);padding:4px 10px;border-radius:100px;border:1px solid var(--border)}
-
-/* ===================== DAY PAGE ===================== */
-#day-content{padding:90px 60px 100px;position:relative;z-index:1;max-width:860px;margin:0 auto}
-.day-hero{margin-bottom:36px}
-.day-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,255,240,0.08);border:1px solid rgba(0,255,240,0.2);padding:5px 14px;border-radius:100px;font-size:0.7rem;font-weight:700;color:var(--c1);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:14px}
-.day-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,5.5rem);line-height:0.95;letter-spacing:0.03em}
-.day-title em{font-style:normal;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.day-subtitle{color:var(--fg2);font-size:0.95rem;font-weight:500;margin-top:10px}
-
-.card{background:var(--bg2);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:18px}
-.card-head{padding:14px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:var(--bg3)}
-.card-icon{font-size:1.2rem}
-.card-label{font-size:0.9rem;font-weight:700;color:var(--fg)}
-.card-sub{font-size:0.75rem;font-weight:500;color:var(--fg2);margin-left:auto}
-.card-body{padding:20px 22px}
-
-.images-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.img-slot{border-radius:12px;overflow:hidden;background:var(--bg3);border:1.5px dashed var(--border);aspect-ratio:4/3;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;cursor:pointer;transition:border-color 0.3s}
-.img-slot:hover{border-color:rgba(0,255,240,0.4)}
-.img-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;font-size:0}
-.img-slot img{width:100%;height:100%;object-fit:cover;display:none}
-.slot-icon{font-size:1.8rem;pointer-events:none}
-.slot-txt{font-size:0.75rem;font-weight:600;color:var(--fg2);pointer-events:none;text-align:center}
-.img-slot.filled .slot-icon,.img-slot.filled .slot-txt{display:none}
-.img-slot.filled img{display:block}
-.img-remove{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:rgba(239,68,68,0.85);border:none;color:white;font-size:0.75rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:10}
-.img-slot.filled .img-remove{display:flex}
-
-.notes-area{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;color:var(--fg);font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:500;line-height:1.8;resize:vertical;min-height:140px;outline:none;transition:border-color 0.3s}
-.notes-area::placeholder{color:var(--fg2)}
-.notes-area:focus{border-color:rgba(0,255,240,0.4)}
-
-.cmd-list{display:flex;flex-direction:column;gap:10px}
-.cmd-item{display:flex;gap:10px;align-items:flex-start}
-.cmd-num{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--c2);min-width:28px;padding-top:10px}
-.cmd-input{flex:1;background:var(--bg3);border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--c1);font-family:'Space Mono',monospace;font-size:0.82rem;outline:none;transition:border-color 0.3s}
-.cmd-input::placeholder{color:var(--fg2);font-family:'DM Sans',sans-serif;font-size:0.85rem}
-.cmd-input:focus{border-color:rgba(168,85,247,0.5)}
-.cmd-del{width:34px;height:34px;border-radius:6px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);color:#ef4444;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0;margin-top:6px}
-.cmd-del:hover{background:rgba(239,68,68,0.2)}
-.add-cmd-btn{display:flex;align-items:center;gap:8px;padding:10px 18px;background:rgba(168,85,247,0.1);border:1.5px solid rgba(168,85,247,0.25);border-radius:8px;color:var(--c2);font-size:0.85rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;margin-top:10px}
-.add-cmd-btn:hover{background:rgba(168,85,247,0.2)}
-
-.vid-slot{border-radius:12px;overflow:hidden;background:var(--bg3);border:1.5px dashed var(--border);min-height:120px;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;cursor:pointer;transition:border-color 0.3s}
-.vid-slot:hover{border-color:rgba(249,115,22,0.4)}
-.vid-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;font-size:0}
-.vid-slot video{width:100%;max-height:280px;border-radius:10px;display:none}
-.vid-slot.filled .slot-icon,.vid-slot.filled .slot-txt{display:none}
-.vid-slot.filled video{display:block}
-
-.bottom-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;padding:12px 60px;background:rgba(5,7,13,0.9);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.bb-info{font-size:0.82rem;font-weight:500;color:var(--fg2)}
-.bb-info b{color:var(--c1)}
-.bb-btns{display:flex;gap:10px}
-.nav-day-btn{padding:9px 20px;background:var(--bg3);border:1.5px solid var(--border);border-radius:8px;color:var(--fg2);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;transition:border-color 0.2s,color 0.2s}
-.nav-day-btn:hover{border-color:var(--c1);color:var(--c1)}
-.nav-day-btn:disabled{opacity:0.3;cursor:default}
-
-@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(26px);transition:opacity 0.7s,transform 0.7s}
-.reveal.visible{opacity:1;transform:translateY(0)}
-
+nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:14px 56px;display:flex;justify-content:space-between;align-items:center;background:rgba(3,5,7,0.8);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Archivo',sans-serif;font-size:1.1rem;font-weight:900;letter-spacing:0.05em;color:var(--fg);cursor:pointer}
+.logo span{color:var(--g1)}
+.nav-r{display:flex;gap:32px;align-items:center}
+.nav-r a{color:var(--fg2);font-size:0.82rem;font-weight:600;text-decoration:none;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.3s}
+.nav-r a:hover{color:var(--g1)}
+.nb{display:flex;align-items:center;gap:6px;padding:8px 18px;border:1px solid rgba(255,107,53,0.4);border-radius:6px;color:var(--fg2);font-size:0.8rem;font-weight:700;cursor:pointer;background:none;transition:all 0.3s}
+.nb:hover{border-color:var(--g1);color:var(--g1)}
+.nc{font-size:0.8rem;font-weight:600;color:var(--fg2)}
+.nc b{color:var(--g1)}
+.ns{padding:8px 20px;background:var(--g1);color:#000;border:none;border-radius:6px;font-family:'Archivo',sans-serif;font-size:0.82rem;font-weight:800;cursor:pointer;transition:transform 0.2s}
+.ns.ok{background:#10b981;color:#fff}
+#hp{padding:110px 56px 80px;max-width:1200px;margin:0 auto}
+.hero-row{display:grid;grid-template-columns:1fr 320px;gap:60px;align-items:center;min-height:80vh}
+.status-bar{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);border-radius:4px;font-size:0.7rem;font-weight:700;color:var(--g1);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:28px;opacity:0;animation:fadeup 0.6s 0.1s forwards}
+.status-bar::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--g1);animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+.hero-greeting{font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;color:var(--fg2);opacity:0;animation:fadeup 0.6s 0.2s forwards}
+.hero-name{font-size:clamp(4.5rem,10vw,8rem);font-weight:900;line-height:0.9;letter-spacing:-0.03em;margin-bottom:20px;opacity:0;animation:fadeup 0.6s 0.35s forwards}
+.hero-name .hl{background:linear-gradient(135deg,var(--g1) 0%,var(--pink) 50%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tl{min-height:1.8rem;margin-bottom:22px;opacity:0;animation:fadeup 0.6s 0.5s forwards}
+.tl span{font-family:'Fira Code',monospace;font-size:0.95rem;font-weight:600;color:var(--blue)}
+.tl .cr{display:inline-block;width:2px;height:1rem;background:var(--blue);vertical-align:middle;animation:blink 0.7s infinite}
+.hero-p{font-size:1rem;font-weight:500;color:var(--fg2);line-height:1.85;max-width:480px;margin-bottom:36px;opacity:0;animation:fadeup 0.6s 0.65s forwards}
+.hbtns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeup 0.6s 0.8s forwards}
+.hba{padding:13px 28px;background:var(--g1);color:#000;border:none;border-radius:6px;font-family:'Archivo',sans-serif;font-size:0.88rem;font-weight:800;cursor:pointer;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s}
+.hba:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(255,107,53,0.4)}
+.hbb{padding:13px 28px;background:transparent;color:var(--fg);border:1px solid var(--border);border-radius:6px;font-family:'Archivo',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;text-decoration:none;transition:border-color 0.2s,color 0.2s}
+.hbb:hover{border-color:var(--g1);color:var(--g1)}
+.photo-area{position:relative;opacity:0;animation:fadefrom 0.8s 0.4s forwards}
+@keyframes fadefrom{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+.pbox{width:100%;aspect-ratio:3/4;border-radius:16px;background:var(--bg3);border:1px solid var(--border);overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color 0.3s}
+.pbox:hover{border-color:rgba(255,107,53,0.5)}
+.pbox img{width:100%;height:100%;object-fit:cover;display:none}
+.pph{display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:none}
+.pph-i{width:60px;height:60px;border-radius:50%;background:rgba(255,107,53,0.08);border:1.5px dashed rgba(255,107,53,0.3);display:flex;align-items:center;justify-content:center;font-size:1.6rem}
+.pph p{font-size:0.78rem;font-weight:600;color:var(--fg2);text-align:center}
+.pbox input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;font-size:0}
+.prb{position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--g1),var(--pink));color:#000;padding:8px 20px;border-radius:100px;font-size:0.72rem;font-weight:800;white-space:nowrap}
+.stats-row{display:flex;gap:40px;margin-top:48px;padding-top:40px;border-top:1px solid var(--border);opacity:0;animation:fadeup 0.6s 1s forwards}
+.stat .num{font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--g1),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat .lbl{font-size:0.75rem;font-weight:600;color:var(--fg2);letter-spacing:0.08em;text-transform:uppercase;margin-top:2px}
+.sw{border-top:1px solid var(--border);position:relative;z-index:1}
+.sc{max-width:1200px;margin:0 auto;padding:80px 56px}
+.sh{display:flex;align-items:center;gap:16px;margin-bottom:48px}
+.sn{font-size:0.7rem;font-weight:800;color:var(--g1);letter-spacing:0.25em;opacity:0.7;font-family:'Fira Code',monospace}
+.st{font-size:2.6rem;font-weight:900;letter-spacing:-0.02em}
+.sl{flex:1;height:1px;background:linear-gradient(to right,rgba(255,107,53,0.3),transparent)}
+.ag{display:grid;grid-template-columns:1.3fr 1fr;gap:60px;align-items:start}
+.at{font-size:1rem;font-weight:500;color:var(--fg2);line-height:1.9}
+.at strong{color:var(--fg);font-weight:700}
+.mb{margin-top:20px;display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:rgba(255,107,53,0.07);border:1px solid rgba(255,107,53,0.2);border-radius:6px;color:var(--g1);font-size:0.85rem;font-weight:700;cursor:pointer;font-family:'Archivo',sans-serif;transition:background 0.2s}
+.mb:hover{background:rgba(255,107,53,0.14)}
+.mc{display:none;margin-top:14px;padding:16px 18px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);font-size:0.9rem;color:var(--fg2);line-height:1.8;font-weight:500}
+.skw{display:flex;flex-direction:column;gap:10px}
+.ski{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:13px 18px;font-size:0.88rem;font-weight:600;color:var(--fg);display:flex;align-items:center;gap:12px;transition:border-color 0.3s,transform 0.2s}
+.ski:hover{border-color:rgba(255,107,53,0.5);transform:translateX(6px)}
+.skd{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--g1),var(--pink));flex-shrink:0}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pc{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:32px;position:relative;overflow:hidden;transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s}
+.pc::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform 0.4s}
+.pc:nth-child(1)::after{background:linear-gradient(90deg,var(--g1),var(--pink))}
+.pc:nth-child(2)::after{background:linear-gradient(90deg,var(--blue),var(--purple))}
+.pc:hover::after{transform:scaleX(1)}
+.pc:hover{transform:translateY(-6px);border-color:rgba(255,107,53,0.25);box-shadow:0 20px 40px rgba(0,0,0,0.5)}
+.pn{font-size:3.5rem;font-weight:900;line-height:1;margin-bottom:14px;font-family:'Fira Code',monospace}
+.pc:nth-child(1) .pn{background:linear-gradient(135deg,var(--g1),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pc:nth-child(2) .pn{background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ptitle{font-size:1.1rem;font-weight:700;color:var(--fg);margin-bottom:12px;line-height:1.3}
+.pch{display:inline-block;background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.18);color:var(--g1);padding:3px 12px;border-radius:4px;font-size:0.7rem;font-weight:700;letter-spacing:0.08em;font-family:'Fira Code',monospace}
+.wg{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.wc{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s}
+.wc:hover{transform:translateY(-4px);border-color:rgba(255,107,53,0.35);box-shadow:0 16px 32px rgba(0,0,0,0.4)}
+.wi{padding:24px;display:flex;align-items:center;justify-content:space-between}
+.wl{display:flex;align-items:center;gap:14px}
+.wp{padding:5px 12px;border-radius:4px;font-family:'Fira Code',monospace;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);color:var(--g1)}
+.wlb{font-size:1rem;font-weight:700;color:var(--fg)}
+.wsb{font-size:0.75rem;font-weight:500;color:var(--fg2);margin-top:2px}
+.wa{width:34px;height:34px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--fg2);font-size:0.85rem;transition:all 0.3s}
+.wc:hover .wa{background:rgba(255,107,53,0.1);color:var(--g1);transform:translateX(3px)}
+.cb{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:56px;text-align:center;position:relative;overflow:hidden}
+.cb::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:240px;height:1px;background:linear-gradient(90deg,transparent,var(--g1),transparent)}
+.ct{font-size:clamp(2rem,4vw,3.5rem);font-weight:900;letter-spacing:-0.02em;line-height:1.1;margin-bottom:12px}
+.ct span{background:linear-gradient(135deg,var(--g1),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cs{color:var(--fg2);font-size:0.95rem;font-weight:500;margin-bottom:32px}
+.cl{display:inline-flex;align-items:center;gap:10px;padding:14px 34px;background:var(--g1);color:#000;border-radius:8px;text-decoration:none;font-weight:800;font-size:0.92rem;transition:transform 0.2s,box-shadow 0.2s}
+.cl:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(255,107,53,0.45)}
+footer{text-align:center;padding:24px;border-top:1px solid var(--border);color:var(--fg2);font-size:0.78rem;font-weight:500;position:relative;z-index:1}
+#wkp{padding:95px 56px 80px;max-width:980px;margin:0 auto}
+.wkh{text-align:center;margin-bottom:48px}
+.wkb{display:inline-block;padding:5px 14px;background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);border-radius:4px;font-family:'Fira Code',monospace;font-size:0.7rem;font-weight:700;color:var(--g1);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:14px}
+.wkh h1{font-size:clamp(3rem,8vw,5.5rem);font-weight:900;letter-spacing:-0.03em;line-height:1}
+.wkh h1 span{background:linear-gradient(135deg,var(--g1),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.wkh p{color:var(--fg2);font-size:0.92rem;font-weight:500;margin-top:10px}
+.dg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.dc{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s}
+.dc:hover{transform:translateY(-6px);border-color:rgba(255,107,53,0.3);box-shadow:0 16px 32px rgba(0,0,0,0.5)}
+.dt{padding:18px 20px;background:rgba(255,107,53,0.04);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.dnb{font-family:'Fira Code',monospace;font-size:2rem;font-weight:700;line-height:1}
+.dc:nth-child(1) .dnb{background:linear-gradient(135deg,var(--g1),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.dc:nth-child(2) .dnb{background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.dc:nth-child(3) .dnb{background:linear-gradient(135deg,#10b981,var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.dc:nth-child(4) .dnb{background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.dc:nth-child(5) .dnb{background:linear-gradient(135deg,var(--pink),var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.dc:nth-child(6) .dnb{background:linear-gradient(135deg,#fbbf24,var(--g1));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.darr{width:28px;height:28px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--fg2);font-size:0.75rem;transition:all 0.3s}
+.dc:hover .darr{background:rgba(255,107,53,0.1);color:var(--g1);transform:translateX(2px)}
+.db{padding:16px 20px}
+.dn{font-size:1rem;font-weight:700;color:var(--fg);margin-bottom:4px}
+.dl{font-size:0.75rem;font-weight:500;color:var(--fg2)}
+.df{padding:10px 20px;border-top:1px solid var(--border);display:flex;gap:6px;flex-wrap:wrap}
+.ip{font-size:0.68rem;font-weight:600;color:var(--fg2);background:var(--bg3);padding:3px 8px;border-radius:3px;border:1px solid var(--border);font-family:'Fira Code',monospace}
+#dp{padding:88px 56px 96px;max-width:820px;margin:0 auto}
+.dyh{margin-bottom:32px}
+.dyb{display:inline-block;padding:4px 12px;background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);border-radius:4px;font-family:'Fira Code',monospace;font-size:0.68rem;font-weight:700;color:var(--g1);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px}
+.dyt{font-size:clamp(2.5rem,7vw,5rem);font-weight:900;line-height:0.95;letter-spacing:-0.03em}
+.dyt em{font-style:normal;background:linear-gradient(135deg,var(--g1),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.dys{color:var(--fg2);font-size:0.88rem;font-weight:500;margin-top:8px}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.ch{padding:12px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:var(--bg3)}
+.ci{font-size:1.1rem}
+.clb{font-size:0.88rem;font-weight:700;color:var(--fg)}
+.csb{font-size:0.72rem;font-weight:500;color:var(--fg2);margin-left:auto}
+.cb2{padding:18px 20px}
+.na{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 14px;color:var(--fg);font-family:'Archivo',sans-serif;font-size:0.92rem;font-weight:500;line-height:1.8;resize:vertical;min-height:130px;outline:none;transition:border-color 0.3s}
+.na::placeholder{color:var(--fg2)}
+.na:focus{border-color:rgba(255,107,53,0.4)}
+.cl2{display:flex;flex-direction:column;gap:8px}
+.ci2{display:flex;gap:8px;align-items:flex-start}
+.cn{font-family:'Fira Code',monospace;font-size:1rem;color:var(--g1);min-width:26px;padding-top:10px;font-weight:700}
+.cinp{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:10px 12px;color:var(--blue);font-family:'Fira Code',monospace;font-size:0.8rem;outline:none;transition:border-color 0.3s}
+.cinp::placeholder{color:var(--fg2);font-family:'Archivo',sans-serif}
+.cinp:focus{border-color:rgba(76,201,240,0.4)}
+.cdel{width:32px;height:32px;border-radius:6px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.18);color:#ef4444;font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:6px;transition:background 0.2s}
+.cdel:hover{background:rgba(239,68,68,0.18)}
+.acb{display:flex;align-items:center;gap:7px;padding:9px 16px;background:rgba(76,201,240,0.07);border:1px solid rgba(76,201,240,0.2);border-radius:6px;color:var(--blue);font-size:0.82rem;font-weight:700;cursor:pointer;font-family:'Archivo',sans-serif;transition:background 0.2s;margin-top:8px}
+.acb:hover{background:rgba(76,201,240,0.14)}
+.img-full-wrap{margin-bottom:28px;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--bg3)}
+.img-full-slot{width:100%;min-height:300px;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;cursor:pointer;background:var(--bg3)}
+.img-full-slot img{width:100%;max-height:500px;object-fit:contain;display:none;background:#000}
+.img-full-slot.f img{display:block}
+.img-full-slot.f .sico,.img-full-slot.f .stxt{display:none}
+.img-full-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;font-size:0}
+.img-full-slot:hover{background:rgba(255,107,53,0.04)}
+.img-num{font-family:'Fira Code',monospace;font-size:0.7rem;font-weight:700;color:var(--g1);padding:8px 16px;border-bottom:1px solid var(--border);background:var(--bg2);display:flex;align-items:center;justify-content:space-between}
+.img-remove-btn{background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);color:#ef4444;padding:3px 10px;border-radius:4px;font-size:0.72rem;cursor:pointer;font-family:'Archivo',sans-serif;font-weight:600}
+.img-remove-btn:hover{background:rgba(239,68,68,0.3)}
+.img-desc{width:100%;background:var(--bg2);border:none;border-top:1px solid var(--border);padding:12px 16px;color:var(--fg);font-family:'Archivo',sans-serif;font-size:0.88rem;font-weight:500;line-height:1.7;resize:none;min-height:70px;outline:none}
+.img-desc::placeholder{color:var(--fg2)}
+.sico{font-size:1.6rem;pointer-events:none}
+.stxt{font-size:0.72rem;font-weight:600;color:var(--fg2);pointer-events:none;text-align:center}
+.bb{position:fixed;bottom:0;left:0;right:0;z-index:999;padding:11px 56px;background:rgba(3,5,7,0.92);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.bbi{font-size:0.8rem;font-weight:600;color:var(--fg2)}
+.bbi b{color:var(--g1)}
+.bbb{display:flex;gap:8px}
+.ndb{padding:8px 18px;background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--fg2);font-family:'Archivo',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;transition:border-color 0.2s,color 0.2s}
+.ndb:hover{border-color:var(--g1);color:var(--g1)}
+.ndb:disabled{opacity:0.3;cursor:default}
+@keyframes fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.rev{opacity:0;transform:translateY(24px);transition:opacity 0.7s,transform 0.7s}
+.rev.vis{opacity:1;transform:translateY(0)}
 @media(max-width:900px){
-  nav{padding:14px 20px}.nav-links{gap:16px}
-  #home-content{padding:100px 20px 60px}.hero-grid{grid-template-columns:1fr;gap:40px}.photo-wrap{max-width:260px}
-  .sec{padding:64px 20px}.about-grid{grid-template-columns:1fr;gap:36px}.proj-grid{grid-template-columns:1fr}.weeks-grid{grid-template-columns:1fr}
-  #week-content{padding:90px 20px 60px}.days-grid{grid-template-columns:1fr 1fr}
-  #day-content{padding:85px 20px 90px}.images-row{grid-template-columns:1fr}.bottom-bar{padding:12px 20px}
-  .contact-box{padding:36px 20px}
+  nav{padding:12px 20px}.nav-r{gap:16px}
+  #hp{padding:95px 20px 60px}.hero-row{grid-template-columns:1fr;gap:36px;min-height:auto}.photo-area{max-width:240px}
+  .sc{padding:60px 20px}.ag{grid-template-columns:1fr;gap:32px}.pg{grid-template-columns:1fr}.wg{grid-template-columns:1fr}.cb{padding:36px 20px}
+  #wkp{padding:85px 20px 60px}.dg{grid-template-columns:1fr 1fr}
+  #dp{padding:80px 20px 88px}.bb{padding:10px 20px}
+  .stats-row{gap:24px}
 }
-@media(max-width:480px){.days-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.dg{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="grid-bg"></div>
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-
-<!-- ============ NAV (dynamic) ============ -->
-<nav id="mainNav">
-  <div class="logo" onclick="showPage('home')">Snehal Kale</div>
-  <div class="nav-links" id="navLinks">
-    <a onclick="scrollTo('#about')">About</a>
-    <a onclick="scrollTo('#projects')">Projects</a>
-    <a onclick="scrollTo('#internship')">Internship</a>
-    <a onclick="scrollTo('#contact')">Contact</a>
+<div class="hero-bg"></div>
+<div class="scanlines"></div>
+<nav>
+  <div class="logo" onclick="showPage('home')">SK<span>.</span></div>
+  <div class="nav-r" id="navR">
+    <a onclick="goTo('#about')">About</a>
+    <a onclick="goTo('#projects')">Projects</a>
+    <a onclick="goTo('#internship')">Internship</a>
+    <a onclick="goTo('#contact')">Contact</a>
   </div>
 </nav>
-
-<!-- ============ HOME PAGE ============ -->
 <div class="page active" id="page-home">
-<div id="home-content">
-  <div class="hero-grid">
+<div id="hp">
+  <div class="hero-row">
     <div>
-      <div class="tag">Engineer & Communicator</div>
-      <p class="hello">Hello, I am</p>
-      <h1 class="name">Snehal <em>Kale.</em></h1>
-      <div class="typing-line"><span class="typed" id="typed"></span><span class="caret"></span></div>
-      <p class="desc">A curious mind with a passion for building things that actually work — from Arduino radar systems to voice-controlled robots.</p>
-      <div class="btns">
-        <a class="btn-a" onclick="scrollTo('#projects')">View My Work</a>
-        <a class="btn-b" onclick="scrollTo('#contact')">Get In Touch</a>
+      <div class="status-bar">Available for work</div>
+      <p class="hero-greeting">Hello, I am</p>
+      <h1 class="hero-name">Snehal<br><span class="hl">Kale.</span></h1>
+      <div class="tl"><span id="typed"></span><span class="cr"></span></div>
+      <p class="hero-p">A curious mind with a passion for building things that work — from Arduino radar systems to voice-controlled robots.</p>
+      <div class="hbtns">
+        <a class="hba" onclick="goTo('#projects')">View My Work</a>
+        <a class="hbb" onclick="goTo('#contact')">Get In Touch</a>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="num">2+</div><div class="lbl">Projects</div></div>
+        <div class="stat"><div class="num">4wk</div><div class="lbl">Internship</div></div>
+        <div class="stat"><div class="num">1st</div><div class="lbl">Year Diploma</div></div>
       </div>
     </div>
-    <div class="photo-wrap">
-      <div class="photo-box" id="photoBox">
-        <img id="heroImg" src="" alt="Snehal Kale">
-        <div class="photo-ph" id="photoPh">
-          <div class="photo-ph-icon">📸</div>
-          <p>Click to add<br>your photo</p>
-        </div>
-        <input type="file" accept="image/*" onchange="uploadPhoto(event)">
+    <div class="photo-area">
+      <div class="pbox" id="pbox">
+        <img id="heroImg" src="" alt="Snehal">
+        <div class="pph" id="pph"><div class="pph-i">📸</div><p>Click to add<br>your photo</p></div>
+        <input type="file" accept="image/*" onchange="upPhoto(event)">
       </div>
-      <div class="photo-ribbon">Open to Work 🚀</div>
+      <div class="prb">Open to Work 🚀</div>
     </div>
   </div>
 </div>
-
-<div class="sec-wrap"><div class="sec" id="about">
-  <div class="sec-head reveal"><span class="sec-num">01</span><h2 class="sec-title">About Me</h2><div class="sec-line"></div></div>
-  <div class="about-grid">
-    <div class="reveal">
-      <p class="about-text">Part communicator, part engineer — I love <strong>building things that solve real problems.</strong><br><br>From coding robots to talking to people, I bring both sides to the table.</p>
-      <button class="more-btn" onclick="toggleMore(this)">More About Me →</button>
-      <div class="more-content">I am currently doing my internship and learning every single day. I believe in hands-on experience and love working on hardware and software projects. Communication is one of my biggest strengths.</div>
+<div class="sw"><div class="sc" id="about">
+  <div class="sh rev"><span class="sn">// 01</span><h2 class="st">About Me</h2><div class="sl"></div></div>
+  <div class="ag">
+    <div class="rev">
+      <p class="at">Part communicator, part engineer — I love <strong>building things that solve real problems.</strong><br><br>From coding robots to talking to people, I bring both sides to the table.</p>
+      <button class="mb" onclick="togMore(this)">More About Me →</button>
+      <div class="mc">Currently doing my internship and learning every day. I believe in hands-on experience and love working on hardware and software projects.</div>
     </div>
-    <div class="skills-wrap reveal">
-      <div class="skill-item"><span class="skill-dot"></span>Communication</div>
-      <div class="skill-item"><span class="skill-dot"></span>Basics of Programming</div>
-      <div class="skill-item"><span class="skill-dot"></span>Arduino & Hardware</div>
-      <div class="skill-item"><span class="skill-dot"></span>Problem Solving</div>
-      <div class="skill-item"><span class="skill-dot"></span>Teamwork</div>
+    <div class="skw rev">
+      <div class="ski"><span class="skd"></span>Communication</div>
+      <div class="ski"><span class="skd"></span>Basics of Programming</div>
+      <div class="ski"><span class="skd"></span>Arduino & Hardware</div>
+      <div class="ski"><span class="skd"></span>Problem Solving</div>
+      <div class="ski"><span class="skd"></span>Teamwork</div>
     </div>
   </div>
 </div></div>
-
-<div class="sec-wrap"><div class="sec" id="projects">
-  <div class="sec-head reveal"><span class="sec-num">02</span><h2 class="sec-title">Projects</h2><div class="sec-line"></div></div>
-  <div class="proj-grid">
-    <div class="proj-card reveal"><div class="proj-num">01</div><div class="proj-name">Radar System using Arduino</div><span class="proj-chip">Arduino · Hardware</span></div>
-    <div class="proj-card reveal"><div class="proj-num">02</div><div class="proj-name">Obstacle Avoiding Robot with Voice Control</div><span class="proj-chip">Robotics · Voice AI</span></div>
+<div class="sw"><div class="sc" id="projects">
+  <div class="sh rev"><span class="sn">// 02</span><h2 class="st">Projects</h2><div class="sl"></div></div>
+  <div class="pg">
+    <div class="pc rev"><div class="pn">01</div><div class="ptitle">Radar System using Arduino</div><span class="pch">Arduino · Hardware</span></div>
+    <div class="pc rev"><div class="pn">02</div><div class="ptitle">Obstacle Avoiding Robot with Voice Control</div><span class="pch">Robotics · Voice AI</span></div>
   </div>
 </div></div>
-
-<div class="sec-wrap"><div class="sec" id="internship">
-  <div class="sec-head reveal"><span class="sec-num">03</span><h2 class="sec-title">Internship Log</h2><div class="sec-line"></div></div>
-  <div class="weeks-grid reveal">
-    <div class="week-card" onclick="showWeek(1)"><div class="week-inner"><div class="week-left"><span class="week-pill">WEEK 01</span><div><div class="week-label">Week One</div><div class="week-sub">Click to open daily log</div></div></div><div class="week-arrow">→</div></div></div>
-    <div class="week-card" onclick="showWeek(2)"><div class="week-inner"><div class="week-left"><span class="week-pill">WEEK 02</span><div><div class="week-label">Week Two</div><div class="week-sub">Click to open daily log</div></div></div><div class="week-arrow">→</div></div></div>
-    <div class="week-card" onclick="showWeek(3)"><div class="week-inner"><div class="week-left"><span class="week-pill">WEEK 03</span><div><div class="week-label">Week Three</div><div class="week-sub">Click to open daily log</div></div></div><div class="week-arrow">→</div></div></div>
-    <div class="week-card" onclick="showWeek(4)"><div class="week-inner"><div class="week-left"><span class="week-pill">WEEK 04</span><div><div class="week-label">Week Four</div><div class="week-sub">Click to open daily log</div></div></div><div class="week-arrow">→</div></div></div>
+<div class="sw"><div class="sc" id="internship">
+  <div class="sh rev"><span class="sn">// 03</span><h2 class="st">Internship Log</h2><div class="sl"></div></div>
+  <div class="wg rev">
+    <div class="wc" onclick="showWeek(1)"><div class="wi"><div class="wl"><span class="wp">WEEK_01</span><div><div class="wlb">Week One</div><div class="wsb">Click to open log</div></div></div><div class="wa">→</div></div></div>
+    <div class="wc" onclick="showWeek(2)"><div class="wi"><div class="wl"><span class="wp">WEEK_02</span><div><div class="wlb">Week Two</div><div class="wsb">Click to open log</div></div></div><div class="wa">→</div></div></div>
+    <div class="wc" onclick="showWeek(3)"><div class="wi"><div class="wl"><span class="wp">WEEK_03</span><div><div class="wlb">Week Three</div><div class="wsb">Click to open log</div></div></div><div class="wa">→</div></div></div>
+    <div class="wc" onclick="showWeek(4)"><div class="wi"><div class="wl"><span class="wp">WEEK_04</span><div><div class="wlb">Week Four</div><div class="wsb">Click to open log</div></div></div><div class="wa">→</div></div></div>
   </div>
 </div></div>
-
-<div class="sec-wrap"><div class="sec" id="contact">
-  <div class="sec-head reveal"><span class="sec-num">04</span><h2 class="sec-title">Contact</h2><div class="sec-line"></div></div>
-  <div class="contact-box reveal">
-    <h2 class="contact-title">Let's <span>Connect</span><br>& Build Together.</h2>
-    <p class="contact-sub">Open to opportunities & collaborations.</p>
-    <a href="mailto:snehalkale1518@gmail.com" class="contact-link">📧 snehalkale1518@gmail.com</a>
+<div class="sw"><div class="sc" id="contact">
+  <div class="sh rev"><span class="sn">// 04</span><h2 class="st">Contact</h2><div class="sl"></div></div>
+  <div class="cb rev">
+    <h2 class="ct">Let's <span>Connect</span><br>& Build Together.</h2>
+    <p class="cs">Open to opportunities & collaborations.</p>
+    <a href="mailto:snehalkale1518@gmail.com" class="cl">📧 snehalkale1518@gmail.com</a>
   </div>
 </div></div>
-<footer>© 2026 Snehal Kale — All rights reserved</footer>
-</div><!-- end page-home -->
-
-<!-- ============ WEEK PAGE ============ -->
+<footer>© 2026 Snehal Kale — Built with passion</footer>
+</div>
 <div class="page" id="page-week">
-<div id="week-content">
-  <div class="week-hero">
-    <div class="week-badge" id="wkBadge">WEEK 01</div>
-    <h1 class="week-heading">Week <span id="wkWord">One</span></h1>
-    <p class="week-sub-txt">Select a day to add your daily internship record</p>
+<div id="wkp">
+  <div class="wkh">
+    <div class="wkb" id="wkb">WEEK_01</div>
+    <h1><span id="wkw">One</span></h1>
+    <p>Select a day to add your daily internship record</p>
   </div>
-  <div class="days-grid" id="daysGrid"></div>
+  <div class="dg" id="dg"></div>
 </div>
-</div><!-- end page-week -->
-
-<!-- ============ DAY PAGE ============ -->
+</div>
 <div class="page" id="page-day">
-<div id="day-content">
-  <div class="day-hero">
-    <div class="day-badge" id="dyBadge">WEEK 1 · DAY 1</div>
-    <h1 class="day-title" id="dyTitle">Mon<em>day.</em></h1>
-    <p class="day-subtitle" id="dySub">Week 1 · Day 1 — Add your internship record below</p>
+<div id="dp">
+  <div class="dyh">
+    <div class="dyb" id="dyb">WEEK_1 · DAY_1</div>
+    <h1 class="dyt" id="dyt">Mon<em>day.</em></h1>
+    <p class="dys" id="dys">Week 1 · Day 1</p>
   </div>
-
-  <div class="card">
-    <div class="card-head"><span class="card-icon">🖼️</span><span class="card-label">Photos</span><span class="card-sub">Upload up to 2 images</span></div>
-    <div class="card-body">
-      <div class="images-row">
-        <div class="img-slot" id="slot1"><span class="slot-icon">📷</span><span class="slot-txt">Click to upload<br>Photo 1</span><img id="img1"><button class="img-remove" onclick="removeImg(1,event)">✕</button><input type="file" accept="image/*" onchange="loadImg(event,1)"></div>
-        <div class="img-slot" id="slot2"><span class="slot-icon">📷</span><span class="slot-txt">Click to upload<br>Photo 2</span><img id="img2"><button class="img-remove" onclick="removeImg(2,event)">✕</button><input type="file" accept="image/*" onchange="loadImg(event,2)"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-head"><span class="card-icon">📝</span><span class="card-label">Daily Notes</span><span class="card-sub">What did you learn today?</span></div>
-    <div class="card-body"><textarea class="notes-area" id="notesArea" placeholder="Write about your day — what you learned, what you worked on, any challenges..."></textarea></div>
-  </div>
-
-  <div class="card">
-    <div class="card-head"><span class="card-icon">💻</span><span class="card-label">Commands & Code</span><span class="card-sub">Add commands you used today</span></div>
-    <div class="card-body"><div class="cmd-list" id="cmdList"></div><button class="add-cmd-btn" onclick="addCmd()">+ Add Command</button></div>
-  </div>
-
-  <div class="card">
-    <div class="card-head"><span class="card-icon">🎬</span><span class="card-label">Video</span><span class="card-sub">Upload a video from your day</span></div>
-    <div class="card-body"><div class="vid-slot" id="vidSlot"><span class="slot-icon">🎥</span><span class="slot-txt">Click to upload a video</span><video id="vidEl" controls></video><input type="file" accept="video/*" onchange="loadVid(event)"></div></div>
+  <div class="card"><div class="ch"><span class="ci">🖼️</span><span class="clb">Photos</span><span class="csb">8 images with description</span></div><div class="cb2"><div id="imgSection"></div></div></div>
+  <div class="card"><div class="ch"><span class="ci">📝</span><span class="clb">Daily Notes</span><span class="csb">What happened today?</span></div><div class="cb2"><textarea class="na" id="na" placeholder="Write about your day..."></textarea></div></div>
+  <div class="card"><div class="ch"><span class="ci">🧠</span><span class="clb">What I Learned</span><span class="csb">Your learning for the day</span></div><div class="cb2"><textarea class="na" id="learned" placeholder="Write what you learned today..."></textarea></div></div>
+  <div class="card"><div class="ch"><span class="ci">💻</span><span class="clb">Commands & Code</span><span class="csb">Commands you used</span></div><div class="cb2"><div class="cl2" id="cl"></div><button class="acb" onclick="addC()">+ Add Command</button></div></div>
+</div>
+<div class="bb">
+  <div class="bbi">Week <b id="bbw">1</b> · <b id="bbd">Monday</b></div>
+  <div class="bbb">
+    <button class="ndb" id="pb" onclick="nd(-1)">← Prev</button>
+    <button class="ndb" id="nb2" onclick="nd(1)">Next →</button>
   </div>
 </div>
-
-<div class="bottom-bar">
-  <div class="bb-info">Week <b id="bbW">1</b> · <b id="bbD">Monday</b></div>
-  <div class="bb-btns">
-    <button class="nav-day-btn" id="prevDayBtn" onclick="navDay(-1)">← Prev Day</button>
-    <button class="nav-day-btn" id="nextDayBtn" onclick="navDay(1)">Next Day →</button>
-  </div>
 </div>
-</div><!-- end page-day -->
-
 <script>
 const DAYS=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const WWORDS=['One','Two','Three','Four'];
-let curW=1,curD=1,cmdCount=0;
-
-// ---- TYPING ----
-const phrases=['First Year Diploma Student.','Mechatronics Branch.'];
-let pi=0,ci=0,del=false,pause=0;
-const typedEl=document.getElementById('typed');
-function type(){
-  if(pause>0){pause--;setTimeout(type,100);return}
-  const cur=phrases[pi];
-  if(!del){typedEl.textContent=cur.slice(0,++ci);if(ci===cur.length){pause=20;del=true}setTimeout(type,85)}
-  else{typedEl.textContent=cur.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length;pause=6}setTimeout(type,45)}
-}
-setTimeout(type,1300);
-
-// ---- PAGE SWITCHING ----
-function showPage(name){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  window.scrollTo(0,0);
-  updateNav(name);
-}
-
-function updateNav(name){
-  const nl=document.getElementById('navLinks');
-  if(name==='home'){
-    nl.innerHTML=`
-      <a onclick="scrollTo('#about')">About</a>
-      <a onclick="scrollTo('#projects')">Projects</a>
-      <a onclick="scrollTo('#internship')">Internship</a>
-      <a onclick="scrollTo('#contact')">Contact</a>`;
-  } else if(name==='week'){
-    nl.innerHTML=`<button class="back-btn" onclick="showPage('home')">← Home</button><div class="nav-crumb">Week <b>${curW}</b> Log</div>`;
-  } else if(name==='day'){
-    nl.innerHTML=`
-      <button class="back-btn" onclick="showPage('week')">← Week ${curW}</button>
-      <div class="nav-crumb">Week <b>${curW}</b> / <b>${DAYS[curD-1]}</b></div>
-      <button class="save-btn" id="saveBtn" onclick="saveData()">💾 Save</button>`;
-  }
-}
-
-function scrollTo(id){
-  const el=document.querySelector(id);
-  if(el)el.scrollIntoView({behavior:'smooth'});
-}
-
-// ---- WEEK PAGE ----
-function showWeek(w){
-  curW=w;
-  document.getElementById('wkBadge').textContent=`WEEK 0${w}`;
-  document.getElementById('wkWord').textContent=WWORDS[w-1];
-  buildDays(w);
-  showPage('week');
-}
-
-function buildDays(w){
-  const grid=document.getElementById('daysGrid');
-  grid.innerHTML='';
-  DAYS.forEach((day,i)=>{
-    const card=document.createElement('div');
-    card.className='day-card';
-    card.style.animation=`up 0.5s ${i*0.07}s both`;
-    card.innerHTML=`
-      <div class="day-top">
-        <div class="day-num-badge">0${i+1}</div>
-        <div class="day-arrow">→</div>
-      </div>
-      <div class="day-body">
-        <div class="day-name">${day}</div>
-        <div class="day-lbl">Week ${w} · Day ${i+1}</div>
-      </div>
-      <div class="day-footer">
-        <span class="icon-pill">🖼 Photos</span>
-        <span class="icon-pill">📝 Notes</span>
-        <span class="icon-pill">💻 Code</span>
-        <span class="icon-pill">🎬 Video</span>
-      </div>`;
-    card.onclick=()=>showDay(w,i+1);
-    grid.appendChild(card);
-  });
-}
-
-// ---- DAY PAGE ----
-function showDay(w,d){
-  curW=w; curD=d;
-  const dayName=DAYS[d-1];
-  document.getElementById('dyBadge').textContent=`WEEK ${w} · DAY ${d}`;
-  document.getElementById('dyTitle').innerHTML=`${dayName.slice(0,3)}<em>${dayName.slice(3)}.</em>`;
-  document.getElementById('dySub').textContent=`Week ${w} · Day ${d} — Add your internship record below`;
-  document.getElementById('bbW').textContent=w;
-  document.getElementById('bbD').textContent=dayName;
-  document.getElementById('prevDayBtn').disabled=(d===1&&w===1);
-  document.getElementById('nextDayBtn').disabled=(d===6&&w===4);
-
-  // reset images
-  [1,2].forEach(n=>{
-    document.getElementById('img'+n).src='';
-    document.getElementById('slot'+n).classList.remove('filled');
-  });
-  document.getElementById('vidEl').src='';
-  document.getElementById('vidSlot').classList.remove('filled');
-
-  // load saved
-  cmdCount=0;
-  document.getElementById('cmdList').innerHTML='';
-  try{
-    const saved=JSON.parse(localStorage.getItem(`sk_w${w}_d${d}`));
-    if(saved){
-      document.getElementById('notesArea').value=saved.notes||'';
-      (saved.cmds||[]).forEach(v=>{addCmd();document.querySelectorAll('.cmd-input')[cmdCount-1].value=v});
-    } else {
-      document.getElementById('notesArea').value='';
-      addCmd(); addCmd();
-    }
-  } catch(e){
-    document.getElementById('notesArea').value='';
-    addCmd(); addCmd();
-  }
-
-  showPage('day');
-}
-
-function navDay(dir){
-  let d=curD+dir,w=curW;
-  if(d<1){w--;d=6}
-  if(d>6){w++;d=1}
-  if(w<1||w>4)return;
-  showDay(w,d);
-}
-
-// ---- DAY FUNCTIONS ----
-function loadImg(e,n){
-  const f=e.target.files[0];if(!f)return;
-  document.getElementById('img'+n).src=URL.createObjectURL(f);
-  document.getElementById('slot'+n).classList.add('filled');
-}
-function removeImg(n,e){
-  e.stopPropagation();
-  document.getElementById('img'+n).src='';
-  document.getElementById('slot'+n).classList.remove('filled');
-}
-function loadVid(e){
-  const f=e.target.files[0];if(!f)return;
-  document.getElementById('vidEl').src=URL.createObjectURL(f);
-  document.getElementById('vidSlot').classList.add('filled');
-}
-function addCmd(){
-  cmdCount++;
-  const row=document.createElement('div');
-  row.className='cmd-item'; row.id='cmd-'+cmdCount;
-  row.innerHTML=`<span class="cmd-num">${String(cmdCount).padStart(2,'0')}</span><input class="cmd-input" type="text" placeholder="e.g.  void loop() { digitalWrite(13, HIGH); }"><button class="cmd-del" onclick="delCmd(${cmdCount})">✕</button>`;
-  document.getElementById('cmdList').appendChild(row);
-}
-function delCmd(n){const el=document.getElementById('cmd-'+n);if(el)el.remove();}
-
-function saveData(){
-  const cmds=[...document.querySelectorAll('.cmd-input')].map(i=>i.value);
-  localStorage.setItem(`sk_w${curW}_d${curD}`,JSON.stringify({notes:document.getElementById('notesArea').value,cmds}));
-  const btn=document.getElementById('saveBtn');
-  if(btn){btn.textContent='✅ Saved!';btn.classList.add('saved');setTimeout(()=>{btn.textContent='💾 Save';btn.classList.remove('saved')},2000)}
-}
-
-
-// ---- HOME ----
-function uploadPhoto(e){
-  const f=e.target.files[0];if(!f)return;
-  document.getElementById('heroImg').src=URL.createObjectURL(f);
-  document.getElementById('heroImg').style.display='block';
-  document.getElementById('photoPh').style.display='none';
-}
-function toggleMore(btn){
-  const c=btn.nextElementSibling;
-  const open=c.style.display==='block';
-  c.style.display=open?'none':'block';
-  btn.textContent=open?'More About Me →':'Less ↑';
-}
-
-// ---- REVEAL ----
-const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*100)}),{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const WW=['One','Two','Three','Four'];
+let cW=1,cD=1,cC=0;
+const phr=['First Year Diploma Student.','Mechatronics Branch.'];
+let pi=0,ci=0,dl=false,ps=0;
+const tel=document.getElementById('typed');
+function typ(){if(ps>0){ps--;setTimeout(typ,100);return}const c=phr[pi];if(!dl){tel.textContent=c.slice(0,++ci);if(ci===c.length){ps=22;dl=true}setTimeout(typ,85)}else{tel.textContent=c.slice(0,--ci);if(ci===0){dl=false;pi=(pi+1)%phr.length;ps=6}setTimeout(typ,45)}}
+setTimeout(typ,1200);
+function showPage(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+n).classList.add('active');window.scrollTo(0,0);updNav(n);}
+function updNav(n){const r=document.getElementById('navR');if(n==='home'){r.innerHTML=`<a onclick="goTo('#about')">About</a><a onclick="goTo('#projects')">Projects</a><a onclick="goTo('#internship')">Internship</a><a onclick="goTo('#contact')">Contact</a>`}else if(n==='week'){r.innerHTML=`<button class="nb" onclick="showPage('home')">← Home</button><div class="nc">Week <b>${cW}</b></div>`}else if(n==='day'){r.innerHTML=`<button class="nb" onclick="showPage('week')">← Week ${cW}</button><div class="nc">Week <b>${cW}</b> / <b>${DAYS[cD-1]}</b></div><button class="ns" id="sv" onclick="svData()">💾 Save</button>`}}
+function goTo(id){const el=document.querySelector(id);if(el)el.scrollIntoView({behavior:'smooth'});}
+function showWeek(w){cW=w;document.getElementById('wkb').textContent=`WEEK_0${w}`;document.getElementById('wkw').textContent=WW[w-1];const g=document.getElementById('dg');g.innerHTML='';DAYS.forEach((day,i)=>{const c=document.createElement('div');c.className='dc';c.style.animation=`fadeup 0.4s ${i*0.06}s both`;c.innerHTML=`<div class="dt"><div class="dnb">0${i+1}</div><div class="darr">→</div></div><div class="db"><div class="dn">${day}</div><div class="dl">Week ${w} · Day ${i+1}</div></div><div class="df"><span class="ip">photos</span><span class="ip">notes</span><span class="ip">learned</span><span class="ip">code</span></div>`;c.onclick=()=>showDay(w,i+1);g.appendChild(c);});showPage('week');}
+function showDay(w,d){cW=w;cD=d;const dn=DAYS[d-1];document.getElementById('dyb').textContent=`WEEK_${w} · DAY_${d}`;document.getElementById('dyt').innerHTML=`${dn.slice(0,3)}<em>${dn.slice(3)}.</em>`;document.getElementById('dys').textContent=`Week ${w} · Day ${d} — Add your record`;const dayOrdinals=['first','second','third','fourth','fifth','sixth'];const learnedEl=document.getElementById('learned');if(learnedEl)learnedEl.placeholder=`On my ${dayOrdinals[d-1]} day of internship at Tinkerers' Lab, I learned...`;document.getElementById('bbw').textContent=w;document.getElementById('bbd').textContent=dn;document.getElementById('pb').disabled=(d===1&&w===1);document.getElementById('nb2').disabled=(d===6&&w===4);[1,2,3,4,5,6,7,8].forEach(n=>{const el=document.getElementById('i'+n);const sl=document.getElementById('s'+n);if(el)el.src='';if(sl)sl.classList.remove('f');});buildImgSection();cC=0;document.getElementById('cl').innerHTML='';try{const sv=JSON.parse(localStorage.getItem(`sk_${w}_${d}`));if(sv){document.getElementById('na').value=sv.notes||'';(sv.cmds||[]).forEach(v=>{addC();document.querySelectorAll('.cinp')[cC-1].value=v});(sv.descs||[]).forEach((v,i)=>{const el=document.getElementById('desc'+(i+1));if(el)el.value=v;});const lEl=document.getElementById('learned');if(lEl)lEl.value=sv.learned||'';}else if(w===1&&d===1){document.getElementById('na').value=`📌 WEEK 1 - DAY 1: GitHub Setup & VS Code Integration\n\n🔧 STEP 1: Install Git\n- Opened browser and went to https://git-scm.com\n- Clicked Download for Windows\n- Ran the .exe installer file\n- Kept all default settings, clicked Next then Install\n- Opened Command Prompt and typed: git --version\n- It showed git version 2.x.x — Git installed successfully\n\n👤 STEP 2: Create GitHub Account\n- Opened https://github.com in browser\n- Clicked Sign Up button\n- Entered email, password and username\n- Verified email address\n- GitHub account created successfully\n\n🔗 STEP 3: Configure Git in VS Code Terminal\n- Opened VS Code\n- Pressed Ctrl + backtick to open Terminal\n- Set my name and email in Git settings\n\n📁 STEP 4: Create New Repository on GitHub\n- Logged into GitHub account\n- Clicked + icon at top right then New Repository\n- Named it: my-portfolio\n- Set visibility to Public\n- Clicked Create Repository\n\n💻 STEP 5: Push Code from VS Code to GitHub\n- Opened VS Code Terminal\n- Went to project folder using cd command\n- Initialized git, added files, committed and pushed\n- Code uploaded to GitHub successfully`;const cmds1=['git --version','git config --global user.name "Snehal Kale"','git config --global user.email "snehalkale1518@gmail.com"','git config --list','cd Desktop','git init','git status','git add .','git commit -m "First commit - portfolio website"','git branch -M main','git remote add origin https://github.com/yourusername/my-portfolio.git','git push -u origin main','git log --oneline'];cmds1.forEach(v=>{addC();document.querySelectorAll('.cinp')[cC-1].value=v});}else{document.getElementById('na').value='';addC();addC();}}catch(e){document.getElementById('na').value='';addC();addC();}showPage('day');}
+function nd(dir){let d=cD+dir,w=cW;if(d<1){w--;d=6}if(d>6){w++;d=1}if(w<1||w>4)return;showDay(w,d);}
+function buildImgSection(){const sec=document.getElementById('imgSection');if(!sec)return;sec.innerHTML='';for(let n=1;n<=8;n++){const wrap=document.createElement('div');wrap.className='img-full-wrap';wrap.innerHTML=`<div class="img-num"><span>IMAGE ${String(n).padStart(2,'0')}</span><button class="img-remove-btn" onclick="rmImg(${n},event)">✕ Remove</button></div><div class="img-full-slot" id="s${n}"><span class="sico">📷</span><span class="stxt" style="font-size:0.82rem;color:var(--fg2);font-weight:600">Click to upload Image ${n}</span><img id="i${n}" src=""><input type="file" accept="image/*" onchange="ldImg(event,${n})"></div><textarea class="img-desc" id="desc${n}" placeholder="Write description for Image ${n}..."></textarea>`;sec.appendChild(wrap);}}
+function ldImg(e,n){const f=e.target.files[0];if(!f)return;const el=document.getElementById('i'+n);const sl=document.getElementById('s'+n);if(el&&sl){el.src=URL.createObjectURL(f);sl.classList.add('f');}}
+function rmImg(n,e){if(e)e.stopPropagation();const el=document.getElementById('i'+n);const sl=document.getElementById('s'+n);if(el&&sl){el.src='';sl.classList.remove('f');}}
+function addC(){cC++;const r=document.createElement('div');r.className='ci2';r.id='c'+cC;r.innerHTML=`<span class="cn">${String(cC).padStart(2,'0')}</span><input class="cinp" type="text" placeholder="e.g. git add ."><button class="cdel" onclick="delC(${cC})">✕</button>`;document.getElementById('cl').appendChild(r);}
+function delC(n){const el=document.getElementById('c'+n);if(el)el.remove();}
+function svData(){const cm=[...document.querySelectorAll('.cinp')].map(i=>i.value);const descs=[1,2,3,4,5,6,7,8].map(n=>{const el=document.getElementById('desc'+n);return el?el.value:''});const learnedEl=document.getElementById('learned');const learned=learnedEl?learnedEl.value:'';localStorage.setItem(`sk_${cW}_${cD}`,JSON.stringify({notes:document.getElementById('na').value,cmds:cm,descs,learned}));const b=document.getElementById('sv');if(b){b.textContent='✅ Saved!';b.classList.add('ok');setTimeout(()=>{b.textContent='💾 Save';b.classList.remove('ok')},2000);}}
+function upPhoto(e){const f=e.target.files[0];if(!f)return;document.getElementById('heroImg').src=URL.createObjectURL(f);document.getElementById('heroImg').style.display='block';document.getElementById('pph').style.display='none';}
+function togMore(b){const c=b.nextElementSibling;const o=c.style.display==='block';c.style.display=o?'none':'block';b.textContent=o?'More About Me →':'Less ↑';}
+const obs=new IntersectionObserver(es=>es.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*90)}),{threshold:0.08});
+document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
