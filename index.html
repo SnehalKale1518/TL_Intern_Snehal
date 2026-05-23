@@ -368,7 +368,7 @@ footer{text-align:center;padding:24px;border-top:1px solid var(--border);color:v
     <h1 class="dyt" id="dyt">Mon<em>day.</em></h1>
     <p class="dys" id="dys">Week 1 · Day 1</p>
   </div>
-  <div class="card"><div class="ch"><span class="ci">🖼️</span><span class="clb">Photos</span><span class="csb">8 images with description</span></div><div class="cb2">
+  <div class="card"><div class="ch"><span class="ci">🖼️</span><span class="clb">Photos</span><span class="csb">7 images with description</span></div><div class="cb2">
   <div id="imgSection"></div>
   </div></div>
   <div class="card"><div class="ch"><span class="ci">📝</span><span class="clb">Daily Notes</span><span class="csb">What did you learn?</span></div><div class="cb2"><textarea class="na" id="na" placeholder="Write about your day..."></textarea></div></div>
@@ -449,10 +449,16 @@ function showDay(w,d){
   buildImgSection();
   if(w===1&&d===1){
     const w1Imgs=[
-      {src:'images/WhatsApp Image 2026-05-23 at 8.13.22 PM.jpeg', desc:'Orientation and setup on my first day at the internship.'},
-      {src:'images/WhatsApp Image 2026-05-23 at 8.13.22 PM (1).jpeg', desc:'Meeting the team and checking the workspace scene.'},
-      {src:'images/WhatsApp Image 2026-05-23 at 8.13.27 PM.jpeg', desc:'Getting hands-on with the first hardware kit and components.'}
+      {src:'images/WhatsApp Image 2026-05-23 at 10.39.26 PM (1).jpeg', desc:'Late-evening workspace shot showing the team focused on the first design task.'},
+      {src:'images/WhatsApp Image 2026-05-23 at 8.13.22 PM.jpeg', desc:'Orientation and lab overview on the first day of the internship.'},
+      {src:'images/WhatsApp Image 2026-05-23 at 8.13.27 PM.jpeg', desc:'Hands-on hardware setup with the first project components.'},
+      {src:'images/WhatsApp Image 2026-05-23 at 8.17.07 PM.jpeg', desc:'Discussing the project plan and mentor feedback at the desk.'},
+      {src:'images/WhatsApp Image 2026-05-23 at 8.13.22 PM (1).jpeg', desc:'Meeting the team and capturing the collaborative workspace environment.'},
+      {src:'images/WhatsApp Image 2026-05-23 at 10.35.54 PM.jpeg', desc:'Evening progress update showing the day’s completed setup.'},
+      {src:'images/WhatsApp Image 2026-05-23 at 10.39.26 PM.jpeg', desc:'Final wrap-up photo from Day 1 with the project area and notes.'}
     ];
+    const seventhImage = w1Imgs.splice(6,1)[0];
+    w1Imgs.splice(1,0,seventhImage);
     w1Imgs.forEach((img,i)=>{
       const el=document.getElementById('i'+(i+1));
       const slot=document.getElementById('s'+(i+1));
@@ -532,7 +538,7 @@ function buildImgSection(){
   const sec=document.getElementById('imgSection');
   if(!sec)return;
   sec.innerHTML='';
-  for(let n=1;n<=8;n++){
+  for(let n=1;n<=7;n++){
     const wrap=document.createElement('div');
     wrap.className='img-full-wrap';
     wrap.innerHTML=`
