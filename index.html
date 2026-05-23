@@ -446,7 +446,21 @@ function showDay(w,d){
   document.getElementById('nb2').disabled=(d===6&&w===4);
   [1,2,3,4,5,6,7,8].forEach(n=>{const el=document.getElementById('i'+n);const sl=document.getElementById('s'+n);if(el)el.src='';if(sl)sl.classList.remove('f');});
   const ve=document.getElementById('ve');const vs=document.getElementById('vs');if(ve)ve.src='';if(vs)vs.classList.remove('f');
-  buildImgSection();cC=0;document.getElementById('cl').innerHTML='';
+  buildImgSection();
+  if(w===1&&d===1){
+    const w1Imgs=[
+      {src:'images/WhatsApp Image 2026-05-23 at 8.13.22 PM.jpeg', desc:'Orientation and setup on my first day at the internship.'},
+      {src:'images/WhatsApp Image 2026-05-23 at 8.13.22 PM (1).jpeg', desc:'Meeting the team and checking the workspace scene.'},
+      {src:'images/WhatsApp Image 2026-05-23 at 8.13.27 PM.jpeg', desc:'Getting hands-on with the first hardware kit and components.'}
+    ];
+    w1Imgs.forEach((img,i)=>{
+      const el=document.getElementById('i'+(i+1));
+      const slot=document.getElementById('s'+(i+1));
+      const desc=document.getElementById('desc'+(i+1));
+      if(el&&slot&&desc){el.src=img.src;slot.classList.add('f');desc.value=img.desc;}
+    });
+  }
+  cC=0;document.getElementById('cl').innerHTML='';
   try{
     const sv=JSON.parse(localStorage.getItem(`sk_${w}_${d}`));
     if(sv){document.getElementById('na').value=sv.notes||'';(sv.cmds||[]).forEach(v=>{addC();document.querySelectorAll('.cinp')[cC-1].value=v});(sv.descs||[]).forEach((v,i)=>{const el=document.getElementById('desc'+(i+1));if(el)el.value=v;});const lEl=document.getElementById('learned');if(lEl)lEl.value=sv.learned||'';}
