@@ -154,6 +154,8 @@ footer{text-align:center;padding:24px;border-top:1px solid var(--border);color:v
 .cdel:hover{background:rgba(239,68,68,0.18)}
 .acb{display:flex;align-items:center;gap:7px;padding:9px 16px;background:rgba(76,201,240,0.07);border:1px solid rgba(76,201,240,0.2);border-radius:6px;color:var(--blue);font-size:0.82rem;font-weight:700;cursor:pointer;font-family:'Archivo',sans-serif;transition:background 0.2s;margin-top:8px}
 .acb:hover{background:rgba(76,201,240,0.14)}
+
+/* Photo grid for day view */
 .img-full-wrap{margin-bottom:28px;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--bg3)}
 .img-full-slot{width:100%;min-height:300px;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;cursor:pointer;background:var(--bg3)}
 .img-full-slot img{width:100%;max-height:500px;object-fit:contain;display:none;background:#000}
@@ -201,6 +203,8 @@ footer{text-align:center;padding:24px;border-top:1px solid var(--border);color:v
     <a onclick="goTo('#contact')">Contact</a>
   </div>
 </nav>
+
+<!-- HOME PAGE -->
 <div class="page active" id="page-home">
 <div id="hp">
   <div class="hero-row">
@@ -273,6 +277,8 @@ footer{text-align:center;padding:24px;border-top:1px solid var(--border);color:v
 </div></div>
 <footer>© 2026 Snehal Kale — Built with passion</footer>
 </div>
+
+<!-- WEEK PAGE -->
 <div class="page" id="page-week">
 <div id="wkp">
   <div class="wkh">
@@ -283,6 +289,8 @@ footer{text-align:center;padding:24px;border-top:1px solid var(--border);color:v
   <div class="dg" id="dg"></div>
 </div>
 </div>
+
+<!-- DAY PAGE -->
 <div class="page" id="page-day">
 <div id="dp">
   <div class="dyh">
@@ -290,7 +298,8 @@ footer{text-align:center;padding:24px;border-top:1px solid var(--border);color:v
     <h1 class="dyt" id="dyt">Mon<em>day.</em></h1>
     <p class="dys" id="dys">Week 1 · Day 1</p>
   </div>
-  <div class="card"><div class="ch"><span class="ci">🖼️</span><span class="clb">Photos</span><span class="csb">8 images with description</span></div><div class="cb2"><div id="imgSection"></div></div></div>
+  <div class="card"><div class="ch"><span class="ci">🖼️</span><span class="clb">Photos</span><span class="csb">Images from today</span></div><div class="cb2"><</div></div>
+  <div class="card"><div class="ch"><span class="ci">🖼️</span><span class="clb">Photos</span><span class="csb">Images from today</span></div><div class="cb2"><</div></div>
   <div class="card"><div class="ch"><span class="ci">📝</span><span class="clb">Daily Notes</span><span class="csb">What happened today?</span></div><div class="cb2"><textarea class="na" id="na" placeholder="Write about your day..."></textarea></div></div>
   <div class="card"><div class="ch"><span class="ci">🧠</span><span class="clb">What I Learned</span><span class="csb">Your learning for the day</span></div><div class="cb2"><textarea class="na" id="learned" placeholder="Write what you learned today..."></textarea></div></div>
   <div class="card"><div class="ch"><span class="ci">💻</span><span class="clb">Commands & Code</span><span class="csb">Commands you used</span></div><div class="cb2"><div class="cl2" id="cl"></div><button class="acb" onclick="addC()">+ Add Command</button></div></div>
@@ -303,6 +312,7 @@ footer{text-align:center;padding:24px;border-top:1px solid var(--border);color:v
   </div>
 </div>
 </div>
+
 <script>
 const DAYS=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const WW=['One','Two','Three','Four'];
@@ -312,18 +322,97 @@ let pi=0,ci=0,dl=false,ps=0;
 const tel=document.getElementById('typed');
 function typ(){if(ps>0){ps--;setTimeout(typ,100);return}const c=phr[pi];if(!dl){tel.textContent=c.slice(0,++ci);if(ci===c.length){ps=22;dl=true}setTimeout(typ,85)}else{tel.textContent=c.slice(0,--ci);if(ci===0){dl=false;pi=(pi+1)%phr.length;ps=6}setTimeout(typ,45)}}
 setTimeout(typ,1200);
+
+// ── Day 1 inline screenshots (no image files needed) ─────────────
+const day1HTML=[
+  {
+    html:`<div style="font-family:Arial,sans-serif;background:#0d1117;padding:40px 20px;display:flex;justify-content:center;min-height:320px;align-items:center"><div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:28px;width:300px"><div style="text-align:center;margin-bottom:16px;font-size:40px">&#11044;</div><h2 style="color:#f0f6fc;font-size:18px;font-weight:400;text-align:center;margin:0 0 18px">Sign in to GitHub</h2><div style="margin-bottom:12px"><label style="color:#f0f6fc;font-size:12px;font-weight:500;display:block;margin-bottom:5px">Username or email address</label><div style="background:#0d1117;border:1px solid #238636;border-radius:6px;padding:8px 10px;color:#f0f6fc;font-size:13px">snehalkale1518@gmail.com</div></div><div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;margin-bottom:5px"><label style="color:#f0f6fc;font-size:12px;font-weight:500">Password</label><span style="color:#58a6ff;font-size:11px">Forgot password?</span></div><div style="background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:8px 10px;color:#8b949e;font-size:13px">&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;</div></div><div style="background:#238636;border-radius:6px;padding:10px;text-align:center;color:#fff;font-size:13px;font-weight:500;margin-bottom:14px">Sign in</div><div style="border-top:1px solid #30363d;padding-top:14px;text-align:center;color:#8b949e;font-size:11px">New to GitHub? <span style="color:#58a6ff">Create an account</span></div></div></div>`,
+    desc:'GitHub Login Page — Signing in to GitHub using email snehalkale1518@gmail.com. This was the first step of Day 1 at Tinkerers Lab internship where we accessed our GitHub account to start the setup process.'
+  },
+  {
+    html:`<div style="font-family:Arial,sans-serif;background:#0d1117;padding:40px 20px;display:flex;justify-content:center;min-height:320px;align-items:center"><div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:28px;width:300px"><div style="text-align:center;margin-bottom:10px;font-size:40px">&#11044;</div><h2 style="color:#f0f6fc;font-size:18px;font-weight:400;text-align:center;margin:0 0 16px">Create your account</h2><div style="margin-bottom:10px"><label style="color:#f0f6fc;font-size:12px;font-weight:500;display:block;margin-bottom:4px">Username</label><div style="background:#0d1117;border:1px solid #238636;border-radius:6px;padding:8px 10px;color:#f0f6fc;font-size:13px;display:flex;justify-content:space-between">SnehalKale1518<span style="color:#238636">&#10003;</span></div></div><div style="margin-bottom:10px"><label style="color:#f0f6fc;font-size:12px;font-weight:500;display:block;margin-bottom:4px">Email address</label><div style="background:#0d1117;border:1px solid #238636;border-radius:6px;padding:8px 10px;color:#f0f6fc;font-size:13px;display:flex;justify-content:space-between">snehalkale1518@gmail.com<span style="color:#238636">&#10003;</span></div></div><div style="margin-bottom:14px"><label style="color:#f0f6fc;font-size:12px;font-weight:500;display:block;margin-bottom:4px">Password</label><div style="background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:8px 10px;color:#8b949e;font-size:13px">&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;</div></div><div style="background:#238636;border-radius:6px;padding:10px;text-align:center;color:#fff;font-size:13px;font-weight:500">Continue</div></div></div>`,
+    desc:'GitHub Signup Page — Creating a new GitHub account with username SnehalKale1518. We filled in the username, email address and password to register our account on GitHub for the first time.'
+  },
+  {
+    html:`<div style="font-family:'Courier New',monospace;background:#1a1a2e;padding:20px 24px;min-height:260px;font-size:12px;line-height:2"><div><span style="color:#4ec9b0">PS</span> <span style="color:#569cd6">C:\Users\Saideep4\...\TL_Intern_Snehal</span><span style="color:#f0f6fc">&gt;</span> <span style="color:#f0f6fc"> git</span> <span style="color:#ce9178">add .</span></div><div><span style="color:#4ec9b0">PS</span> <span style="color:#569cd6">C:\Users\Saideep4\...\TL_Intern_Snehal</span><span style="color:#f0f6fc">&gt;</span> <span style="color:#f0f6fc"> git</span> <span style="color:#ce9178">commit -m "Add portfolio files"</span></div><div style="color:#6a9955">[main b24eb1b] Add portfolio files</div><div style="color:#6a9955">&nbsp;1 file changed, 333 insertions(+)</div><div><span style="color:#4ec9b0">PS</span> <span style="color:#569cd6">C:\Users\Saideep4\...\TL_Intern_Snehal</span><span style="color:#f0f6fc">&gt;</span> <span style="color:#f0f6fc"> git</span> <span style="color:#ce9178">push origin main</span></div><div style="color:#6a9955">Enumerating objects: 5, done.</div><div style="color:#6a9955">Writing objects: 100% (3/3), 9.07 KiB | 2.27 MiB/s, done.</div><div style="color:#6a9955">To https://github.com/SnehalKale1518/TL_Intern_Snehal.git</div><div style="color:#6a9955">&nbsp;&nbsp; dccc78e..b24eb1b &nbsp;main &#8594; main</div><div><span style="color:#4ec9b0">PS</span> <span style="color:#569cd6">C:\Users\Saideep4\...\TL_Intern_Snehal</span><span style="color:#f0f6fc">&gt; &#9608;</span></div></div>`,
+    desc:'PowerShell Terminal — Running Git commands to push code to GitHub. Commands used were git add, git commit and git push to successfully upload our portfolio files to the remote repository.'
+  }
+];
+
 function showPage(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+n).classList.add('active');window.scrollTo(0,0);updNav(n);}
 function updNav(n){const r=document.getElementById('navR');if(n==='home'){r.innerHTML=`<a onclick="goTo('#about')">About</a><a onclick="goTo('#projects')">Projects</a><a onclick="goTo('#internship')">Internship</a><a onclick="goTo('#contact')">Contact</a>`}else if(n==='week'){r.innerHTML=`<button class="nb" onclick="showPage('home')">← Home</button><div class="nc">Week <b>${cW}</b></div>`}else if(n==='day'){r.innerHTML=`<button class="nb" onclick="showPage('week')">← Week ${cW}</button><div class="nc">Week <b>${cW}</b> / <b>${DAYS[cD-1]}</b></div><button class="ns" id="sv" onclick="svData()">💾 Save</button>`}}
 function goTo(id){const el=document.querySelector(id);if(el)el.scrollIntoView({behavior:'smooth'});}
 function showWeek(w){cW=w;document.getElementById('wkb').textContent=`WEEK_0${w}`;document.getElementById('wkw').textContent=WW[w-1];const g=document.getElementById('dg');g.innerHTML='';DAYS.forEach((day,i)=>{const c=document.createElement('div');c.className='dc';c.style.animation=`fadeup 0.4s ${i*0.06}s both`;c.innerHTML=`<div class="dt"><div class="dnb">0${i+1}</div><div class="darr">→</div></div><div class="db"><div class="dn">${day}</div><div class="dl">Week ${w} · Day ${i+1}</div></div><div class="df"><span class="ip">photos</span><span class="ip">notes</span><span class="ip">learned</span><span class="ip">code</span></div>`;c.onclick=()=>showDay(w,i+1);g.appendChild(c);});showPage('week');}
-function showDay(w,d){cW=w;cD=d;const dn=DAYS[d-1];document.getElementById('dyb').textContent=`WEEK_${w} · DAY_${d}`;document.getElementById('dyt').innerHTML=`${dn.slice(0,3)}<em>${dn.slice(3)}.</em>`;document.getElementById('dys').textContent=`Week ${w} · Day ${d} — Add your record`;const dayOrdinals=['first','second','third','fourth','fifth','sixth'];const learnedEl=document.getElementById('learned');if(learnedEl)learnedEl.placeholder=`On my ${dayOrdinals[d-1]} day of internship at Tinkerers' Lab, I learned...`;document.getElementById('bbw').textContent=w;document.getElementById('bbd').textContent=dn;document.getElementById('pb').disabled=(d===1&&w===1);document.getElementById('nb2').disabled=(d===6&&w===4);[1,2,3,4,5,6,7,8].forEach(n=>{const el=document.getElementById('i'+n);const sl=document.getElementById('s'+n);if(el)el.src='';if(sl)sl.classList.remove('f');});buildImgSection();cC=0;document.getElementById('cl').innerHTML='';try{const sv=JSON.parse(localStorage.getItem(`sk_${w}_${d}`));if(sv){document.getElementById('na').value=sv.notes||'';(sv.cmds||[]).forEach(v=>{addC();document.querySelectorAll('.cinp')[cC-1].value=v});(sv.descs||[]).forEach((v,i)=>{const el=document.getElementById('desc'+(i+1));if(el)el.value=v;});const lEl=document.getElementById('learned');if(lEl)lEl.value=sv.learned||'';}else if(w===1&&d===1){document.getElementById('na').value=`📌 WEEK 1 - DAY 1: GitHub Setup & VS Code Integration\n\n🔧 STEP 1: Install Git\n- Opened browser and went to https://git-scm.com\n- Clicked Download for Windows\n- Ran the .exe installer file\n- Kept all default settings, clicked Next then Install\n- Opened Command Prompt and typed: git --version\n- It showed git version 2.x.x — Git installed successfully\n\n👤 STEP 2: Create GitHub Account\n- Opened https://github.com in browser\n- Clicked Sign Up button\n- Entered email, password and username\n- Verified email address\n- GitHub account created successfully\n\n🔗 STEP 3: Configure Git in VS Code Terminal\n- Opened VS Code\n- Pressed Ctrl + backtick to open Terminal\n- Set my name and email in Git settings\n\n📁 STEP 4: Create New Repository on GitHub\n- Logged into GitHub account\n- Clicked + icon at top right then New Repository\n- Named it: my-portfolio\n- Set visibility to Public\n- Clicked Create Repository\n\n💻 STEP 5: Push Code from VS Code to GitHub\n- Opened VS Code Terminal\n- Went to project folder using cd command\n- Initialized git, added files, committed and pushed\n- Code uploaded to GitHub successfully`;const cmds1=['git --version','git config --global user.name "Snehal Kale"','git config --global user.email "snehalkale1518@gmail.com"','git config --list','cd Desktop','git init','git status','git add .','git commit -m "First commit - portfolio website"','git branch -M main','git remote add origin https://github.com/yourusername/my-portfolio.git','git push -u origin main','git log --oneline'];cmds1.forEach(v=>{addC();document.querySelectorAll('.cinp')[cC-1].value=v});}else{document.getElementById('na').value='';addC();addC();}}catch(e){document.getElementById('na').value='';addC();addC();}showPage('day');}
+
+function showDay(w,d){
+  cW=w;cD=d;
+  const dn=DAYS[d-1];
+  document.getElementById('dyb').textContent=`WEEK_${w} · DAY_${d}`;
+  document.getElementById('dyt').innerHTML=`${dn.slice(0,3)}<em>${dn.slice(3)}.</em>`;
+  document.getElementById('dys').textContent=`Week ${w} · Day ${d} — Add your record`;
+  const dayOrdinals=['first','second','third','fourth','fifth','sixth'];
+  const learnedEl=document.getElementById('learned');
+  if(learnedEl)learnedEl.placeholder=`On my ${dayOrdinals[d-1]} day of internship at Tinkerers' Lab, I learned...`;
+  document.getElementById('bbw').textContent=w;
+  document.getElementById('bbd').textContent=dn;
+  document.getElementById('pb').disabled=(d===1&&w===1);
+  document.getElementById('nb2').disabled=(d===6&&w===4);
+  buildImgSection();
+  cC=0;document.getElementById('cl').innerHTML='';
+
+  // Load inline HTML screenshots for Day 1 Week 1
+  setTimeout(()=>{
+    if(w===1&&d===1){
+      day1HTML.forEach((p,i)=>{
+        const n=i+1;
+        const sl=document.getElementById('s'+n);
+        const dd=document.getElementById('desc'+n);
+        if(sl){
+          // Replace slot content with inline HTML screenshot
+          sl.innerHTML=`<div style="width:100%;pointer-events:none">${p.html}</div>`;
+          sl.classList.add('f');
+          sl.style.minHeight='auto';
+        }
+        if(dd)dd.value=p.desc;
+      });
+    }
+  },50);
+
+  try{
+    const sv=JSON.parse(localStorage.getItem(`sk_${w}_${d}`));
+    if(sv){
+      document.getElementById('na').value=sv.notes||'';
+      (sv.cmds||[]).forEach(v=>{addC();document.querySelectorAll('.cinp')[cC-1].value=v});
+      const lEl=document.getElementById('learned');
+      if(lEl)lEl.value=sv.learned||'';
+    }else if(w===1&&d===1){
+      document.getElementById('na').value=`📌 WEEK 1 - DAY 1: GitHub Setup & VS Code Integration\n\n🔧 STEP 1: Install Git\n- Opened browser and went to https://git-scm.com\n- Clicked Download for Windows\n- Ran the .exe installer file\n- Kept all default settings, clicked Next then Install\n- Opened Command Prompt and typed: git --version\n- It showed git version 2.x.x — Git installed successfully\n\n👤 STEP 2: Create GitHub Account\n- Opened https://github.com in browser\n- Clicked Sign Up button\n- Entered email, password and username\n- Verified email address\n- GitHub account created successfully\n\n🔗 STEP 3: Configure Git in VS Code Terminal\n- Opened VS Code\n- Pressed Ctrl + backtick to open Terminal\n- Set my name and email in Git settings\n\n📁 STEP 4: Create New Repository on GitHub\n- Logged into GitHub account\n- Clicked + icon at top right then New Repository\n- Named it: my-portfolio\n- Set visibility to Public\n- Clicked Create Repository\n\n💻 STEP 5: Push Code from VS Code to GitHub\n- Opened VS Code Terminal\n- Went to project folder using cd command\n- Initialized git, added files, committed and pushed\n- Code uploaded to GitHub successfully`;
+      const cmds1=['git --version','git config --global user.name "Snehal Kale"','git config --global user.email "snehalkale1518@gmail.com"','git config --list','cd Desktop','git init','git status','git add .','git commit -m "First commit - portfolio website"','git branch -M main','git remote add origin https://github.com/yourusername/my-portfolio.git','git push -u origin main','git log --oneline'];
+      cmds1.forEach(v=>{addC();document.querySelectorAll('.cinp')[cC-1].value=v});
+    }else{document.getElementById('na').value='';addC();addC();}
+  }catch(e){document.getElementById('na').value='';addC();addC();}
+  showPage('day');
+}
+
 function nd(dir){let d=cD+dir,w=cW;if(d<1){w--;d=6}if(d>6){w++;d=1}if(w<1||w>4)return;showDay(w,d);}
-function buildImgSection(){const sec=document.getElementById('imgSection');if(!sec)return;sec.innerHTML='';for(let n=1;n<=8;n++){const wrap=document.createElement('div');wrap.className='img-full-wrap';wrap.innerHTML=`<div class="img-num"><span>IMAGE ${String(n).padStart(2,'0')}</span><button class="img-remove-btn" onclick="rmImg(${n},event)">✕ Remove</button></div><div class="img-full-slot" id="s${n}"><span class="sico">📷</span><span class="stxt" style="font-size:0.82rem;color:var(--fg2);font-weight:600">Click to upload Image ${n}</span><img id="i${n}" src=""><input type="file" accept="image/*" onchange="ldImg(event,${n})"></div><textarea class="img-desc" id="desc${n}" placeholder="Write description for Image ${n}..."></textarea>`;sec.appendChild(wrap);}}
+
+function buildImgSection(){
+  const sec=document.getElementById('imgSection');
+  if(!sec)return;
+  sec.innerHTML='';
+  for(let n=1;n<=3;n++){
+    const wrap=document.createElement('div');
+    wrap.className='img-full-wrap';
+    wrap.innerHTML=`<div class="img-num"><span>IMAGE ${String(n).padStart(2,'0')}</span><button class="img-remove-btn" onclick="rmImg(${n},event)">✕ Remove</button></div><div class="img-full-slot" id="s${n}"><span class="sico">📷</span><span class="stxt">Click to upload Image ${n}</span><img id="i${n}" src=""><input type="file" accept="image/*" onchange="ldImg(event,${n})"></div><textarea class="img-desc" id="desc${n}" placeholder="Write description for Image ${n}..."></textarea>`;
+    sec.appendChild(wrap);
+  }
+}
+
 function ldImg(e,n){const f=e.target.files[0];if(!f)return;const el=document.getElementById('i'+n);const sl=document.getElementById('s'+n);if(el&&sl){el.src=URL.createObjectURL(f);sl.classList.add('f');}}
 function rmImg(n,e){if(e)e.stopPropagation();const el=document.getElementById('i'+n);const sl=document.getElementById('s'+n);if(el&&sl){el.src='';sl.classList.remove('f');}}
 function addC(){cC++;const r=document.createElement('div');r.className='ci2';r.id='c'+cC;r.innerHTML=`<span class="cn">${String(cC).padStart(2,'0')}</span><input class="cinp" type="text" placeholder="e.g. git add ."><button class="cdel" onclick="delC(${cC})">✕</button>`;document.getElementById('cl').appendChild(r);}
 function delC(n){const el=document.getElementById('c'+n);if(el)el.remove();}
-function svData(){const cm=[...document.querySelectorAll('.cinp')].map(i=>i.value);const descs=[1,2,3,4,5,6,7,8].map(n=>{const el=document.getElementById('desc'+n);return el?el.value:''});const learnedEl=document.getElementById('learned');const learned=learnedEl?learnedEl.value:'';localStorage.setItem(`sk_${cW}_${cD}`,JSON.stringify({notes:document.getElementById('na').value,cmds:cm,descs,learned}));const b=document.getElementById('sv');if(b){b.textContent='✅ Saved!';b.classList.add('ok');setTimeout(()=>{b.textContent='💾 Save';b.classList.remove('ok')},2000);}}
+function svData(){const cm=[...document.querySelectorAll('.cinp')].map(i=>i.value);const descs=[1,2,3].map(n=>{const el=document.getElementById('desc'+n);return el?el.value:''});const learnedEl=document.getElementById('learned');const learned=learnedEl?learnedEl.value:'';localStorage.setItem(`sk_${cW}_${cD}`,JSON.stringify({notes:document.getElementById('na').value,cmds:cm,descs,learned}));const b=document.getElementById('sv');if(b){b.textContent='✅ Saved!';b.classList.add('ok');setTimeout(()=>{b.textContent='💾 Save';b.classList.remove('ok')},2000);}}
 function upPhoto(e){const f=e.target.files[0];if(!f)return;document.getElementById('heroImg').src=URL.createObjectURL(f);document.getElementById('heroImg').style.display='block';document.getElementById('pph').style.display='none';}
 function togMore(b){const c=b.nextElementSibling;const o=c.style.display==='block';c.style.display=o?'none':'block';b.textContent=o?'More About Me →':'Less ↑';}
 const obs=new IntersectionObserver(es=>es.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('vis'),i*90)}),{threshold:0.08});
