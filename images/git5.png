@@ -1,0 +1,20 @@
+
+<!-- saved from url=(0097)file:///C:/Users/Saideep4/Documents/GitHub/TL_Intern_Snehal/images/github_step7_verify_email.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><div style="background: var(--color-background-secondary); padding: 1.5rem; border-radius: var(--border-radius-lg);">
+  <p style="font-size: 12px; color: var(--color-text-secondary); margin: 0 0 12px; font-weight: 500;">STEP 7 — Enter the email verification code</p>
+  <div style="background: #0d1117; border-radius: var(--border-radius-lg); padding: 40px 20px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+    <i class="ti ti-mail-opened" aria-hidden="true" style="font-size: 44px; color: #238636;"></i>
+    <p style="font-size: 24px; font-weight: 500; color: white; margin: 0;">Check your inbox!</p>
+    <p style="font-size: 14px; color: #8b949e; margin: 0; text-align: center;">We sent a 6-digit code to<br><span style="color: #58a6ff;">snehal***@gmail.com</span></p>
+    <div style="display: flex; gap: 8px;">
+      <input maxlength="1" value="5" readonly="" style="width:44px;height:52px;text-align:center;font-size:22px;font-weight:500;border-radius:6px;border:2px solid #238636;background:#161b22;color:white;">
+      <input maxlength="1" value="1" readonly="" style="width:44px;height:52px;text-align:center;font-size:22px;font-weight:500;border-radius:6px;border:2px solid #238636;background:#161b22;color:white;">
+      <input maxlength="1" value="8" readonly="" style="width:44px;height:52px;text-align:center;font-size:22px;font-weight:500;border-radius:6px;border:2px solid #238636;background:#161b22;color:white;">
+      <input maxlength="1" value="4" readonly="" style="width:44px;height:52px;text-align:center;font-size:22px;font-weight:500;border-radius:6px;border:2px solid #238636;background:#161b22;color:white;">
+      <input maxlength="1" value="2" readonly="" style="width:44px;height:52px;text-align:center;font-size:22px;font-weight:500;border-radius:6px;border:2px solid #238636;background:#161b22;color:white;">
+      <input maxlength="1" value="9" readonly="" style="width:44px;height:52px;text-align:center;font-size:22px;font-weight:500;border-radius:6px;border:2px solid #238636;background:#161b22;color:white;">
+    </div>
+    <p style="font-size: 12px; color: #8b949e; margin: 0;">Didn't receive it? <span style="color: #58a6ff; cursor:pointer;">Resend code</span></p>
+  </div>
+</div>
+</body></html>

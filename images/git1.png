@@ -1,0 +1,35 @@
+
+<!-- saved from url=(0093)file:///C:/Users/Saideep4/Documents/GitHub/TL_Intern_Snehal/images/github_step1_homepage.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><div style="background: var(--color-background-secondary); padding: 1.5rem; border-radius: var(--border-radius-lg);">
+  <p style="font-size: 12px; color: var(--color-text-secondary); margin: 0 0 12px; font-weight: 500;">STEP 1 — Visit github.com and click Sign up</p>
+  <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden;">
+    <div style="background: var(--color-background-secondary); padding: 8px 12px; display: flex; align-items: center; gap: 8px; border-bottom: 0.5px solid var(--color-border-tertiary);">
+      <div style="display: flex; gap: 5px;"><div style="width:10px;height:10px;border-radius:50%;background:#ff5f57;"></div><div style="width:10px;height:10px;border-radius:50%;background:#febc2e;"></div><div style="width:10px;height:10px;border-radius:50%;background:#28c840;"></div></div>
+      <div style="flex:1; background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: 20px; padding: 4px 14px; display: flex; align-items: center; gap: 6px;">
+        <i class="ti ti-lock" style="font-size:12px; color:var(--color-text-secondary);" aria-hidden="true"></i>
+        <span style="font-size: 12px; color: var(--color-text-secondary);">github.com</span>
+      </div>
+    </div>
+    <div style="padding: 0;">
+      <div style="background: #0d1117; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <svg height="24" viewBox="0 0 16 16" width="24" fill="white"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+          <span style="color:white; font-size:15px; font-weight:500;">GitHub</span>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button style="font-size:13px; padding:5px 14px; border-radius:6px; border:1px solid #30363d; background:transparent; color:white; cursor:pointer;">Sign in</button>
+          <button style="font-size:13px; padding:5px 14px; border-radius:6px; border:none; background:#238636; color:white; font-weight:500; cursor:pointer;">Sign up</button>
+        </div>
+      </div>
+      <div style="background: #0d1117; padding: 48px 24px; text-align: center;">
+        <p style="font-size: 28px; font-weight: 500; color: white; margin: 0 0 10px;">Build and ship software on the world's leading AI-powered developer platform.</p>
+        <p style="font-size: 15px; color: #8b949e; margin: 0 0 24px;">More than 150 million developers shape the future of software together on GitHub.</p>
+        <div style="display: flex; gap: 10px; justify-content: center;">
+          <input type="email" placeholder="Enter your email" style="padding: 10px 14px; border-radius: 6px; border: 1px solid #30363d; background: #161b22; color: white; font-size: 14px; width: 220px;">
+          <button style="padding: 10px 18px; border-radius: 6px; border: none; background: #238636; color: white; font-size: 14px; font-weight: 500; cursor: pointer;">Sign up for GitHub</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>
