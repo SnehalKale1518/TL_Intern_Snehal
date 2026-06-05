@@ -1,66 +1,507 @@
-<!-- ========== HEADER ========== -->
-<h1>Snehal Kale</h1>
-<p>First year diploma student</p>
-<p>A curious mind with a passion for building things that actually work.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snehal Kale</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cyan: #00d4ff;
+      --green: #00ffaa;
+      --blue: #4488ff;
+      --bg: #0a0c10;
+      --card: #0f1318;
+      --border: #1a2a3a;
+      --text: #e0e6f0;
+      --muted: #667;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Exo 2', sans-serif; padding: 40px 20px; max-width: 960px; margin: 0 auto; }
 
-<!-- ========== ABOUT ========== -->
-<h2>Snehal Kale</h2>
-<p>Part communicator, part engineer — I love <strong>building things that solve real problems.</strong></p>
+    h1 { font-size: 2.2rem; font-weight: 800; color: var(--cyan); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+    h2 { font-size: 1.4rem; font-weight: 700; color: var(--cyan); margin: 32px 0 12px; border-left: 4px solid var(--cyan); padding-left: 12px; }
+    h3 { font-size: 1.1rem; font-weight: 600; color: #aac; margin: 20px 0 8px; }
+    p { line-height: 1.7; color: #bbb; margin-bottom: 10px; }
+    img { border-radius: 8px; margin: 12px 0; display: block; border: 1px solid var(--border); }
+    strong, b { color: var(--cyan); }
+    section { margin-bottom: 40px; }
 
-<!-- ========== MORE ABOUT ME ========== -->
-<h2>More About Me</h2>
-<p>Communication</p>
-<p>Basics of Programming</p>
-<p>Arduino and Hardware</p>
-<p>Problem Solving</p>
-<p>Teamwork</p>
+    /* ===== GIT COMMANDS ===== */
+    .git-commands { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+    .git-cmd {
+      background: #0d1117;
+      border: 1px solid #1e3a1e;
+      border-left: 4px solid var(--green);
+      border-radius: 8px;
+      padding: 14px 18px;
+      cursor: pointer;
+      animation: slideIn 0.4s ease both;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .git-cmd:hover { background: #0f1a0f; border-color: #2a5a2a; }
+    .git-cmd.open { border-left-color: var(--cyan); background: #0a1218; }
+    .git-cmd:nth-child(1) { animation-delay: 0.05s; }
+    .git-cmd:nth-child(2) { animation-delay: 0.1s; }
+    .git-cmd:nth-child(3) { animation-delay: 0.15s; }
+    .git-cmd:nth-child(4) { animation-delay: 0.2s; }
+    .git-cmd:nth-child(5) { animation-delay: 0.25s; }
+    .git-cmd:nth-child(6) { animation-delay: 0.3s; }
+    .cmd-top { display: flex; align-items: center; gap: 16px; }
+    .cmd-num { font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--green); min-width: 28px; }
+    .cmd-code { font-family: 'Share Tech Mono', monospace; font-size: 0.9rem; color: #00ffaa; background: #071007; padding: 6px 14px; border-radius: 6px; flex-shrink: 0; }
+    .cmd-desc { font-size: 0.8rem; color: #667; flex: 1; }
+    .cmd-arrow { font-size: 0.75rem; color: #334; transition: transform 0.3s; margin-left: auto; }
+    .git-cmd.open .cmd-arrow { transform: rotate(180deg); color: var(--cyan); }
+    .cmd-explain {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+      opacity: 0;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.82rem;
+      color: #88aacc;
+      line-height: 1.7;
+      padding-left: 44px;
+    }
+    .git-cmd.open .cmd-explain { max-height: 200px; opacity: 1; margin-top: 10px; }
 
-<!-- ========== PROJECTS ========== -->
-<h2>Projects</h2>
-<p>1. Radar System using Arduino</p>
-<p>2. Obstacle Avoiding Robot with Voice Control</p>
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
 
-<!-- ========== INTERNSHIP LOG ========== -->
-<h2>Internship Log</h2>
-<h3>Week 1</h3>
+    /* ===== FLOWCHARTS ===== */
+    .flowchart {
+      margin: 24px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      font-family: 'Share Tech Mono', monospace;
+    }
+    .fc-root {
+      background: #0d1f33;
+      border: 2px solid var(--cyan);
+      color: #ffffff;
+      padding: 14px 40px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      box-shadow: 0 0 24px rgba(0,212,255,0.2);
+    }
+    .fc-arrow {
+      width: 2px;
+      height: 24px;
+      background: #334;
+      position: relative;
+      margin: 0 auto;
+    }
+    .fc-arrow::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 7px solid #445;
+    }
+    .fc-branches {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .fc-branch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      min-width: 180px;
+    }
+    .fc-connector {
+      width: 2px;
+      height: 20px;
+      background: #334;
+      position: relative;
+    }
+    .fc-connector::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 7px solid #445;
+    }
+    .fc-node {
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.75rem;
+      line-height: 1.4;
+      width: 100%;
+    }
+    .fc-node.blue-head { border: 2px solid var(--cyan); color: #ffffff; background: #111c2a; font-weight: 700; font-size: 0.85rem; box-shadow: 0 0 12px rgba(0,212,255,0.15); }
+    .fc-node.green-head { border: 2px solid var(--cyan); color: #ffffff; background: #111c2a; font-weight: 700; font-size: 0.85rem; box-shadow: 0 0 12px rgba(0,212,255,0.15); }
+    .fc-node.gray { border: 1px solid #1e2d3a; color: #99aabb; background: #0e1520; font-size: 0.78rem; }
+    .fc-node.blue-end { border: 1px solid #00d4ff55; color: #00d4ff; background: #0a1520; font-size: 0.78rem; font-weight: 600; }
+    .fc-node.green-end { border: 1px solid #00d4ff55; color: #00d4ff; background: #0a1520; font-size: 0.78rem; font-weight: 600; }
+    .fc-split-line {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+    }
 
-<p>
-  On the first day of my internship at Tinkerer's Lab, I was introduced
-  to GitHub and VS Code and I created my first repository and pushed it
-  into the remote repository through VS Code.
-</p>
+    /* ===== A1 MINI INTERACTIVE ===== */
+    .printer-section { margin: 30px 0; }
+    .printer-wrapper {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .img-container { position: relative; width: 420px; flex-shrink: 0; }
+    .img-container img { width: 100%; border-radius: 12px; display: block; background: black; border: 1px solid #1a2a3a; }
+    .dot {
+      position: absolute; width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(0,212,255,0.2); border: 2px solid var(--cyan);
+      cursor: pointer; transform: translate(-50%, -50%); transition: all 0.2s ease;
+    }
+    .dot::after { content: ''; position: absolute; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--cyan); animation: pulse 1.8s ease-out infinite; }
+    .dot:hover, .dot.active { background: rgba(0,212,255,0.5); transform: translate(-50%,-50%) scale(1.2); }
+    .dot.active { background: var(--cyan); }
+    @keyframes pulse { 0% { transform: scale(1); opacity: 0.7; } 100% { transform: scale(2.2); opacity: 0; } }
+    .info-panel { flex: 1; min-width: 220px; max-width: 340px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; min-height: 280px; display: flex; flex-direction: column; justify-content: center; }
+    .info-panel .default-msg { color: #334; font-family: 'Share Tech Mono', monospace; font-size: 0.78rem; text-align: center; }
+    .part-num { font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; color: var(--cyan); letter-spacing: 0.15em; margin-bottom: 8px; opacity: 0; }
+    .part-name { font-size: 1.6rem; font-weight: 800; color: #ffffff; margin-bottom: 10px; opacity: 0; }
+    .part-what { font-size: 0.92rem; color: #00d4ff; margin-bottom: 12px; font-weight: 600; opacity: 0; }
+    .part-desc { font-size: 0.88rem; color: #aabbcc; line-height: 1.8; opacity: 0; }
+    .divider { width: 40px; height: 2px; background: var(--cyan); margin: 10px 0 14px; opacity: 0; }
+    .info-panel.shown .part-num, .info-panel.shown .part-name, .info-panel.shown .part-what, .info-panel.shown .part-desc { opacity: 1; animation: fadeUp 0.4s ease forwards; }
+    .info-panel.shown .part-name { animation-delay: 0.05s; }
+    .info-panel.shown .part-what { animation-delay: 0.1s; }
+    .info-panel.shown .part-desc { animation-delay: 0.15s; }
+    .info-panel.shown .divider { opacity: 1; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-<p>
-  I installed VS Code and familiarized myself with it, and also logged
-  into my GitHub account.
-</p>
+    footer { margin-top: 60px; font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: #223; letter-spacing: 0.1em; text-align: center; padding-top: 20px; border-top: 1px solid #111; }
+  </style>
+</head>
+<body>
 
-<h3>What is GitHub?</h3>
-<p>
-  GitHub is a website where you can store and share your code online —
-  think of it like Google Drive, but made for developers and coding projects.
-  GitHub is a web-based platform used for version control and collaborative
-  software development using Git. It allows developers to host and manage
-  their code repositories, track changes, and collaborate with other
-  developers on projects. GitHub provides features such as issue tracking,
-  pull requests, and code reviews, making it a popular choice for open-source
-  projects and team collaboration in software development.
-</p>
-<img src="images\git1.png" alt="creating a new repo" width="600">
-<p>Lets us start by creating a new repository.
-  go on to your GitHub account and click on the "New" button to create a new repository.
-</p>
+  <!-- ========== HEADER ========== -->
+  <section>
+    <h1>Snehal Kale</h1>
+    <p>First year diploma student</p>
+    <p>A curious mind with a passion for building things that actually work.</p>
+    <h2>About Me</h2>
+    <p>Part communicator, part engineer — I love <strong>building things that solve real problems.</strong></p>
+    <h3>Skills</h3>
+    <p>Communication &nbsp;·&nbsp; Basics of Programming &nbsp;·&nbsp; Arduino and Hardware &nbsp;·&nbsp; Problem Solving &nbsp;·&nbsp; Teamwork</p>
+  </section>
 
-<img src="images/git2.png" alt="new repo" width="600">
-<P>Give your repository a name and a description.</P>
-<img src="images/git3.png" alt="new repo" width="600">
+  <!-- ========== PROJECTS ========== -->
+  <section>
+    <h2>Projects</h2>
+    <p>1. Radar System using Arduino</p>
+    <p>2. Obstacle Avoiding Robot with Voice Control</p>
+  </section>
 
-<p>turn on the "Initialize this repository with a Readme."</p>
-<p>What is Readme?</p>
-<p>A Readme file is a text file that provides information about a project, such as its purpose,how to use it, and any other relevant details. it is typically included in the root directory of a projct and is often the first  thing that users see when they visit a repository on GitHub. A well-written Readme can help users understand the project and how to use it effectively.</p>
-<img src="images/git4.png" alt="new repo" width="600">
-<p>now your repository is created and you can see the Readme file in it.</P>
-  <p>Now we will clone this repository to our local machine using VS code.</P>
-    <img src="images/git5.png" alt="new repo" width="600">
-    
+  <!-- ========== INTERNSHIP LOG ========== -->
+  <section>
+    <h2>Internship Log</h2>
+    <h3>Week 1 — Day 1</h3>
+    <p>On the first day of my internship at Tinkerer's Lab, I was introduced to GitHub and VS Code. I created my first repository and pushed it to the remote repository through VS Code.</p>
+    <p>I installed VS Code, familiarized myself with it, and logged into my GitHub account.</p>
 
+    <h3>What is GitHub?</h3>
+    <p>GitHub is a website where you can store and share your code online — think of it like Google Drive, but made for developers. It is a web-based platform used for version control and collaborative software development using Git. It allows developers to host repositories, track changes, and collaborate with others.</p>
+
+    <img src="images/git1.png" alt="creating a new repo" width="600">
+    <p>Start by creating a new repository — go to your GitHub account and click the "New" button.</p>
+    <img src="images/git2.png" alt="new repo" width="600">
+    <p>Give your repository a name and a description.</p>
+    <img src="images/git3.png" alt="new repo" width="600">
+    <p>Turn on "Initialize this repository with a Readme."</p>
+    <p><strong>What is a README?</strong> A README file provides information about a project — its purpose, how to use it, and other relevant details. It is the first thing users see when they visit a repository.</p>
+    <img src="images/git4.png" alt="new repo" width="600">
+    <p>Your repository is now created with the README file in it.</p>
+    <p>Now we will clone this repository to our local machine using VS Code.</p>
+    <img src="images/git5.png" alt="clone repo" width="600">
+    <p>Create a new folder on your local machine and open it in VS Code.</p>
+    <img src="images/git6.png" alt="terminal" width="600">
+    <p>Click on the three dots → Terminal → New Terminal. You can now see the path of your folder in the terminal.</p>
+    <img src="images/git7.png" alt="push repo" width="600">
+    <p>Now push the repository to GitHub using these commands:</p>
+
+    <!-- ===== GIT COMMANDS ===== -->
+    <p style="font-family:'Share Tech Mono',monospace; font-size:0.75rem; color:#334; margin-bottom:8px;">// click on any command to learn more</p>
+    <div class="git-commands">
+
+      <div class="git-cmd" onclick="toggleCmd(this)">
+        <div class="cmd-top">
+          <span class="cmd-num">01</span>
+          <span class="cmd-code">git init</span>
+          <span class="cmd-desc">Initializes a new Git repository</span>
+          <span class="cmd-arrow">▼</span>
+        </div>
+        <div class="cmd-explain">
+          This command creates a hidden <code>.git</code> folder inside your project folder. That folder is what makes it a Git repository. You only run this once at the start of a new project. Without this, Git has no idea your folder exists.
+        </div>
+      </div>
+
+      <div class="git-cmd" onclick="toggleCmd(this)">
+        <div class="cmd-top">
+          <span class="cmd-num">02</span>
+          <span class="cmd-code">git add .</span>
+          <span class="cmd-desc">Stages all files for commit</span>
+          <span class="cmd-arrow">▼</span>
+        </div>
+        <div class="cmd-explain">
+          The dot ( . ) means "add everything". This command tells Git which files you want to include in your next save. Think of it like selecting files before copying them. Without this step, Git won't include your changes in the commit.
+        </div>
+      </div>
+
+      <div class="git-cmd" onclick="toggleCmd(this)">
+        <div class="cmd-top">
+          <span class="cmd-num">03</span>
+          <span class="cmd-code">git commit -m "first commit"</span>
+          <span class="cmd-desc">Saves a snapshot of your files</span>
+          <span class="cmd-arrow">▼</span>
+        </div>
+        <div class="cmd-explain">
+          This saves your staged files as a snapshot in Git history. The <code>-m</code> flag lets you add a message describing what you changed. Every commit is like a save point — you can always go back to it. The message helps you remember what you did.
+        </div>
+      </div>
+
+      <div class="git-cmd" onclick="toggleCmd(this)">
+        <div class="cmd-top">
+          <span class="cmd-num">04</span>
+          <span class="cmd-code">git branch -M main</span>
+          <span class="cmd-desc">Renames the branch to main</span>
+          <span class="cmd-arrow">▼</span>
+        </div>
+        <div class="cmd-explain">
+          By default Git creates a branch called "master". GitHub now uses "main" as the standard name. This command renames your branch to "main" so it matches GitHub's default and everything syncs properly.
+        </div>
+      </div>
+
+      <div class="git-cmd" onclick="toggleCmd(this)">
+        <div class="cmd-top">
+          <span class="cmd-num">05</span>
+          <span class="cmd-code">git remote add origin &lt;URL&gt;</span>
+          <span class="cmd-desc">Links your local repo to GitHub</span>
+          <span class="cmd-arrow">▼</span>
+        </div>
+        <div class="cmd-explain">
+          This connects your local project folder to your GitHub repository online. The word "origin" is just a nickname for the URL of your GitHub repo. You replace &lt;URL&gt; with the actual link from your GitHub repository page.
+        </div>
+      </div>
+
+      <div class="git-cmd" onclick="toggleCmd(this)">
+        <div class="cmd-top">
+          <span class="cmd-num">06</span>
+          <span class="cmd-code">git push -u origin main</span>
+          <span class="cmd-desc">Uploads your code to GitHub</span>
+          <span class="cmd-arrow">▼</span>
+        </div>
+        <div class="cmd-explain">
+          This uploads all your committed files to GitHub. The <code>-u</code> flag sets "origin main" as the default so next time you can just type <code>git push</code> without the extra words. After this your code is live on GitHub!
+        </div>
+      </div>
+
+    </div>
+
+    <img src="images/git8.png" alt="repo pushed" width="600">
+    <p>Your repository is now pushed to GitHub. Open your GitHub repository.</p>
+    <img src="images/git9.png" alt="settings" width="600">
+    <p>Click on Settings.</p>
+    <img src="images/git10.png" alt="pages" width="600">
+    <p>Click on Pages.</p>
+    <img src="images/git11.png" alt="visit site" width="600">
+    <p>Click on "Visit Site" to see your website live in the browser.</p>
+    <img src="images/git12.png" alt="live site" width="600">
+    <p>Your website is now published! As you update the code and push, changes will reflect on the live site.</p>
+  </section>
+
+  <!-- ========== DAY 2 ========== -->
+  <section>
+    <h2>Day 2 — Inkscape &amp; Fusion 360</h2>
+    <p>On the second day we were taught about two software tools: <strong>Inkscape</strong> and <strong>Autodesk Fusion 360</strong>.</p>
+    <p>Inkscape is a free and open-source vector graphics editor used for creating SVG files. It provides tools for designing logos, labels, diagrams, and illustrations.</p>
+
+    <h3>Why Inkscape?</h3>
+    <p>In our internship we focus on Product Development, IoT, Robotics and Embedded Systems. For product development we need to design logos, labels, enclosures and diagrams. Inkscape is a free vector design tool that helps us do all of that. It also exports SVG files directly used in laser cutting and CNC machines — very common in Tinkerers' Lab. Overall Inkscape is a very useful tool for anyone in a hands-on product development environment.</p>
+
+    <h3>Types of Images</h3>
+    <p>1) <strong>Raster Images</strong> — Made of pixels. Lose quality when resized. Formats: JPEG, PNG, GIF.</p>
+    <p>2) <strong>Vector Images</strong> — Made of mathematical equations. Scale infinitely without losing quality. Formats: SVG, AI, EPS.</p>
+
+    <!-- ===== FLOWCHART: IMAGES ===== -->
+    <div class="flowchart">
+      <div class="fc-root">🖼 Images</div>
+      <svg width="300" height="40" style="overflow:visible"><line x1="150" y1="0" x2="150" y2="20" stroke="#334" stroke-width="2"/><line x1="60" y1="20" x2="240" y2="20" stroke="#334" stroke-width="2"/><line x1="60" y1="20" x2="60" y2="38" stroke="#334" stroke-width="2"/><line x1="240" y1="20" x2="240" y2="38" stroke="#334" stroke-width="2"/><polygon points="54,34 60,40 66,34" fill="#445"/><polygon points="234,34 240,40 246,34" fill="#445"/></svg>
+      <div class="fc-branches">
+        <div class="fc-branch">
+          <div class="fc-node blue-head">Raster Image<br><small style="font-weight:400;color:#667">Made of pixels</small></div>
+          <div class="fc-connector"></div>
+          <div class="fc-node gray">Gets blurry when zoomed</div>
+          <div class="fc-connector"></div>
+          <div class="fc-node gray">Formats: .jpg &nbsp; .png &nbsp; .gif</div>
+          <div class="fc-connector"></div>
+          <div class="fc-node blue-end">Photos &amp; screenshots</div>
+        </div>
+        <div class="fc-branch">
+          <div class="fc-node green-head">Vector Image<br><small style="font-weight:400;color:#667">Made of math equations</small></div>
+          <div class="fc-connector"></div>
+          <div class="fc-node gray">Stays sharp at any size</div>
+          <div class="fc-connector"></div>
+          <div class="fc-node gray">Formats: .svg &nbsp; .ai &nbsp; .eps</div>
+          <div class="fc-connector"></div>
+          <div class="fc-node green-end">Logos, icons &amp; diagrams</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Autodesk Fusion 360 — CAD Software</h3>
+    <p>In our internship we need to design parts, enclosures and mechanical components. CAD helps us create accurate 3D models and technical drawings before actually manufacturing anything. In Tinkerers' Lab we work with 3D printers and laser cutters — and these machines need CAD files to work. CAD is a very important tool for anyone in a hands-on product development environment.</p>
+
+    <!-- ===== FLOWCHART: CAD ===== -->
+    <div class="flowchart">
+      <div class="fc-root">🖥 CAD Software</div>
+      <svg width="300" height="40" style="overflow:visible"><line x1="150" y1="0" x2="150" y2="20" stroke="#334" stroke-width="2"/><line x1="60" y1="20" x2="240" y2="20" stroke="#334" stroke-width="2"/><line x1="60" y1="20" x2="60" y2="38" stroke="#334" stroke-width="2"/><line x1="240" y1="20" x2="240" y2="38" stroke="#334" stroke-width="2"/><polygon points="54,34 60,40 66,34" fill="#445"/><polygon points="234,34 240,40 246,34" fill="#445"/></svg>
+      <div class="fc-branches">
+        <div class="fc-branch">
+          <div class="fc-node blue-head">2D CAD<br><small style="font-weight:400;color:#667">Flat drawings</small></div>
+          <div class="fc-connector"></div>
+          <div class="fc-node gray">Technical drawings &amp; blueprints</div>
+          <div class="fc-connector"></div>
+          <div class="fc-node gray">Formats: .dwg &nbsp; .dxf &nbsp; .svg</div>
+          <div class="fc-connector"></div>
+          <div class="fc-node blue-end">Floor plans, circuit diagrams</div>
+        </div>
+        <div class="fc-branch">
+          <div class="fc-node green-head">3D CAD<br><small style="font-weight:400;color:#667">3D models</small></div>
+          <div class="fc-connector"></div>
+          <div class="fc-node gray">Solid &amp; surface modelling</div>
+          <div class="fc-connector"></div>
+          <div class="fc-node gray">Formats: .stl &nbsp; .step &nbsp; .f3d</div>
+          <div class="fc-connector"></div>
+          <div class="fc-node green-end">Product design, 3D printing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 3D PRINTERS ========== -->
+  <section>
+    <h2>3D Printers at Tinkerers' Lab</h2>
+    <p>In our lab we use Bambu Lab 3D printers — the A1, A1 Mini, P1S and H2D. Each one has its own specialty. The A1 and A1 Mini are great for everyday small parts. The P1S is fast and enclosed for different materials. The H2D supports dual extrusion meaning it can print with two materials at once. These printers help us prototype parts for our robotics and product development projects.</p>
+
+    <h3>Filaments</h3>
+    <p>We use different types of filaments including PLA, ABS, PETG and TPU. PLA is easy to print and biodegradable — great for general use. ABS is stronger and more heat-resistant — ideal for functional parts. PETG combines strength and flexibility. TPU is flexible — used for parts that need to bend or stretch.</p>
+
+    <!-- ===== FLOWCHART: FILAMENT ===== -->
+    <div class="flowchart">
+      <div class="fc-root">🧵 Filament Types</div>
+      <svg width="300" height="40" style="overflow:visible"><line x1="150" y1="0" x2="150" y2="20" stroke="#334" stroke-width="2"/><line x1="60" y1="20" x2="240" y2="20" stroke="#334" stroke-width="2"/><line x1="60" y1="20" x2="60" y2="38" stroke="#334" stroke-width="2"/><line x1="240" y1="20" x2="240" y2="38" stroke="#334" stroke-width="2"/><polygon points="54,34 60,40 66,34" fill="#445"/><polygon points="234,34 240,40 246,34" fill="#445"/></svg>
+      <div class="fc-branches">
+        <div class="fc-branch">
+          <div class="fc-node blue-head">PLA<br><small style="font-weight:400;color:#667">Polylactic Acid</small></div>
+          <div class="fc-connector"></div>
+          <div class="fc-node gray">Easy to print</div>
+          <div class="fc-connector"></div>
+          <div class="fc-node gray">Low temperature needed</div>
+          <div class="fc-connector"></div>
+          <div class="fc-node blue-end">Prototypes &amp; basic parts</div>
+        </div>
+        <div class="fc-branch">
+          <div class="fc-node green-head">ABS<br><small style="font-weight:400;color:#667">Acrylonitrile Butadiene Styrene</small></div>
+          <div class="fc-connector"></div>
+          <div class="fc-node gray">Strong &amp; heat resistant</div>
+          <div class="fc-connector"></div>
+          <div class="fc-node gray">High temperature needed</div>
+          <div class="fc-connector"></div>
+          <div class="fc-node green-end">Mechanical &amp; durable parts</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== A1 MINI ========== -->
+  <section class="printer-section">
+    <h2>Bambu Lab A1 Mini</h2>
+    <p>The A1 Mini is a compact 3D printer designed for small-scale printing projects. It features a build volume of approximately 150 x 150 x 150 mm, making it ideal for small parts, prototypes, and intricate designs.</p>
+    <video src="video.mp4/A1 mini.mp4" autoplay loop muted width="600" style="border-radius:8px; margin:12px 0;"></video>
+
+    <h3>// Click on any part to explore</h3>
+    <div class="printer-wrapper">
+      <div class="img-container">
+        <img src="images/A1mini.jpeg" alt="Bambu Lab A1 Mini" style="background-color:black;">
+        <div class="dot" style="left:38%; top:30%;" onclick="showInfo(0)"></div>
+        <div class="dot" style="left:36%; top:18%;" onclick="showInfo(1)"></div>
+        <div class="dot" style="left:60%; top:38%;" onclick="showInfo(2)"></div>
+        <div class="dot" style="left:82%; top:52%;" onclick="showInfo(3)"></div>
+        <div class="dot" style="left:50%; top:80%;" onclick="showInfo(4)"></div>
+        <div class="dot" style="left:30%; top:90%;" onclick="showInfo(5)"></div>
+        <div class="dot" style="left:18%; top:78%;" onclick="showInfo(6)"></div>
+      </div>
+      <div class="info-panel" id="infoPanel">
+        <p class="default-msg">👆 Click any glowing dot<br>on the printer to explore its parts</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>Tinkerers' Lab · Sanjivani University · Snehal Kale · 2025</footer>
+
+<script>
+  function toggleCmd(el) {
+    el.classList.toggle('open');
+  }
+
+  const parts = [
+    { num: "PART 01", name: "Print Head", what: "The core printing unit", desc: "The print head holds the hot end and nozzle. It melts the filament and deposits it layer by layer to build the 3D object. The A1 Mini uses a direct drive extruder for better control." },
+    { num: "PART 02", name: "Filament Sensor", what: "Detects filament presence", desc: "Detects if the filament runs out during a print. If it does, the printer pauses automatically so you can reload filament and continue without ruining the print." },
+    { num: "PART 03", name: "X-axis Rail", what: "Horizontal movement guide", desc: "Allows the print head to move left and right smoothly. It is a linear guide rail that ensures precise positioning of the nozzle during printing." },
+    { num: "PART 04", name: "Z-axis Frame", what: "Vertical movement structure", desc: "The tall vertical column that moves the print head up after each layer is completed. It controls the height of the print and keeps everything stable." },
+    { num: "PART 05", name: "Build Plate", what: "Where printing happens", desc: "The surface where your 3D object is printed on. The A1 Mini has a flexible magnetic PEI build plate — just bend it slightly to remove finished prints." },
+    { num: "PART 06", name: "Touchscreen", what: "Control interface", desc: "Lets you control the printer directly — start prints, adjust settings, monitor progress, and calibrate the bed without needing a computer." },
+    { num: "PART 07", name: "Main Body", what: "Base and electronics housing", desc: "Houses all the electronics, motherboard, power supply, and motors. The foundation of the printer. The A1 Mini has a compact body making it easy to place on a desk." }
+  ];
+
+  const dots = document.querySelectorAll('.dot');
+  function showInfo(index) {
+    const panel = document.getElementById('infoPanel');
+    const p = parts[index];
+    dots.forEach(d => d.classList.remove('active'));
+    dots[index].classList.add('active');
+    panel.classList.remove('shown');
+    panel.innerHTML = `
+      <div class="part-num">${p.num}</div>
+      <div class="part-name">${p.name}</div>
+      <div class="divider"></div>
+      <div class="part-what">What it is: ${p.what}</div>
+      <div class="part-desc">${p.desc}</div>
+    `;
+    setTimeout(() => panel.classList.add('shown'), 10);
+  }
+</script>
+<p>Build Volume: 180 × 180 × 180 mm³ 
+Chassis: Steel + Extruded Aluminum 
+Hot End: All-Metal, Max Temp 300°C, Nozzle 0.4mm (Stainless Steel) 
+Print Speed: 500 mm/s, Acceleration: 10,000 mm/s² Filament2Print
+Max Bed Temp: 80°C, PEI Textured Build Plate 
+Filaments: PLA, PETG, TPU, PVA, ABS, ASA, PC </p>
+
+<sTRONG> H2D 3D PRINTER</sTRONG>
+<br><video src="video.mp4/H2DP.mp4" autoplay loop muted width="600" style="border-radius:8px; margin:12px 0;"></video>
+<!--A1 3D PRINTER AND ITS PARTS-->
+
+
+
+</body>
+</html>
