@@ -27,7 +27,53 @@
     strong, b { color: var(--cyan); }
     section { margin-bottom: 40px; }
 
-    /* ===== GIT COMMANDS ===== */
+    .img-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .img-row img {
+      width: calc(50% - 10px);
+      margin: 0;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-radius: 10px;
+    }
+    .img-row img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 16px rgba(0,212,255,0.3);
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 10px;
+      border: 1px solid #00d4ff;
+      box-shadow: 0 0 40px rgba(0,212,255,0.2);
+      margin: 0;
+      width: auto;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-size: 2rem;
+      color: #00d4ff;
+      cursor: pointer;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
     .git-commands { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
     .git-cmd {
       background: #0d1117;
@@ -68,7 +114,6 @@
 
     @keyframes slideIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
 
-    /* ===== FLOWCHARTS ===== */
     .flowchart {
       margin: 24px 0;
       display: flex;
@@ -88,42 +133,9 @@
       letter-spacing: 0.08em;
       box-shadow: 0 0 24px rgba(0,212,255,0.2);
     }
-    .fc-arrow {
-      width: 2px;
-      height: 24px;
-      background: #334;
-      position: relative;
-      margin: 0 auto;
-    }
-    .fc-arrow::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-top: 7px solid #445;
-    }
-    .fc-branches {
-      display: flex;
-      gap: 40px;
-      justify-content: center;
-      align-items: flex-start;
-    }
-    .fc-branch {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-      min-width: 180px;
-    }
-    .fc-connector {
-      width: 2px;
-      height: 20px;
-      background: #334;
-      position: relative;
-    }
+    .fc-branches { display: flex; gap: 40px; justify-content: center; align-items: flex-start; }
+    .fc-branch { display: flex; flex-direction: column; align-items: center; gap: 0; min-width: 180px; }
+    .fc-connector { width: 2px; height: 20px; background: #334; position: relative; }
     .fc-connector::after {
       content: '';
       position: absolute;
@@ -134,36 +146,17 @@
       border-right: 5px solid transparent;
       border-top: 7px solid #445;
     }
-    .fc-node {
-      padding: 10px 18px;
-      border-radius: 8px;
-      text-align: center;
-      font-size: 0.75rem;
-      line-height: 1.4;
-      width: 100%;
-    }
+    .fc-node { padding: 10px 18px; border-radius: 8px; text-align: center; font-size: 0.75rem; line-height: 1.4; width: 100%; }
     .fc-node.blue-head { border: 2px solid var(--cyan); color: #ffffff; background: #111c2a; font-weight: 700; font-size: 0.85rem; box-shadow: 0 0 12px rgba(0,212,255,0.15); }
     .fc-node.green-head { border: 2px solid var(--cyan); color: #ffffff; background: #111c2a; font-weight: 700; font-size: 0.85rem; box-shadow: 0 0 12px rgba(0,212,255,0.15); }
     .fc-node.gray { border: 1px solid #1e2d3a; color: #99aabb; background: #0e1520; font-size: 0.78rem; }
     .fc-node.blue-end { border: 1px solid #00d4ff55; color: #00d4ff; background: #0a1520; font-size: 0.78rem; font-weight: 600; }
     .fc-node.green-end { border: 1px solid #00d4ff55; color: #00d4ff; background: #0a1520; font-size: 0.78rem; font-weight: 600; }
-    .fc-split-line {
-      display: flex;
-      width: 100%;
-      justify-content: center;
-    }
 
-    /* ===== A1 MINI INTERACTIVE ===== */
     .printer-section { margin: 30px 0; }
-    .printer-wrapper {
-      display: flex;
-      gap: 30px;
-      align-items: flex-start;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    .printer-wrapper { display: flex; gap: 30px; align-items: flex-start; justify-content: center; flex-wrap: wrap; }
     .img-container { position: relative; width: 420px; flex-shrink: 0; }
-    .img-container img { width: 100%; border-radius: 12px; display: block; background: black; border: 1px solid #1a2a3a; }
+    .img-container img { width: 100%; border-radius: 12px; display: block; background: black; border: 1px solid #1a2a3a; cursor: default; }
     .dot {
       position: absolute; width: 22px; height: 22px; border-radius: 50%;
       background: rgba(0,212,255,0.2); border: 2px solid var(--cyan);
@@ -173,12 +166,25 @@
     .dot:hover, .dot.active { background: rgba(0,212,255,0.5); transform: translate(-50%,-50%) scale(1.2); }
     .dot.active { background: var(--cyan); }
     @keyframes pulse { 0% { transform: scale(1); opacity: 0.7; } 100% { transform: scale(2.2); opacity: 0; } }
-    .info-panel { flex: 1; min-width: 220px; max-width: 340px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; min-height: 280px; display: flex; flex-direction: column; justify-content: center; }
+
+    .info-panel {
+      flex: 1;
+      min-width: 240px;
+      max-width: 360px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
     .info-panel .default-msg { color: #334; font-family: 'Share Tech Mono', monospace; font-size: 0.78rem; text-align: center; }
-    .part-num { font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; color: var(--cyan); letter-spacing: 0.15em; margin-bottom: 8px; opacity: 0; }
-    .part-name { font-size: 1.6rem; font-weight: 800; color: #ffffff; margin-bottom: 10px; opacity: 0; }
-    .part-what { font-size: 0.92rem; color: #00d4ff; margin-bottom: 12px; font-weight: 600; opacity: 0; }
-    .part-desc { font-size: 0.88rem; color: #aabbcc; line-height: 1.8; opacity: 0; }
+    .part-num { font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; color: var(--cyan); letter-spacing: 0.15em; margin-bottom: 10px; opacity: 0; }
+    .part-name { font-size: 1.8rem; font-weight: 800; color: #ffffff; margin-bottom: 12px; opacity: 0; }
+    .part-what { font-size: 1.05rem; color: #00d4ff; margin-bottom: 14px; font-weight: 600; opacity: 0; }
+    .part-desc { font-size: 1rem; color: #aabbcc; line-height: 1.9; opacity: 0; }
     .divider { width: 40px; height: 2px; background: var(--cyan); margin: 10px 0 14px; opacity: 0; }
     .info-panel.shown .part-num, .info-panel.shown .part-name, .info-panel.shown .part-what, .info-panel.shown .part-desc { opacity: 1; animation: fadeUp 0.4s ease forwards; }
     .info-panel.shown .part-name { animation-delay: 0.05s; }
@@ -195,47 +201,55 @@
   <!-- ========== HEADER ========== -->
   <section>
     <h1>Snehal Kale</h1>
-    <p>First year diploma student</p>
-    <p>A curious mind with a passion for building things that actually work.</p>
+    <p>First-Year Diploma Student · Mechatronics Engineering · Sanjivani KBP Polytechnic</p>
+    <p>A curious mind with a genuine passion for building things that actually work — from hardware circuits to software interfaces.</p>
     <h2>About Me</h2>
-    <p>Part communicator, part engineer — I love <strong>building things that solve real problems.</strong></p>
+    <p>I am a first-year Mechatronics Engineering student currently completing a Summer Internship at <strong>Tinkerers' Lab, Sanjivani University</strong>. My interest lies at the intersection of electronics, programming, and physical systems — where code meets the real world.</p>
+    <p>I enjoy working on hands-on projects and believe the best way to learn is by building. Whether it is a radar system on Arduino or a 3D model in Fusion 360, I approach every challenge with curiosity and a willingness to figure things out from scratch.</p>
     <h3>Skills</h3>
-    <p>Communication &nbsp;·&nbsp; Basics of Programming &nbsp;·&nbsp; Arduino and Hardware &nbsp;·&nbsp; Problem Solving &nbsp;·&nbsp; Teamwork</p>
+    <p>Communication &nbsp;·&nbsp; Basics of Programming &nbsp;·&nbsp; Arduino & Hardware &nbsp;·&nbsp; Problem Solving &nbsp;·&nbsp; Teamwork &nbsp;·&nbsp; 3D Modelling &nbsp;·&nbsp; Version Control (Git)</p>
   </section>
 
   <!-- ========== PROJECTS ========== -->
   <section>
     <h2>Projects</h2>
-    <p>1. Radar System using Arduino</p>
-    <p>2. Obstacle Avoiding Robot with Voice Control</p>
+    <p><strong>1. Radar System using Arduino</strong> — Built a functional radar display using an HC-SR04 ultrasonic sensor mounted on a servo motor, with real-time visualization rendered in Processing IDE. The system sweeps 180° and detects nearby objects, displaying their distance and angle on screen.</p>
+    <p><strong>2. Obstacle Avoiding Robot with Voice Control</strong> — Designed and assembled a robot that autonomously detects and avoids obstacles using ultrasonic sensors, while also accepting voice commands for directional control. Combined embedded programming with basic speech recognition to create a hands-free control experience.</p>
   </section>
 
   <!-- ========== INTERNSHIP LOG ========== -->
   <section>
     <h2>Internship Log</h2>
-    <h3>Week 1 — Day 1</h3>
-    <p>On the first day of my internship at Tinkerer's Lab, I was introduced to GitHub and VS Code. I created my first repository and pushed it to the remote repository through VS Code.</p>
-    <p>I installed VS Code, familiarized myself with it, and logged into my GitHub account.</p>
+    <h3>Week 1 — Day 1 · GitHub & VS Code</h3>
+    <p>On the first day of my internship at Tinkerers' Lab, I was introduced to two foundational tools that every developer uses: <strong>GitHub</strong> for version control and <strong>VS Code</strong> as a code editor. I set up my development environment from scratch — installed VS Code, configured my GitHub account, created my first repository, and successfully pushed it to GitHub directly from the terminal inside VS Code. It was a hands-on start that immediately made things feel real.</p>
 
     <h3>What is GitHub?</h3>
-    <p>GitHub is a website where you can store and share your code online — think of it like Google Drive, but made for developers. It is a web-based platform used for version control and collaborative software development using Git. It allows developers to host repositories, track changes, and collaborate with others.</p>
+    <p>GitHub is a web-based platform for version control and collaborative software development, built on top of Git. Think of it like <strong>Google Drive for developers</strong> — a place to store your code online, track every change you make, and collaborate with others without overwriting each other's work. Every project lives in a repository, and every change is recorded as a commit — giving you a complete history of what was built, when, and why.</p>
+    <p>For internship and portfolio purposes, GitHub also serves as a public showcase of your work — recruiters and mentors can see exactly what you have built.</p>
 
-    <img src="images/git1.png" alt="creating a new repo" width="600">
-    <p>Start by creating a new repository — go to your GitHub account and click the "New" button.</p>
-    <img src="images/git2.png" alt="new repo" width="600">
-    <p>Give your repository a name and a description.</p>
-    <img src="images/git3.png" alt="new repo" width="600">
-    <p>Turn on "Initialize this repository with a Readme."</p>
-    <p><strong>What is a README?</strong> A README file provides information about a project — its purpose, how to use it, and other relevant details. It is the first thing users see when they visit a repository.</p>
-    <img src="images/git4.png" alt="new repo" width="600">
-    <p>Your repository is now created with the README file in it.</p>
-    <p>Now we will clone this repository to our local machine using VS Code.</p>
-    <img src="images/git5.png" alt="clone repo" width="600">
-    <p>Create a new folder on your local machine and open it in VS Code.</p>
-    <img src="images/git6.png" alt="terminal" width="600">
-    <p>Click on the three dots → Terminal → New Terminal. You can now see the path of your folder in the terminal.</p>
-    <img src="images/git7.png" alt="push repo" width="600">
-    <p>Now push the repository to GitHub using these commands:</p>
+    <div class="img-row">
+      <img src="images/git1.png" alt="Creating a new repository on GitHub" onclick="openImage(this.src)">
+      <img src="images/git2.png" alt="New repository setup screen" onclick="openImage(this.src)">
+    </div>
+    <p>To get started, navigate to your GitHub profile and click the <strong>"New"</strong> button to create a repository. Give it a meaningful name and a short description of what it contains. A good repository name is lowercase, uses hyphens instead of spaces, and clearly reflects the project — for example, <code>arduino-radar-system</code> or <code>internship-portfolio</code>.</p>
+
+    <div class="img-row">
+      <img src="images/git3.png" alt="Initializing the repository with a README" onclick="openImage(this.src)">
+      <img src="images/git4.png" alt="Repository created with README" onclick="openImage(this.src)">
+    </div>
+    <p>Always enable the <strong>"Initialize this repository with a README"</strong> option before creating the repo. This creates an initial file in the repository so it is never empty, and gives you something to immediately clone or push to. A README file is the front page of your project — it explains what the project does, how to set it up, and any other details a visitor needs. Writing a good README is one of the most important habits in software development.</p>
+
+    <div class="img-row">
+      <img src="images/git5.png" alt="Opening a folder in VS Code" onclick="openImage(this.src)">
+      <img src="images/git6.png" alt="Opening the integrated terminal in VS Code" onclick="openImage(this.src)">
+    </div>
+    <p>Create a new folder on your local machine to hold your project files. Open VS Code and use <strong>File → Open Folder</strong> to load that folder into the editor. Then open the integrated terminal via the three-dot menu → Terminal → New Terminal. You will see the terminal open at the bottom of VS Code, already pointed to your project folder path — this is where you will type all your Git commands.</p>
+
+    <div class="img-row">
+      <img src="images/git7.png" alt="Running Git commands in the terminal" onclick="openImage(this.src)">
+      <img src="images/git8.png" alt="Repository successfully pushed to GitHub" onclick="openImage(this.src)">
+    </div>
+    <p>With the terminal open, you are ready to connect your local folder to GitHub and push your files. The six commands below walk you through the entire process — from initializing Git in your folder to uploading everything to GitHub. Click each command to read a detailed explanation of what it does and why it matters.</p>
 
     <!-- ===== GIT COMMANDS ===== -->
     <p style="font-family:'Share Tech Mono',monospace; font-size:0.75rem; color:#334; margin-bottom:8px;">// click on any command to learn more</p>
@@ -249,7 +263,7 @@
           <span class="cmd-arrow">▼</span>
         </div>
         <div class="cmd-explain">
-          This command creates a hidden <code>.git</code> folder inside your project folder. That folder is what makes it a Git repository. You only run this once at the start of a new project. Without this, Git has no idea your folder exists.
+          This command creates a hidden <code>.git</code> folder inside your project folder. That folder is what makes it a Git repository — it stores the entire history of your project. You only run this once at the very beginning of a new project. Without it, Git has no awareness that your folder exists and cannot track any changes.
         </div>
       </div>
 
@@ -261,7 +275,7 @@
           <span class="cmd-arrow">▼</span>
         </div>
         <div class="cmd-explain">
-          The dot ( . ) means "add everything". This command tells Git which files you want to include in your next save. Think of it like selecting files before copying them. Without this step, Git won't include your changes in the commit.
+          The dot ( . ) means "add everything in this folder." This command moves your files into the staging area — a holding space where Git prepares them for the next save. Think of it like selecting all your files before copying them. Without this step, Git will not include your changes in the commit, even if you made them.
         </div>
       </div>
 
@@ -273,7 +287,7 @@
           <span class="cmd-arrow">▼</span>
         </div>
         <div class="cmd-explain">
-          This saves your staged files as a snapshot in Git history. The <code>-m</code> flag lets you add a message describing what you changed. Every commit is like a save point — you can always go back to it. The message helps you remember what you did.
+          This saves your staged files as a permanent snapshot in your Git history. The <code>-m</code> flag lets you attach a short message describing what you changed. Every commit is like a save point in a game — you can always travel back to it. Write clear, specific messages like "add radar sweep function" rather than just "update" so you can understand your own history later.
         </div>
       </div>
 
@@ -285,7 +299,7 @@
           <span class="cmd-arrow">▼</span>
         </div>
         <div class="cmd-explain">
-          By default Git creates a branch called "master". GitHub now uses "main" as the standard name. This command renames your branch to "main" so it matches GitHub's default and everything syncs properly.
+          By default, older versions of Git create a branch called "master." GitHub and the wider industry now use "main" as the standard default branch name. This command renames your branch to "main" so it matches GitHub's expectation and everything syncs without any naming conflicts.
         </div>
       </div>
 
@@ -297,7 +311,7 @@
           <span class="cmd-arrow">▼</span>
         </div>
         <div class="cmd-explain">
-          This connects your local project folder to your GitHub repository online. The word "origin" is just a nickname for the URL of your GitHub repo. You replace &lt;URL&gt; with the actual link from your GitHub repository page.
+          This connects your local project folder to your online GitHub repository. "Origin" is just a standard nickname for the remote URL — you could call it anything, but "origin" is the universally accepted convention. Replace &lt;URL&gt; with the actual HTTPS or SSH link from your GitHub repository page. After this, your local Git knows exactly where to send your files.
         </div>
       </div>
 
@@ -309,36 +323,39 @@
           <span class="cmd-arrow">▼</span>
         </div>
         <div class="cmd-explain">
-          This uploads all your committed files to GitHub. The <code>-u</code> flag sets "origin main" as the default so next time you can just type <code>git push</code> without the extra words. After this your code is live on GitHub!
+          This uploads all your committed files to GitHub for the first time. The <code>-u</code> flag sets "origin main" as the default tracking branch — so from this point forward, you can just type <code>git push</code> without specifying the destination every time. After this command runs successfully, your code is live on GitHub and visible to anyone with the link.
         </div>
       </div>
 
     </div>
 
-    <img src="images/git8.png" alt="repo pushed" width="600">
-    <p>Your repository is now pushed to GitHub. Open your GitHub repository.</p>
-    <img src="images/git9.png" alt="settings" width="600">
-    <p>Click on Settings.</p>
-    <img src="images/git10.png" alt="pages" width="600">
-    <p>Click on Pages.</p>
-    <img src="images/git11.png" alt="visit site" width="600">
-    <p>Click on "Visit Site" to see your website live in the browser.</p>
-    <img src="images/git12.png" alt="live site" width="600">
-    <p>Your website is now published! As you update the code and push, changes will reflect on the live site.</p>
+    <div class="img-row">
+      <img src="images/git9.png" alt="Navigating to repository Settings" onclick="openImage(this.src)">
+      <img src="images/git10.png" alt="GitHub Pages configuration under Settings" onclick="openImage(this.src)">
+    </div>
+    <p>Once your code is on GitHub, you can publish it as a live website for free using <strong>GitHub Pages</strong>. Open your repository, click on <strong>Settings</strong> in the top navigation, then scroll down and select <strong>Pages</strong> from the left sidebar. Under "Build and deployment," set the source to your <code>main</code> branch and save. GitHub will automatically build and host your site within a few minutes.</p>
+
+    <div class="img-row">
+      <img src="images/git11.png" alt="GitHub Pages showing the live site URL" onclick="openImage(this.src)">
+      <img src="images/git12.png" alt="Live portfolio site running on GitHub Pages" onclick="openImage(this.src)">
+    </div>
+    <p>Once GitHub Pages is enabled, a URL in the format <code>username.github.io/repository-name</code> will appear at the top of the Pages settings. Click <strong>"Visit Site"</strong> to open your live website. From this point on, every time you push updated code to the <code>main</code> branch, GitHub automatically rebuilds and redeploys the site — usually within 1–2 minutes. No hosting costs, no servers to manage.</p>
   </section>
 
   <!-- ========== DAY 2 ========== -->
   <section>
-    <h2>Day 2 — Inkscape &amp; Fusion 360</h2>
-    <p>On the second day we were taught about two software tools: <strong>Inkscape</strong> and <strong>Autodesk Fusion 360</strong>.</p>
-    <p>Inkscape is a free and open-source vector graphics editor used for creating SVG files. It provides tools for designing logos, labels, diagrams, and illustrations.</p>
+    <h2>Week 1 — Day 2 · Inkscape & Fusion 360</h2>
+    <p>On the second day, we were introduced to two powerful design tools: <strong>Inkscape</strong> for vector graphics and <strong>Autodesk Fusion 360</strong> for 3D CAD modelling. Both are industry-relevant tools that directly support the kind of product development and prototyping work done at Tinkerers' Lab.</p>
 
-    <h3>Why Inkscape?</h3>
-    <p>In our internship we focus on Product Development, IoT, Robotics and Embedded Systems. For product development we need to design logos, labels, enclosures and diagrams. Inkscape is a free vector design tool that helps us do all of that. It also exports SVG files directly used in laser cutting and CNC machines — very common in Tinkerers' Lab. Overall Inkscape is a very useful tool for anyone in a hands-on product development environment.</p>
+    <h3>Inkscape — Vector Graphics Editor</h3>
+    <p>Inkscape is a free and open-source vector graphics editor used for creating scalable SVG files. It provides tools for designing logos, labels, enclosures, diagrams, and illustrations. The key advantage of Inkscape over raster editors like Photoshop is that its output never loses quality at any size — a logo designed in Inkscape looks equally sharp on a business card or a billboard.</p>
+
+    <h3>Why Inkscape in an Engineering Internship?</h3>
+    <p>In a product development environment like Tinkerers' Lab, design is not just about aesthetics — it is about precision and manufacturability. Inkscape exports SVG and DXF files that are directly compatible with <strong>laser cutters and CNC machines</strong>. This means a design you create in Inkscape can be sent straight to the laser cutter and physically cut from acrylic, wood, or cardboard. It bridges the gap between digital design and physical fabrication.</p>
 
     <h3>Types of Images</h3>
-    <p>1) <strong>Raster Images</strong> — Made of pixels. Lose quality when resized. Formats: JPEG, PNG, GIF.</p>
-    <p>2) <strong>Vector Images</strong> — Made of mathematical equations. Scale infinitely without losing quality. Formats: SVG, AI, EPS.</p>
+    <p><strong>1) Raster Images</strong> — Composed of a fixed grid of pixels. Each pixel holds color information. When you zoom in or scale up a raster image, those pixels become visible and the image appears blurry or blocky. Common formats include JPEG, PNG, and GIF. Best suited for photographs and complex visual scenes.</p>
+    <p><strong>2) Vector Images</strong> — Defined by mathematical equations that describe shapes, lines, and curves. Because they are based on geometry rather than pixels, they can be scaled to any size without any quality loss. Common formats include SVG, AI, and EPS. Best suited for logos, icons, technical diagrams, and anything that needs to be reproduced at multiple sizes.</p>
 
     <!-- ===== FLOWCHART: IMAGES ===== -->
     <div class="flowchart">
@@ -366,8 +383,9 @@
       </div>
     </div>
 
-    <h3>Autodesk Fusion 360 — CAD Software</h3>
-    <p>In our internship we need to design parts, enclosures and mechanical components. CAD helps us create accurate 3D models and technical drawings before actually manufacturing anything. In Tinkerers' Lab we work with 3D printers and laser cutters — and these machines need CAD files to work. CAD is a very important tool for anyone in a hands-on product development environment.</p>
+    <h3>Autodesk Fusion 360 — Parametric CAD Software</h3>
+    <p>Autodesk Fusion 360 is a professional-grade computer-aided design (CAD) tool used for creating precise 3D models, assemblies, and technical drawings. It uses a parametric modelling approach — meaning every dimension and feature is defined by parameters that can be edited at any point without rebuilding the model from scratch. This makes it extremely efficient for iterative design, which is exactly how engineering prototypes are developed.</p>
+    <p>In Tinkerers' Lab, Fusion 360 is the primary tool used before sending any part to the <strong>3D printer or laser cutter</strong>. Every physical component starts as a digital model — CAD ensures the dimensions are accurate and the design is manufacturable before any material is used.</p>
 
     <!-- ===== FLOWCHART: CAD ===== -->
     <div class="flowchart">
@@ -396,13 +414,28 @@
     </div>
   </section>
 
+  <!-- ========== DAY 3 ========== -->
+  <section>
+    <h2>Week 1 — Day 3 · Fusion 360 Hands-On</h2>
+    <p>Day 3 was dedicated entirely to hands-on practice with Autodesk Fusion 360. Unlike the previous day where we were introduced to the tool conceptually, today we actually sat down and used it. Going in with little prior experience, I was surprised by how intuitive the workflow felt once I started sketching and applying operations. By the end of the session, I had completed my first proper 3D model.</p>
+    <video src="video.mp4/fusion1.mp4" autoplay loop muted width="700" style="border-radius:8px; margin:12px 0;"></video>
+
+    <h3>Designing a Mug in Fusion 360</h3>
+    <p>The task for today was to design a mug from scratch — a classic beginner exercise that covers the most important tools in Fusion 360. The process started with a 2D sketch on the canvas: drawing the profile of the mug (a cross-section shape) using lines and arcs. Once the sketch was defined and dimensioned, the <strong>Revolve</strong> tool was used to spin that profile 360° around a central axis — instantly generating the hollow cylindrical body of the mug.</p>
+    <p>The trickiest part was adding the handle. It required a separate sketch on a vertical plane, drawing the handle loop shape, and then using the <strong>Extrude</strong> tool to give it thickness. Joining it cleanly to the mug body required careful positioning. Seeing a flat sketch transform into a realistic 3D object that looks exactly like a mug you could hold — that moment made the whole session click. It was a great introduction to parametric modelling.</p>
+  </section>
+
   <!-- ========== 3D PRINTERS ========== -->
   <section>
     <h2>3D Printers at Tinkerers' Lab</h2>
-    <p>In our lab we use Bambu Lab 3D printers — the A1, A1 Mini, P1S and H2D. Each one has its own specialty. The A1 and A1 Mini are great for everyday small parts. The P1S is fast and enclosed for different materials. The H2D supports dual extrusion meaning it can print with two materials at once. These printers help us prototype parts for our robotics and product development projects.</p>
+    <p>Tinkerers' Lab is equipped with the latest Bambu Lab 3D printer lineup — the <strong>A1, A1 Mini, P1S, and H2D</strong>. Each model is designed for a different use case, and having access to all of them gives us the flexibility to choose the right tool for each project. The A1 and A1 Mini are ideal for everyday small-to-medium prints. The P1S is a fast, fully enclosed printer suited for engineering-grade materials. The H2D, Bambu's most advanced model, supports dual extrusion — meaning it can print with two different materials simultaneously, enabling multi-color parts and dissolvable support structures.</p>
 
-    <h3>Filaments</h3>
-    <p>We use different types of filaments including PLA, ABS, PETG and TPU. PLA is easy to print and biodegradable — great for general use. ABS is stronger and more heat-resistant — ideal for functional parts. PETG combines strength and flexibility. TPU is flexible — used for parts that need to bend or stretch.</p>
+    <h3>Filament Types</h3>
+    <p>The choice of filament material directly determines the strength, flexibility, temperature resistance, and finish of a printed part. We work with four primary filament types:</p>
+    <p><strong>PLA (Polylactic Acid)</strong> — The most beginner-friendly filament. It prints at relatively low temperatures, produces minimal warping, and is biodegradable. Ideal for prototypes, models, and display parts that do not face mechanical stress or high heat.</p>
+    <p><strong>ABS (Acrylonitrile Butadiene Styrene)</strong> — Stronger and more heat-resistant than PLA, but requires higher print temperatures and an enclosed printer to prevent warping. Used for functional parts that need to survive real-world conditions — enclosures, brackets, and mechanical components.</p>
+    <p><strong>PETG (Polyethylene Terephthalate Glycol)</strong> — Sits between PLA and ABS in terms of properties. Combines good strength with slight flexibility and is more moisture-resistant than both. A reliable choice for parts that need durability without the printing difficulty of ABS.</p>
+    <p><strong>TPU (Thermoplastic Polyurethane)</strong> — A flexible, rubber-like filament that bends and compresses without breaking. Used for grips, gaskets, protective covers, and any component that needs to absorb impact or flex during use.</p>
 
     <!-- ===== FLOWCHART: FILAMENT ===== -->
     <div class="flowchart">
@@ -412,20 +445,20 @@
         <div class="fc-branch">
           <div class="fc-node blue-head">PLA<br><small style="font-weight:400;color:#667">Polylactic Acid</small></div>
           <div class="fc-connector"></div>
-          <div class="fc-node gray">Easy to print</div>
+          <div class="fc-node gray">Easy to print, biodegradable</div>
           <div class="fc-connector"></div>
-          <div class="fc-node gray">Low temperature needed</div>
+          <div class="fc-node gray">Low temperature required</div>
           <div class="fc-connector"></div>
-          <div class="fc-node blue-end">Prototypes &amp; basic parts</div>
+          <div class="fc-node blue-end">Prototypes &amp; display parts</div>
         </div>
         <div class="fc-branch">
           <div class="fc-node green-head">ABS<br><small style="font-weight:400;color:#667">Acrylonitrile Butadiene Styrene</small></div>
           <div class="fc-connector"></div>
           <div class="fc-node gray">Strong &amp; heat resistant</div>
           <div class="fc-connector"></div>
-          <div class="fc-node gray">High temperature needed</div>
+          <div class="fc-node gray">High temperature, needs enclosure</div>
           <div class="fc-connector"></div>
-          <div class="fc-node green-end">Mechanical &amp; durable parts</div>
+          <div class="fc-node green-end">Mechanical &amp; functional parts</div>
         </div>
       </div>
     </div>
@@ -434,13 +467,25 @@
   <!-- ========== A1 MINI ========== -->
   <section class="printer-section">
     <h2>Bambu Lab A1 Mini</h2>
-    <p>The A1 Mini is a compact 3D printer designed for small-scale printing projects. It features a build volume of approximately 150 x 150 x 150 mm, making it ideal for small parts, prototypes, and intricate designs.</p>
+    <p>The A1 Mini is Bambu Lab's compact desktop 3D printer, designed to deliver high performance in a small footprint. Despite its size, it punches well above its weight — offering a print speed of up to 500 mm/s and a build volume of 180 × 180 × 180 mm, which is more than sufficient for the majority of internship and prototyping tasks. Its open-frame design makes it easy to load filament, monitor prints, and swap parts. The magnetic PEI build plate means finished prints pop off with a simple flex — no tools, no scraping.</p>
     <video src="video.mp4/A1 mini.mp4" autoplay loop muted width="600" style="border-radius:8px; margin:12px 0;"></video>
+
+    <h3>Key Specs</h3>
+    <p>
+      Build Volume: 180 × 180 × 180 mm³ &nbsp;·&nbsp;
+      Chassis: Steel + Extruded Aluminum &nbsp;·&nbsp;
+      Hot End: All-Metal, Max Temp 300°C &nbsp;·&nbsp;
+      Nozzle: 0.4mm Stainless Steel &nbsp;·&nbsp;
+      Print Speed: 500 mm/s &nbsp;·&nbsp;
+      Acceleration: 10,000 mm/s² &nbsp;·&nbsp;
+      Max Bed Temp: 80°C &nbsp;·&nbsp;
+      Supported Filaments: PLA, PETG, TPU, PVA, ABS, ASA, PC
+    </p>
 
     <h3>// Click on any part to explore</h3>
     <div class="printer-wrapper">
       <div class="img-container">
-        <img src="images/A1mini.jpeg" alt="Bambu Lab A1 Mini" style="background-color:black;">
+        <img src="images/A1mini.jpeg" alt="Bambu Lab A1 Mini">
         <div class="dot" style="left:38%; top:30%;" onclick="showInfo(0)"></div>
         <div class="dot" style="left:36%; top:18%;" onclick="showInfo(1)"></div>
         <div class="dot" style="left:60%; top:38%;" onclick="showInfo(2)"></div>
@@ -455,53 +500,101 @@
     </div>
   </section>
 
+  <!-- ========== H2D ========== -->
+  <section>
+    <h2>Bambu Lab H2D</h2>
+    <p>The H2D is Bambu Lab's flagship industrial-grade 3D printer and the most advanced machine in our lab. Its standout feature is the <strong>dual nozzle system</strong>, which allows two different materials to be printed simultaneously — enabling multi-color prints, soluble support structures, and multi-material assemblies that would be impossible on a single-nozzle printer. The H2D also features a fully enclosed, heated chamber that maintains a stable temperature throughout the print — critical for materials like carbon fiber-reinforced nylon or PC that require consistent heat to avoid warping. With a build volume of 350 × 320 × 325 mm, an optional laser module for engraving, and AI-powered quality monitoring via its nozzle camera, the H2D represents the cutting edge of desktop additive manufacturing.</p>
+    <video src="video.mp4/H2DP.mp4" autoplay loop muted width="600" style="border-radius:8px; margin:12px 0;"></video>
+
+    <h3>Key Specs</h3>
+    <p>
+      Build Volume: 350 × 320 × 325 mm³ — Bambu Lab's largest ever &nbsp;·&nbsp;
+      Dual nozzle system, Max Hotend Temp: 350°C &nbsp;·&nbsp;
+      Print Speed: 1000 mm/s &nbsp;·&nbsp;
+      Acceleration: 20,000 mm/s² &nbsp;·&nbsp;
+      Heated Chamber: up to 65°C &nbsp;·&nbsp;
+      Carbon and glass fiber reinforced material support &nbsp;·&nbsp;
+      5μm resolution optical motion calibration &nbsp;·&nbsp;
+      AI-backed macro lens nozzle camera &nbsp;·&nbsp;
+      Optional 10W or 40W laser module
+    </p>
+  </section>
+
+  <!-- ========== DAY 4 ========== -->
+  <section>
+    <h2>Week 1 — Day 4 · Logo Design in Inkscape</h2>
+    <p>On Day 4, we returned to Inkscape with a more focused objective — designing an actual logo from scratch. This was the first session where we moved beyond exploring tools and had a concrete creative output to produce. As we grew more comfortable navigating the interface, the session evolved into a proper design workflow: ideation, sketching shapes, combining elements, and refining the final result.</p>
+
+    <h3>How I Designed the Logo</h3>
+    <p>I began by opening Inkscape and setting up a new document with a <strong>500 × 500 px</strong> canvas — a square format that works well for logos since they are often displayed in square containers (profile pictures, app icons, stickers). I used the <strong>Circle tool</strong> with the Ctrl key held down to constrain the shape to a perfect circle. A gradient fill was applied to give the circle visual depth — moving from a darker tone at the edge to a brighter center creates a sense of dimension even in a flat design.</p>
+    <p>For the typography, I selected the <strong>Text tool</strong> and chose a bold, geometric font that felt modern and clean. The text was centered within the circle using Inkscape's alignment tools — Align and Distribute — to ensure it was perfectly positioned both horizontally and vertically. The final step was exporting the design as an <strong>SVG file</strong>, which preserves all the vector data and keeps the logo crisp and scalable at any size. Unlike saving as PNG, an SVG export means the logo can be scaled to any resolution without any quality loss — ready for use on a website, a laser-cut sign, or a printed label.</p>
+    <video src="video.mp4/inkscape1.mp4" autoplay loop muted width="700" style="border-radius:8px; margin:12px 0;"></video>
+    <img src="images/logo.jpeg" alt="My Logo" style="background-color:black;">
+  </section>
+
+  <!-- ========== WEEK 2 ========== -->
+  <section>
+    <h2>Week 2</h2>
+    <p>I tried creating a phone stand of my name using Autodesk Fusion 360 and 3D printing it on the H2D.</p>
+    <p>I printed the stand using the Bambu Lab H2D printer.</p>
+    <video src="video.mp4/fusion2.mp4" autoplay loop muted width="600" style="border-radius:8px; margin:12px 0;"></video>
+    <p>This is how it turned out after printing.</p>
+  </section>
+
+  <!-- ========== LIGHTBOX ========== -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">✕</span>
+    <img id="lightboxImg" src="" alt="preview">
+  </div>
+
   <!-- ========== FOOTER ========== -->
   <footer>Tinkerers' Lab · Sanjivani University · Snehal Kale · 2025</footer>
 
-<script>
-  function toggleCmd(el) {
-    el.classList.toggle('open');
-  }
+  <script>
+    function toggleCmd(el) {
+      el.classList.toggle('open');
+    }
 
-  const parts = [
-    { num: "PART 01", name: "Print Head", what: "The core printing unit", desc: "The print head holds the hot end and nozzle. It melts the filament and deposits it layer by layer to build the 3D object. The A1 Mini uses a direct drive extruder for better control." },
-    { num: "PART 02", name: "Filament Sensor", what: "Detects filament presence", desc: "Detects if the filament runs out during a print. If it does, the printer pauses automatically so you can reload filament and continue without ruining the print." },
-    { num: "PART 03", name: "X-axis Rail", what: "Horizontal movement guide", desc: "Allows the print head to move left and right smoothly. It is a linear guide rail that ensures precise positioning of the nozzle during printing." },
-    { num: "PART 04", name: "Z-axis Frame", what: "Vertical movement structure", desc: "The tall vertical column that moves the print head up after each layer is completed. It controls the height of the print and keeps everything stable." },
-    { num: "PART 05", name: "Build Plate", what: "Where printing happens", desc: "The surface where your 3D object is printed on. The A1 Mini has a flexible magnetic PEI build plate — just bend it slightly to remove finished prints." },
-    { num: "PART 06", name: "Touchscreen", what: "Control interface", desc: "Lets you control the printer directly — start prints, adjust settings, monitor progress, and calibrate the bed without needing a computer." },
-    { num: "PART 07", name: "Main Body", what: "Base and electronics housing", desc: "Houses all the electronics, motherboard, power supply, and motors. The foundation of the printer. The A1 Mini has a compact body making it easy to place on a desk." }
-  ];
+    function openImage(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
 
-  const dots = document.querySelectorAll('.dot');
-  function showInfo(index) {
-    const panel = document.getElementById('infoPanel');
-    const p = parts[index];
-    dots.forEach(d => d.classList.remove('active'));
-    dots[index].classList.add('active');
-    panel.classList.remove('shown');
-    panel.innerHTML = `
-      <div class="part-num">${p.num}</div>
-      <div class="part-name">${p.name}</div>
-      <div class="divider"></div>
-      <div class="part-what">What it is: ${p.what}</div>
-      <div class="part-desc">${p.desc}</div>
-    `;
-    setTimeout(() => panel.classList.add('shown'), 10);
-  }
-</script>
-<p>Build Volume: 180 × 180 × 180 mm³ 
-Chassis: Steel + Extruded Aluminum 
-Hot End: All-Metal, Max Temp 300°C, Nozzle 0.4mm (Stainless Steel) 
-Print Speed: 500 mm/s, Acceleration: 10,000 mm/s² Filament2Print
-Max Bed Temp: 80°C, PEI Textured Build Plate 
-Filaments: PLA, PETG, TPU, PVA, ABS, ASA, PC </p>
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
 
-<sTRONG> H2D 3D PRINTER</sTRONG>
-<br><video src="video.mp4/H2DP.mp4" autoplay loop muted width="600" style="border-radius:8px; margin:12px 0;"></video>
-<!--A1 3D PRINTER AND ITS PARTS-->
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
 
+    const parts = [
+      { num: "PART 01", name: "Print Head", what: "The core printing unit", desc: "The print head holds the hot end and nozzle assembly. It melts incoming filament and precisely deposits it layer by layer to build the 3D object. The A1 Mini uses a direct drive extruder — the motor that feeds the filament is located right at the print head, giving it much better control over flexible and soft materials compared to a Bowden-style setup." },
+      { num: "PART 02", name: "Filament Sensor", what: "Detects filament presence and flow", desc: "Monitors whether filament is present and feeding correctly during a print. If the spool runs out mid-print, the sensor triggers an automatic pause so you can reload and continue seamlessly. Some sensors also detect jams, preventing the printer from grinding filament against a clogged nozzle without alerting you." },
+      { num: "PART 03", name: "X-axis Rail", what: "Horizontal movement guide", desc: "A precision linear guide rail that allows the print head to travel left and right across the build area. The quality of this rail directly affects print accuracy — any wobble or play in the X-axis results in visible artifacts in the finished print. The A1 Mini uses hardened steel rails for smooth, consistent motion." },
+      { num: "PART 04", name: "Z-axis Frame", what: "Vertical movement structure", desc: "The vertical aluminum extrusion column that raises the print head after each layer is completed. Every completed layer moves the Z-axis up by exactly one layer height (typically 0.1–0.2mm). The rigidity of this frame is critical — any flex here translates directly into layer misalignment and print failures on tall objects." },
+      { num: "PART 05", name: "Build Plate", what: "The printing surface", desc: "The heated surface on which your 3D object is printed. The A1 Mini uses a flexible magnetic PEI (Polyetherimide) build plate. PEI has excellent adhesion properties when warm — prints stick firmly during the print and release easily once the plate cools down and is flexed slightly. No glue sticks, hairspray, or scraping required." },
+      { num: "PART 06", name: "Touchscreen", what: "Onboard control interface", desc: "A full-color touchscreen that lets you operate the printer independently of any computer. Use it to start prints from a USB drive or Wi-Fi, manually adjust settings like temperature and speed, run bed leveling calibrations, or monitor print progress in real time. Useful when you need quick adjustments without opening the Bambu Studio software." },
+      { num: "PART 07", name: "Main Body", what: "Base chassis and electronics housing", desc: "The structural foundation of the printer. It houses the motherboard, stepper motor drivers, power supply unit, and all internal wiring in a compact, organized enclosure. The A1 Mini's steel and aluminum chassis keeps everything rigid and grounded, minimizing vibration that could otherwise affect print quality at high speeds." }
+    ];
 
+    const dots = document.querySelectorAll('.dot');
+    function showInfo(index) {
+      const panel = document.getElementById('infoPanel');
+      const p = parts[index];
+      dots.forEach(d => d.classList.remove('active'));
+      dots[index].classList.add('active');
+      panel.classList.remove('shown');
+      panel.innerHTML = `
+        <div class="part-num">${p.num}</div>
+        <div class="part-name">${p.name}</div>
+        <div class="divider"></div>
+        <div class="part-what">What it is: ${p.what}</div>
+        <div class="part-desc">${p.desc}</div>
+      `;
+      setTimeout(() => panel.classList.add('shown'), 10);
+    }
+  </script>
 
 </body>
 </html>
