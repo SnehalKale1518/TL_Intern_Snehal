@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../daily docs"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "TL_Intern_Snehal"
+	}
+}
