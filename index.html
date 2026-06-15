@@ -2,6 +2,598 @@
 <html lang="en">
 
 <head>
+  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snehal Kale — Hero + About + Projects</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@400;600;800&family=Sora:wght@300;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ── paste these CSS variables at the top of your original <style> block ── */
+    :root {
+      --ivory: #F5F0E8;
+      --stone: #C8C0B0;
+      --mist:  #8EA8B8;
+      --steel: #4A6880;
+      --deep:  #2C4A62;
+      --navy:  #1B2E4A;
+      --bg:    #ffffff;
+      --card:  #EDE8DF;
+      --border:#C8C0B0;
+      --text:  #1B2E4A;
+      --muted: #7a8a96;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      padding: 0;
+    }
+
+    .page-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    p { line-height: 1.7; color: #3a4f62; margin-bottom: 10px; }
+    strong, b { color: var(--deep); }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--deep);
+      margin: 32px 0 12px;
+      border-left: 4px solid var(--steel);
+      padding-left: 12px;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--steel);
+      margin: 20px 0 8px;
+    }
+
+    /
+      padding: 72px 24px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* very subtle dot grid — light version */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(74,104,128,0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--steel);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.5s ease 0.1s forwards;
+    }
+
+    /* BIG greeting */
+    .hero-hello {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.1;
+      margin-bottom: 4px;
+      opacity: 0;
+      animation: fadeUp 0.5s ease 0.2s forwards;
+    }
+
+    .hero-name {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 26px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.3s forwards;
+      letter-spacing: -0.02em;
+    }
+
+    /* blinking cursor */
+    .hero-name::after {
+      content: '_';
+      color: var(--steel);
+      animation: blink 1s step-end infinite;
+      font-weight: 300;
+    }
+
+    .hero-tagline {
+      font-family: 'Exo 2', sans-serif;
+      font-size: clamp(0.95rem, 2vw, 1.08rem);
+      color: #3a4f62;
+      line-height: 1.8;
+      max-width: 620px;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.45s forwards;
+    }
+
+    /* typewriter line */
+    .hero-typewriter {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.88rem;
+      color: var(--steel);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.6s forwards;
+      min-height: 1.5em;
+    }
+
+    .typed-word { color: var(--deep); }
+
+    .tw-cursor {
+      display: inline-block;
+      width: 8px; height: 1em;
+      background: var(--steel);
+      vertical-align: middle;
+      margin-left: 2px;
+      animation: blink 0.8s step-end infinite;
+    }
+
+    /* stat pills row */
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.75s forwards;
+    }
+
+    .stat-pill {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--deep);
+      letter-spacing: 0.05em;
+    }
+
+    .stat-pill strong { color: var(--steel); mar* ═══════════════════════════
+       HERO
+    ═══════════════════════════ */
+    .hero {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);gin-right: 5px; }
+
+    /* skill chips inside hero */
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.9s forwards;
+    }
+    .hero-chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--steel);
+      border-radius: 5px;
+      padding: 5px 13px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--deep);
+      letter-spacing: 0.04em;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    /* ═══════════════════════════
+       ABOUT CARD
+    ═══════════════════════════ */
+    
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 30px;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .about-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: var(--deep);
+      border: 3px solid var(--mist);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      flex-shrink: 0;
+    }
+
+    .about-body { flex: 1; min-width: 220px; }
+
+    .about-name {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+
+    .about-role {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--steel);
+      letter-spacing: 0.1em;
+      margin-bottom: 14px;
+    }
+
+    .about-quote {
+      font-size: 0.97rem;
+      color: #3a4f62;
+      line-height: 1.75;
+      font-style: italic;
+      border-left: 3px solid var(--mist);
+      padding-left: 14px;
+      margin-bottom: 14px;
+    }
+
+    .about-desc {
+      font-size: 0.93rem;
+      line-height: 1.75;
+      color: #3a4f62;
+      margin-bottom: 14px;
+    }
+
+    .about-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .about-link {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--steel);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+      letter-spacing: 0.05em;
+    }
+
+    .about-link:hover { color: var(--deep); border-color: var(--deep); }
+
+    .skills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .skill-badge {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--steel);
+      border-radius: 6px;
+      padding: 5px 13px;
+      font-size: 0.78rem;
+      color: var(--deep);
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    /* ═══════════════════════════
+       PROJECT CARDS
+    ═══════════════════════════ */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 18px;
+      margin: 16px 0;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+
+    /* top accent bar — same steel color as skill-badge left border */
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--steel);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 26px rgba(27,46,74,0.11);
+    }
+
+    .project-emoji {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .project-title {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      font-size: 0.87rem;
+      line-height: 1.7;
+      color: #3a4f62;
+      margin-bottom: 14px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .project-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--steel);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 9px;
+    }
+
+    .project-status {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.63rem;
+      letter-spacing: 0.1em;
+      padding: 3px 10px;
+      border-radius: 100px;
+      display: inline-block;
+    }
+
+    .status-done {
+      background: rgba(44,74,98,0.1);
+      color: var(--deep);
+      border: 1px solid rgba(44,74,98,0.2);
+    }
+
+    .status-ongoing {
+      background: rgba(142,168,184,0.15);
+      color: var(--steel);
+      border: 1px solid rgba(142,168,184,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════
+       ① HERO SECTION
+       paste this BEFORE your existing <section> tags
+  ════════════════════════════════════════════ -->
+  <div class="hero-inner">
+
+      <div class="hero-eyebrow">// Mechatronics · Internship Portfolio · 2026</div>
+<img src="images/logo.jpeg" alt="Snehal" style="position:absolute; right:40px; top:60%; transform:translateY(-50%); width:220px; height:220px; border-radius:50%; object-fit:cover; object-position:center 30%; border:3px solid var(--steel);">
+      <div class="hero-hello">Hello, I'm</div>
+      <div class="hero-name">Snehal Kale</div>
+
+      <p class="hero-tagline">
+        A curious mind with a passion for building things that actually work —
+        from Arduino radar systems to voice-controlled robots.
+      </p>
+
+      <div class="hero-typewriter">
+        &gt;&nbsp;<span class="typed-word" id="typedText"></span><span class="tw-cursor"></span>
+      </div>
+
+      <div class="hero-stats">
+        <span class="stat-pill"><strong>3</strong> Projects Built</span>
+        <span class="stat-pill"><strong>4</strong> Weeks Interned</span>
+        <span class="stat-pill"><strong>2</strong> MCUs Mastered</span>
+        <span class="stat-pill"><strong>1</strong> 3D Printer Operated</span>
+      </div>
+
+      <div class="hero-chips">
+        <span class="hero-chip">Communication</span>
+        <span class="hero-chip">Basics of Programming</span>
+        <span class="hero-chip">Arduino &amp; Hardware</span>
+        <span class="hero-chip">Problem Solving</span>
+        <span class="hero-chip">Teamwork</span>
+        <span class="hero-chip">3D Modelling</span>
+        <span class="hero-chip">Version Control (Git)</span>
+      </div>
+
+    </div>
+        
+      
+    
+
+  <div class="page-wrap">
+
+    <!-- ════════════════════════════════════════════
+         ② ABOUT ME SECTION
+         paste this to REPLACE your existing About section
+    ════════════════════════════════════════════ -->
+    <section>
+      <h2>About Me</h2>
+
+      <div class="about-card">
+        <div class="about-avatar">⚙️</div>
+        <div class="about-body">
+          <div class="about-name">Snehal Kale</div>
+          <div class="about-role">First-Year Diploma · Mechatronics Engineering · Sanjivani KBP Polytechnic</div>
+
+          <p class="about-quote">
+            "Part communicator, part engineer — I love building things that solve real problems."
+          </p>
+
+          <p class="about-desc">
+            I am a first-year Mechatronics Engineering student currently completing a Summer Internship at
+            <strong>Tinkerers' Lab, Sanjivani University</strong>. My interest lies at the intersection of
+            electronics, programming, and physical systems — where code meets the real world.
+          </p>
+          <p class="about-desc">
+            I enjoy working on hands-on projects and believe the best way to learn is by building.
+            Whether it is a radar system on Arduino or a 3D model in Fusion 360, I approach every
+            challenge with curiosity and a willingness to figure things out from scratch.
+          </p>
+
+          <div class="about-links">
+            <a href="https://github.com/SnehalKale1518" target="_blank" class="about-link">⌥ GitHub / SnehalKale1518 →</a>
+          </div>
+
+          <div class="skills-row">
+            <span class="skill-badge">Communication</span>
+            <span class="skill-badge">Basics of Programming</span>
+            <span class="skill-badge">Arduino &amp; Hardware</span>
+            <span class="skill-badge">Problem Solving</span>
+            <span class="skill-badge">Teamwork</span>
+            <span class="skill-badge">3D Modelling</span>
+            <span class="skill-badge">Version Control (Git)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════
+         ③ PROJECTS SECTION
+         paste this to REPLACE your existing Projects section
+    ════════════════════════════════════════════ -->
+    <section>
+      <h2>Projects</h2>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <span class="project-emoji">📡</span>
+          <div class="project-title">Radar System using Arduino</div>
+          <p class="project-desc">
+            Built a functional radar display using an HC-SR04 ultrasonic sensor mounted on a servo motor,
+            with real-time visualization rendered in Processing IDE. The system sweeps 180° and detects
+            nearby objects, displaying their distance and angle on screen.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Arduino UNO</span>
+            <span class="project-tag">HC-SR04</span>
+            <span class="project-tag">Servo Motor</span>
+            <span class="project-tag">Processing IDE</span>
+          </div>
+          <span class="project-status status-done">✓ Completed</span>
+        </div>
+
+        <div class="project-card">
+          <span class="project-emoji">🤖</span>
+          <div class="project-title">Obstacle Avoiding Robot with Voice Control</div>
+          <p class="project-desc">
+            Designed and assembled a robot that autonomously detects and avoids obstacles using ultrasonic
+            sensors, while also accepting voice commands for directional control. Combined embedded
+            programming with basic speech recognition for a hands-free experience.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Arduino</span>
+            <span class="project-tag">HC-SR04</span>
+            <span class="project-tag">Speech Recognition</span>
+            <span class="project-tag">Motor Driver</span>
+          </div>
+          <span class="project-status status-done">✓ Completed</span>
+        </div>
+
+        <div class="project-card">
+          <span class="project-emoji">🪖</span>
+          <div class="project-title">Rider Safety Helmet</div>
+          <p class="project-desc">
+            ESP32-based smart helmet with MPU-6050 impact detection via jerk calculation, Neo-6M GPS
+            tracking, and SIM800L GSM for automatic SMS/call alerts on crash detection. Trilingual
+            voice messages in Marathi, Hindi, and English.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">ESP32</span>
+            <span class="project-tag">MPU-6050</span>
+            <span class="project-tag">Neo-6M GPS</span>
+            <span class="project-tag">SIM800L</span>
+          </div>
+          <span class="project-status status-ongoing">↻ Ongoing</span>
+        </div>
+
+      </div>
+    </section>
+
+  </div><!-- /page-wrap -->
+
+  <script>
+    /* ── TYPEWRITER ── */
+    const phrases = [
+      'Mechatronics Engineering Student',
+      'IoT & Embedded Systems Builder',
+      'Arduino & ESP32 Developer',
+      '3D Modelling with Fusion 360',
+      'Always Learning, Always Building'
+    ];
+    let pi = 0, ci = 0, deleting = false;
+    const el = document.getElementById('typedText');
+
+    function type() {
+      const word = phrases[pi];
+      if (!deleting) {
+        el.textContent = word.slice(0, ++ci);
+        if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
+      } else {
+        el.textContent = word.slice(0, --ci);
+        if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+      }
+      setTimeout(type, deleting ? 38 : 65);
+    }
+    setTimeout(type, 1100);
+  </script>
+
+</body>
+</html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Snehal Kale · Mechatronics Internship Portfolio</title>
@@ -77,8 +669,7 @@
       border: 1px solid var(--border);
     }
 
-    strong,
-    b {
+    strong, b {
       color: var(--deep);
     }
 
@@ -121,6 +712,26 @@
 
     .img-row img:hover {
       transform: scale(1.02);
+      box-shadow: 0 0 16px rgba(44, 74, 98, 0.2);
+    }
+
+    /* ── SINGLE IMAGE FULL WIDTH ── */
+    .img-single {
+      margin: 20px 0;
+    }
+
+    .img-single img {
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .img-single img:hover {
+      transform: scale(1.01);
       box-shadow: 0 0 16px rgba(44, 74, 98, 0.2);
     }
 
@@ -186,29 +797,12 @@
       background: #e8e2d8;
     }
 
-    .git-cmd:nth-child(1) {
-      animation-delay: 0.05s;
-    }
-
-    .git-cmd:nth-child(2) {
-      animation-delay: 0.1s;
-    }
-
-    .git-cmd:nth-child(3) {
-      animation-delay: 0.15s;
-    }
-
-    .git-cmd:nth-child(4) {
-      animation-delay: 0.2s;
-    }
-
-    .git-cmd:nth-child(5) {
-      animation-delay: 0.25s;
-    }
-
-    .git-cmd:nth-child(6) {
-      animation-delay: 0.3s;
-    }
+    .git-cmd:nth-child(1) { animation-delay: 0.05s; }
+    .git-cmd:nth-child(2) { animation-delay: 0.1s; }
+    .git-cmd:nth-child(3) { animation-delay: 0.15s; }
+    .git-cmd:nth-child(4) { animation-delay: 0.2s; }
+    .git-cmd:nth-child(5) { animation-delay: 0.25s; }
+    .git-cmd:nth-child(6) { animation-delay: 0.3s; }
 
     .cmd-top {
       display: flex;
@@ -270,15 +864,8 @@
     }
 
     @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateX(-12px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      from { opacity: 0; transform: translateX(-12px); }
+      to   { opacity: 1; transform: translateX(0); }
     }
 
     .flowchart {
@@ -385,9 +972,7 @@
       font-weight: 600;
     }
 
-    .printer-section {
-      margin: 30px 0;
-    }
+    .printer-section { margin: 30px 0; }
 
     .printer-wrapper {
       display: flex;
@@ -434,26 +1019,16 @@
       animation: pulse 1.8s ease-out infinite;
     }
 
-    .dot:hover,
-    .dot.active {
+    .dot:hover, .dot.active {
       background: rgba(44, 74, 98, 0.35);
       transform: translate(-50%, -50%) scale(1.2);
     }
 
-    .dot.active {
-      background: var(--deep);
-    }
+    .dot.active { background: var(--deep); }
 
     @keyframes pulse {
-      0% {
-        transform: scale(1);
-        opacity: 0.6;
-      }
-
-      100% {
-        transform: scale(2.2);
-        opacity: 0;
-      }
+      0%   { transform: scale(1);   opacity: 0.6; }
+      100% { transform: scale(2.2); opacity: 0; }
     }
 
     .info-panel {
@@ -520,37 +1095,16 @@
     .info-panel.shown .part-num,
     .info-panel.shown .part-name,
     .info-panel.shown .part-what,
-    .info-panel.shown .part-desc {
-      opacity: 1;
-      animation: fadeUp 0.4s ease forwards;
-    }
+    .info-panel.shown .part-desc { opacity: 1; animation: fadeUp 0.4s ease forwards; }
 
-    .info-panel.shown .part-name {
-      animation-delay: 0.05s;
-    }
-
-    .info-panel.shown .part-what {
-      animation-delay: 0.1s;
-    }
-
-    .info-panel.shown .part-desc {
-      animation-delay: 0.15s;
-    }
-
-    .info-panel.shown .divider {
-      opacity: 1;
-    }
+    .info-panel.shown .part-name { animation-delay: 0.05s; }
+    .info-panel.shown .part-what { animation-delay: 0.1s; }
+    .info-panel.shown .part-desc { animation-delay: 0.15s; }
+    .info-panel.shown .divider   { opacity: 1; }
 
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(6px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     .mcu-table-wrap {
@@ -560,14 +1114,9 @@
       margin: 20px 0;
     }
 
-    .mcu-table-wrap table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+    .mcu-table-wrap table { width: 100%; border-collapse: collapse; }
 
-    .mcu-table-wrap thead tr {
-      background: var(--deep);
-    }
+    .mcu-table-wrap thead tr { background: var(--deep); }
 
     .mcu-table-wrap thead th {
       padding: 10px 16px;
@@ -580,36 +1129,19 @@
       border-bottom: 1px solid #1a2a40;
     }
 
-    .mcu-table-wrap thead th:nth-child(1) {
-      color: var(--mist);
-      width: 22%;
-    }
-
-    .mcu-table-wrap thead th:nth-child(2) {
-      color: var(--ivory);
-    }
-
-    .mcu-table-wrap thead th:nth-child(3) {
-      color: var(--stone);
-    }
+    .mcu-table-wrap thead th:nth-child(1) { color: var(--mist);  width: 22%; }
+    .mcu-table-wrap thead th:nth-child(2) { color: var(--ivory); }
+    .mcu-table-wrap thead th:nth-child(3) { color: var(--stone); }
 
     .mcu-table-wrap tbody tr {
       border-bottom: 1px solid var(--border);
       background: var(--bg);
     }
 
-    .mcu-table-wrap tbody tr:last-child {
-      border-bottom: none;
-    }
+    .mcu-table-wrap tbody tr:last-child { border-bottom: none; }
+    .mcu-table-wrap tbody tr:hover      { background: var(--card); }
 
-    .mcu-table-wrap tbody tr:hover {
-      background: var(--card);
-    }
-
-    .mcu-table-wrap td {
-      padding: 10px 16px;
-      font-size: 13px;
-    }
+    .mcu-table-wrap td { padding: 10px 16px; font-size: 13px; }
 
     .mcu-table-wrap td:nth-child(1) {
       font-family: 'Share Tech Mono', monospace;
@@ -618,15 +1150,8 @@
       white-space: nowrap;
     }
 
-    .mcu-table-wrap td:nth-child(2) {
-      color: var(--deep);
-      border-left: 1px solid var(--border);
-    }
-
-    .mcu-table-wrap td:nth-child(3) {
-      color: #3a5a6a;
-      border-left: 1px solid var(--border);
-    }
+    .mcu-table-wrap td:nth-child(2) { color: var(--deep);  border-left: 1px solid var(--border); }
+    .mcu-table-wrap td:nth-child(3) { color: #3a5a6a;      border-left: 1px solid var(--border); }
 
     pre {
       background: var(--navy);
@@ -641,9 +1166,7 @@
       margin: 16px 0;
     }
 
-    .video-wrap {
-      margin: 16px 0;
-    }
+    .video-wrap { margin: 16px 0; }
 
     .video-caption {
       font-family: 'Share Tech Mono', monospace;
@@ -653,7 +1176,6 @@
       padding-left: 4px;
     }
 
-    /* spec grid */
     .spec-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -698,14 +1220,19 @@
 
 <body>
 
-  <!-- ABOUT -->
+  <!-- ============================================================
+       ABOUT SECTION
+       — edit name, title, description below
+       ============================================================ -->
   <section>
     <h1>Snehal Kale</h1>
+    <!-- ── edit subtitle below ── -->
     <p>First-Year Diploma Student · Mechatronics Engineering · Sanjivani KBP Polytechnic</p>
     <p>A curious mind with a genuine passion for building things that actually work — from hardware circuits to software
       interfaces.</p>
 
     <h2>About Me</h2>
+    <!-- ── edit about me paragraph below ── -->
     <p>I am a first-year Mechatronics Engineering student currently completing a Summer Internship at <strong>Tinkerers'
         Lab, Sanjivani University</strong>. My interest lies at the intersection of electronics, programming, and
       physical systems — where code meets the real world.</p>
@@ -714,6 +1241,7 @@
       figure things out from scratch.</p>
 
     <h3>Skills</h3>
+    <!-- ── add or remove skill badges below ── -->
     <div class="skills-row">
       <span class="skill-badge">Communication</span>
       <span class="skill-badge">Basics of Programming</span>
@@ -725,34 +1253,47 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
+  <!-- ============================================================
+       PROJECTS SECTION
+       — edit project names and descriptions below
+       ============================================================ -->
   <section>
     <h2>Projects</h2>
+    <!-- ── edit project descriptions below ── -->
     <p><strong>1. Radar System using Arduino</strong> — Built a functional radar display using an HC-SR04 ultrasonic
       sensor mounted on a servo motor, with real-time visualization rendered in Processing IDE. The system sweeps 180°
       and detects nearby objects, displaying their distance and angle on screen.</p>
     <p><strong>2. Obstacle Avoiding Robot with Voice Control</strong> — Designed and assembled a robot that autonomously
       detects and avoids obstacles using ultrasonic sensors, while also accepting voice commands for directional
-      control. Combined embedded programming with basic speech recognition to create a hands-free control experience.
-    </p>
+      control. Combined embedded programming with basic speech recognition to create a hands-free control experience.</p>
   </section>
 
-  <!-- WEEK 1 DAY 1 -->
+  <!-- ============================================================
+       INTERNSHIP LOG HEADER
+       ============================================================ -->
   <section>
     <h2>Internship Log</h2>
-    <h2>Week 1 — Day 1 · GitHub & VS Code</h2>
+
+    <!-- ============================================================
+         WEEK 1 — DAY 1 · GITHUB & VS CODE
+         — edit text, image paths, git command descriptions below
+         ============================================================ -->
+    <h2>Week 1 — Day 1 · GitHub &amp; VS Code</h2>
+    <!-- ── edit day intro below ── -->
     <p>On the first day of my internship at Tinkerers' Lab, I was introduced to two foundational tools that every
       developer uses: <strong>GitHub</strong> for version control and <strong>VS Code</strong> as a code editor. I set
       up my development environment from scratch — installed VS Code, configured my GitHub account, created my first
       repository, and successfully pushed it to GitHub directly from the terminal inside VS Code.</p>
 
     <h3>What is GitHub?</h3>
+    <!-- ── edit GitHub explanation below ── -->
     <p>GitHub is a web-based platform for version control and collaborative software development, built on top of Git.
       Think of it like <strong>Google Drive for developers</strong> — a place to store your code online, track every
       change you make, and collaborate with others without overwriting each other's work.</p>
     <p>For internship and portfolio purposes, GitHub also serves as a public showcase of your work — recruiters and
       mentors can see exactly what you have built.</p>
 
+    <!-- ── edit image paths below — images/git1.png to git12.png ── -->
     <div class="img-row">
       <img src="images/git1.png" alt="Creating a new repository on GitHub" onclick="openImage(this.src)">
       <img src="images/git2.png" alt="New repository setup screen" onclick="openImage(this.src)">
@@ -765,8 +1306,8 @@
       <img src="images/git4.png" alt="Repository created with README" onclick="openImage(this.src)">
     </div>
     <p>Always enable the <strong>"Initialize this repository with a README"</strong> option before creating the repo. A
-      README file is the front page of your project — it explains what the project does, how to set it up, and any other
-      details a visitor needs.</p>
+      README file is the front page of your project — it explains what the project does, how to set it up, and any
+      other details a visitor needs.</p>
 
     <div class="img-row">
       <img src="images/git5.png" alt="Opening a folder in VS Code" onclick="openImage(this.src)">
@@ -783,26 +1324,28 @@
     <p>With the terminal open, you are ready to connect your local folder to GitHub and push your files. The six
       commands below walk you through the entire process.</p>
 
-    <p style="font-family:'Share Tech Mono',monospace; font-size:0.75rem; color:var(--stone); margin-bottom:8px;">//
-      click on any command to learn more</p>
+    <p style="font-family:'Share Tech Mono',monospace; font-size:0.75rem; color:var(--stone); margin-bottom:8px;">
+      // click on any command to learn more</p>
+
+    <!-- ── edit git command descriptions below ── -->
     <div class="git-commands">
       <div class="git-cmd" onclick="toggleCmd(this)">
         <div class="cmd-top"><span class="cmd-num">01</span><span class="cmd-code">git init</span><span
             class="cmd-desc">Initializes a new Git repository</span><span class="cmd-arrow">▼</span></div>
-        <div class="cmd-explain">This command creates a hidden <code>.git</code> folder inside your project folder. That
-          folder is what makes it a Git repository — it stores the entire history of your project. You only run this
-          once at the very beginning of a new project.</div>
+        <div class="cmd-explain">This command creates a hidden <code>.git</code> folder inside your project folder.
+          That folder is what makes it a Git repository — it stores the entire history of your project. You only run
+          this once at the very beginning of a new project.</div>
       </div>
       <div class="git-cmd" onclick="toggleCmd(this)">
         <div class="cmd-top"><span class="cmd-num">02</span><span class="cmd-code">git add .</span><span
             class="cmd-desc">Stages all files for commit</span><span class="cmd-arrow">▼</span></div>
-        <div class="cmd-explain">The dot ( . ) means "add everything in this folder." This command moves your files into
-          the staging area — a holding space where Git prepares them for the next save.</div>
+        <div class="cmd-explain">The dot ( . ) means "add everything in this folder." This command moves your files
+          into the staging area — a holding space where Git prepares them for the next save.</div>
       </div>
       <div class="git-cmd" onclick="toggleCmd(this)">
         <div class="cmd-top"><span class="cmd-num">03</span><span class="cmd-code">git commit -m "first
-            commit"</span><span class="cmd-desc">Saves a snapshot of your files</span><span class="cmd-arrow">▼</span>
-        </div>
+            commit"</span><span class="cmd-desc">Saves a snapshot of your files</span><span
+            class="cmd-arrow">▼</span></div>
         <div class="cmd-explain">This saves your staged files as a permanent snapshot in your Git history. The
           <code>-m</code> flag lets you attach a short message describing what you changed. Every commit is like a save
           point in a game.</div>
@@ -842,24 +1385,27 @@
       <img src="images/git12.png" alt="Live portfolio site running on GitHub Pages" onclick="openImage(this.src)">
     </div>
     <p>Once GitHub Pages is enabled, a URL in the format <code>username.github.io/repository-name</code> will appear.
-      Every time you push updated code to the <code>main</code> branch, GitHub automatically rebuilds and redeploys the
-      site.</p>
+      Every time you push updated code to the <code>main</code> branch, GitHub automatically rebuilds and redeploys
+      the site.</p>
   </section>
 
-  <!-- WEEK 1 DAY 2 -->
+  <!-- ============================================================
+       WEEK 1 — DAY 2 · INKSCAPE & FUSION 360
+       — edit text and image paths below
+       ============================================================ -->
   <section>
-    <h2>Week 1 — Day 2 · Inkscape & Fusion 360</h2>
-    <p>On the second day, we were introduced to two powerful design tools: <strong>Inkscape</strong> for vector graphics
-      and <strong>Autodesk Fusion 360</strong> for 3D CAD modelling.</p>
+    <h2>Week 1 — Day 2 · Inkscape &amp; Fusion 360</h2>
+    <p>On the second day, we were introduced to two powerful design tools: <strong>Inkscape</strong> for vector
+      graphics and <strong>Autodesk Fusion 360</strong> for 3D CAD modelling.</p>
 
     <h3>Inkscape — Vector Graphics Editor</h3>
-    <p>Inkscape is a free and open-source vector graphics editor used for creating scalable SVG files. It provides tools
-      for designing logos, labels, enclosures, diagrams, and illustrations.</p>
+    <p>Inkscape is a free and open-source vector graphics editor used for creating scalable SVG files. It provides
+      tools for designing logos, labels, enclosures, diagrams, and illustrations.</p>
 
     <h3>Why Inkscape in an Engineering Internship?</h3>
     <p>In a product development environment like Tinkerers' Lab, Inkscape exports SVG and DXF files that are directly
-      compatible with <strong>laser cutters and CNC machines</strong>. This means a design you create in Inkscape can be
-      sent straight to the laser cutter and physically cut from acrylic, wood, or cardboard.</p>
+      compatible with <strong>laser cutters and CNC machines</strong>. This means a design you create in Inkscape can
+      be sent straight to the laser cutter and physically cut from acrylic, wood, or cardboard.</p>
 
     <h3>Types of Images</h3>
     <p><strong>1) Raster Images</strong> — Composed of a fixed grid of pixels. When you zoom in or scale up a raster
@@ -870,17 +1416,16 @@
     <div class="flowchart">
       <div class="fc-root">🖼 Images</div>
       <svg width="300" height="40" style="overflow:visible">
-        <line x1="150" y1="0" x2="150" y2="20" stroke="#C8C0B0" stroke-width="2" />
-        <line x1="60" y1="20" x2="240" y2="20" stroke="#C8C0B0" stroke-width="2" />
-        <line x1="60" y1="20" x2="60" y2="38" stroke="#C8C0B0" stroke-width="2" />
-        <line x1="240" y1="20" x2="240" y2="38" stroke="#C8C0B0" stroke-width="2" />
-        <polygon points="54,34 60,40 66,34" fill="#C8C0B0" />
-        <polygon points="234,34 240,40 246,34" fill="#C8C0B0" />
+        <line x1="150" y1="0" x2="150" y2="20" stroke="#C8C0B0" stroke-width="2"/>
+        <line x1="60" y1="20" x2="240" y2="20" stroke="#C8C0B0" stroke-width="2"/>
+        <line x1="60" y1="20" x2="60" y2="38" stroke="#C8C0B0" stroke-width="2"/>
+        <line x1="240" y1="20" x2="240" y2="38" stroke="#C8C0B0" stroke-width="2"/>
+        <polygon points="54,34 60,40 66,34" fill="#C8C0B0"/>
+        <polygon points="234,34 240,40 246,34" fill="#C8C0B0"/>
       </svg>
       <div class="fc-branches">
         <div class="fc-branch">
-          <div class="fc-node blue-head">Raster Image<br><small style="font-weight:400;color:rgba(245,240,232,0.7)">Made
-              of pixels</small></div>
+          <div class="fc-node blue-head">Raster Image<br><small style="font-weight:400;color:rgba(245,240,232,0.7)">Made of pixels</small></div>
           <div class="fc-connector"></div>
           <div class="fc-node gray">Gets blurry when zoomed</div>
           <div class="fc-connector"></div>
@@ -889,8 +1434,7 @@
           <div class="fc-node blue-end">Photos &amp; screenshots</div>
         </div>
         <div class="fc-branch">
-          <div class="fc-node green-head">Vector Image<br><small
-              style="font-weight:400;color:rgba(245,240,232,0.7)">Made of math equations</small></div>
+          <div class="fc-node green-head">Vector Image<br><small style="font-weight:400;color:rgba(245,240,232,0.7)">Made of math equations</small></div>
           <div class="fc-connector"></div>
           <div class="fc-node gray">Stays sharp at any size</div>
           <div class="fc-connector"></div>
@@ -902,12 +1446,13 @@
     </div>
 
     <h3>How to Install Inkscape</h3>
+    <!-- ── edit image paths below ── -->
     <div class="img-row">
       <img src="images/inkscape1.png" alt="Searching for Inkscape on Google Chrome" onclick="openImage(this.src)">
       <img src="images/inkscape2.png" alt="Inkscape download page link" onclick="openImage(this.src)">
     </div>
-    <p>Open Google Chrome and search for <strong>Inkscape for Windows</strong>. Click on the official download link from
-      the results.</p>
+    <p>Open Google Chrome and search for <strong>Inkscape for Windows</strong>. Click on the official download link
+      from the results.</p>
 
     <div class="img-row">
       <img src="images/inkscape3.png" alt="Clicking the download button on the Inkscape website"
@@ -918,7 +1463,8 @@
       downloading.</p>
 
     <div class="img-row">
-      <img src="images/inkscape5.jpeg" alt="Inkscape installation wizard - clicking Next" onclick="openImage(this.src)">
+      <img src="images/inkscape5.jpeg" alt="Inkscape installation wizard - clicking Next"
+        onclick="openImage(this.src)">
       <img src="images/inkscape6.jpeg" alt="Inkscape installation complete" onclick="openImage(this.src)">
     </div>
     <p>Run the installer, click <strong>Next</strong> through the setup wizard, then click <strong>Install</strong>.
@@ -932,17 +1478,16 @@
     <div class="flowchart">
       <div class="fc-root">🖥 CAD Software</div>
       <svg width="300" height="40" style="overflow:visible">
-        <line x1="150" y1="0" x2="150" y2="20" stroke="#C8C0B0" stroke-width="2" />
-        <line x1="60" y1="20" x2="240" y2="20" stroke="#C8C0B0" stroke-width="2" />
-        <line x1="60" y1="20" x2="60" y2="38" stroke="#C8C0B0" stroke-width="2" />
-        <line x1="240" y1="20" x2="240" y2="38" stroke="#C8C0B0" stroke-width="2" />
-        <polygon points="54,34 60,40 66,34" fill="#C8C0B0" />
-        <polygon points="234,34 240,40 246,34" fill="#C8C0B0" />
+        <line x1="150" y1="0" x2="150" y2="20" stroke="#C8C0B0" stroke-width="2"/>
+        <line x1="60" y1="20" x2="240" y2="20" stroke="#C8C0B0" stroke-width="2"/>
+        <line x1="60" y1="20" x2="60" y2="38" stroke="#C8C0B0" stroke-width="2"/>
+        <line x1="240" y1="20" x2="240" y2="38" stroke="#C8C0B0" stroke-width="2"/>
+        <polygon points="54,34 60,40 66,34" fill="#C8C0B0"/>
+        <polygon points="234,34 240,40 246,34" fill="#C8C0B0"/>
       </svg>
       <div class="fc-branches">
         <div class="fc-branch">
-          <div class="fc-node blue-head">2D CAD<br><small style="font-weight:400;color:rgba(245,240,232,0.7)">Flat
-              drawings</small></div>
+          <div class="fc-node blue-head">2D CAD<br><small style="font-weight:400;color:rgba(245,240,232,0.7)">Flat drawings</small></div>
           <div class="fc-connector"></div>
           <div class="fc-node gray">Technical drawings &amp; blueprints</div>
           <div class="fc-connector"></div>
@@ -951,8 +1496,7 @@
           <div class="fc-node blue-end">Floor plans, circuit diagrams</div>
         </div>
         <div class="fc-branch">
-          <div class="fc-node green-head">3D CAD<br><small style="font-weight:400;color:rgba(245,240,232,0.7)">3D
-              models</small></div>
+          <div class="fc-node green-head">3D CAD<br><small style="font-weight:400;color:rgba(245,240,232,0.7)">3D models</small></div>
           <div class="fc-connector"></div>
           <div class="fc-node gray">Solid &amp; surface modelling</div>
           <div class="fc-connector"></div>
@@ -964,91 +1508,669 @@
     </div>
   </section>
 
-  <!-- WEEK 1 DAY 3 -->
+  <!-- ============================================================
+       WEEK 1 — DAY 3 · FUSION 360 HANDS-ON
+       — edit video path and descriptions below
+       ============================================================ -->
   <section>
     <h2>Week 1 — Day 3 · Fusion 360 Hands-On</h2>
     <p>Day 3 was dedicated entirely to hands-on practice with Autodesk Fusion 360. By the end of the session, I had
       completed my first proper 3D model.</p>
+
+    <!-- ── edit video path below ── -->
     <div class="video-wrap">
       <video src="video.mp4/fusion1.mp4" autoplay loop muted width="700"
         style="border-radius:8px; margin:12px 0;"></video>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fusion 360 — Mug Design Steps</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ivory: #F5F0E8;
+      --stone: #C8C0B0;
+      --mist:  #8EA8B8;
+      --steel: #4A6880;
+      --deep:  #2C4A62;
+      --navy:  #1B2E4A;
+      --bg:    #ffffff;
+      --card:  #EDE8DF;
+      --border:#C8C0B0;
+      --text:  #1B2E4A;
+      --muted: #7a8a96;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      padding: 40px 20px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* ── SECTION HEADING (matches h2 in portfolio) ── */
+    .section-heading {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--deep);
+      margin: 32px 0 24px;
+      border-left: 4px solid var(--steel);
+      padding-left: 12px;
+    }
+
+    /* ── STEP CARD ── */
+    .step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 28px 24px;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    /* ── STEP HEADER ROW ── */
+    .step-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .step-number {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--ivory);
+      background: var(--deep);
+      padding: 5px 12px;
+      border-radius: 5px;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .step-titles h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+      border: none;
+      padding: 0;
+    }
+
+    /* ── TOOL BADGE ── */
+    .tool-badge {
+      display: inline-block;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--steel);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--steel);
+      border-radius: 5px;
+      padding: 4px 12px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── IMAGE ── */
+    .img-wrapper {
+      margin: 0 0 20px;
+    }
+
+    .img-wrapper img {
+      width: 700px;
+      max-width: 100%;
+      display: block;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .img-wrapper img:hover {
+      transform: scale(1.01);
+      box-shadow: 0 0 18px rgba(44, 74, 98, 0.18);
+    }
+
+    /* ── DESCRIPTION ── */
+    .description p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #3a4f62;
+      margin-bottom: 8px;
+    }
+
+    .description p:last-child { margin-bottom: 0; }
+
+    .description strong {
+      color: var(--deep);
+    }
+
+    /* ── DIVIDER between steps ── */
+    .step + .step::before {
+      content: none;
+    }
+
+    /* ── INTRO ── */
+    .section-intro {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--steel);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin-bottom: 28px;
+    }
+
+    .section-intro p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #3a4f62;
+      margin-bottom: 10px;
+    }
+
+    .section-intro p:last-child { margin-bottom: 0; }
+
+    .section-intro strong { color: var(--deep); }
+
+    .intro-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-pill {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ivory);
+      background: var(--deep);
+      padding: 4px 10px;
+      border-radius: 5px;
+      letter-spacing: 0.05em;
+    }
+
+    .meta-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--steel);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 5px;
+    }
+
+    /* ── WORKFLOW STRIP ── */
+    .workflow-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 32px;
+      padding: 18px 20px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .wf-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .wf-icon {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--ivory);
+      background: var(--steel);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wf-final .wf-icon {
+      background: var(--deep);
+    }
+
+    .wf-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .wf-arrow {
+      font-size: 1rem;
+      color: var(--stone);
+      margin-bottom: 18px;
+    }
+
+    /* ── STEP DIVIDER ── */
+    .step-divider {
+      text-align: center;
+      margin: 4px 0;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1rem;
+      color: var(--stone);
+    }
+
+    /* ── SUMMARY ── */
+    .summary-block {
+      margin-top: 32px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+    }
+
+    .summary-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .summary-icon { font-size: 1.1rem; }
+
+    .summary-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      color: var(--steel);
+      text-transform: uppercase;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .summary-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 10px 14px;
+    }
+
+    .summary-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.64rem;
+      color: var(--steel);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .summary-value {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .summary-reflection {
+      background: var(--bg);
+      border-left: 3px solid var(--steel);
+      border-radius: 0 6px 6px 0;
+      padding: 14px 18px;
+    }
+
+    .summary-reflection p {
+      font-size: 0.93rem;
+      line-height: 1.78;
+      color: #3a4f62;
+      margin: 0;
+    }
+
+    .summary-reflection strong { color: var(--deep); }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(27, 46, 74, 0.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 10px;
+      border: 1px solid var(--mist);
+      box-shadow: 0 0 40px rgba(44, 74, 98, 0.3);
+      margin: 0;
+      width: auto;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      font-size: 2rem;
+      color: var(--ivory);
+      cursor: pointer;
+      font-family: 'Share Tech Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 class="section-heading">Week 1 — Day 3 · Fusion 360 Mug Design Steps</h2>
+
+  <!-- ── INTRO ── -->
+  <div class="section-intro">
+    <p>This session was my first real hands-on experience with <strong>Autodesk Fusion 360</strong>. The goal was to model a mug completely from scratch using only parametric sketch-based tools — no templates, no imports.</p>
+    <p>The workflow followed a logical build order: sketch the body profile → extrude the cylinder → hollow it with Shell → design the handle path → sweep it into 3D. The four steps below document each key stage of that process.</p>
+    <div class="intro-meta">
+      <span class="meta-pill">🛠 Tools Used</span>
+      <span class="meta-tag">Extrude</span>
+      <span class="meta-tag">Shell</span>
+      <span class="meta-tag">Sweep</span>
+      <span class="meta-pill" style="margin-left:12px;">📐 Sketches</span>
+      <span class="meta-tag">Sketch4</span>
+      <span class="meta-tag">Sketch5</span>
+      <span class="meta-tag">Sketch6</span>
+      <span class="meta-tag">Sketch7</span>
+    </div>
+  </div>
+
+  <!-- ── WORKFLOW STRIP ── -->
+  <div class="workflow-strip">
+    <div class="wf-step">
+      <div class="wf-icon">①</div>
+      <div class="wf-label">Sketch Body</div>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-step">
+      <div class="wf-icon">②</div>
+      <div class="wf-label">Extrude Cylinder</div>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-step">
+      <div class="wf-icon">③</div>
+      <div class="wf-label">Sweep Handle</div>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-step">
+      <div class="wf-icon">④</div>
+      <div class="wf-label">Shell + Join</div>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-step wf-final">
+      <div class="wf-icon">✓</div>
+      <div class="wf-label">Final Model</div>
+    </div>
+  </div>
+
+  <!-- ==================== STEP 1 ==================== -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-number">Step 01</span>
+      <div class="step-titles">
+        <h2>Completed Mug Model — Final Overview</h2>
+        <div class="tool-badge">Solid › Create › Extrude &nbsp;|&nbsp; Sweep &nbsp;|&nbsp; Modify › Shell</div>
+      </div>
+    </div>
+    <div class="img-wrapper">
+      <img src="images/f1.png" alt="Step 1 - Completed mug model" onclick="openImage(this.src)">
+    </div>
+    <div class="description">
+      <p>This screenshot shows the completed 3D mug model viewed from an isometric (top-front-right) angle. Built using <strong>Extrude</strong> for the cylindrical body, <strong>Shell</strong> to hollow it from the top, and <strong>Sweep</strong> to create the curved handle.</p>
+      <p>The browser panel on the left lists all components — Bodies, Sketches (Sketch4 through Sketch7), and a Construction folder confirming the multi-sketch workflow used to build this model.</p>
+    </div>
+  </div>
+
+  <div class="step-divider"><span>↓</span></div>
+
+  <!-- ==================== STEP 2 ==================== -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-number">Step 02</span>
+      <div class="step-titles">
+        <h2>Extruding the Top Circle — Cut / Hollow Operation</h2>
+        <div class="tool-badge">Solid › Create › Extrude &nbsp;(Shortcut: E)</div>
+      </div>
+    </div>
+    <div class="img-wrapper">
+      <img src="images/f2.png" alt="Step 2 - Extrude dialog open with circular top face selected" onclick="openImage(this.src)">
+    </div>
+    <div class="description">
+      <p>The <strong>Extrude</strong> dialog is open on the right. The top circular face is selected (highlighted in blue) ready to be extruded downward to define the inner cavity depth.</p>
+      <p>Settings: Profiles: 1 selected, Start: Profile Plane, Direction: One Side, Distance: 0.00 mm, Taper Angle: 0.0°. Active sketch is <strong>Sketch7</strong>. Status bar shows selected area: 5026.548 mm².</p>
+    </div>
+  </div>
+
+  <div class="step-divider"><span>↓</span></div>
+
+  <!-- ==================== STEP 3 ==================== -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-number">Step 03</span>
+      <div class="step-titles">
+        <h2>Setting Up the Sweep — Handle Profile &amp; Path</h2>
+        <div class="tool-badge">Solid › Create › Sweep &nbsp;(Type: Single Path)</div>
+      </div>
+    </div>
+    <div class="img-wrapper">
+      <img src="images/f3.png" alt="Step 3 - Sweep dialog open, view from left side" onclick="openImage(this.src)">
+    </div>
+    <div class="description">
+      <p>The <strong>Sweep</strong> dialog is open on the right. View is set to <strong>LEFT</strong> (see view cube, top-right) to align the profile and path for the handle correctly.</p>
+      <p>Settings: Type: Single Path, Orientation: Perpendicular, Operation: New Body. Profile awaits the circular cross-section sketch; Path awaits the curved handle path. A construction plane on the left hosts the profile sketch.</p>
+    </div>
+  </div>
+
+  <div class="step-divider"><span>↓</span></div>
+
+  <!-- ==================== STEP 4 ==================== -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-number">Step 04</span>
+      <div class="step-titles">
+        <h2>Handle Attached &amp; Shell Applied — Near-Final Model</h2>
+        <div class="tool-badge">Solid › Create › Sweep (Join) &nbsp;|&nbsp; Modify › Shell</div>
+      </div>
+    </div>
+    <div class="img-wrapper">
+      <img src="images/f4.png" alt="Step 4 - Completed mug with handle joined and shell applied" onclick="openImage(this.src)">
+    </div>
+    <div class="description">
+      <p>The mug after <strong>Sweep</strong> was set to <strong>Join</strong> (merging the handle into the body) and <strong>Shell</strong> was applied to hollow the interior from the top face.</p>
+      <p>Handle connects at two join points (top and bottom) with smooth transitions. Sketch5 and Sketch6 drove the Sweep; Sketch7 drove the Extrude for the inner cavity.</p>
+    </div>
+  </div>
+
+  <!-- ── SUMMARY ── -->
+  <div class="summary-block">
+    <div class="summary-header">
+      <span class="summary-icon">📋</span>
+      <span class="summary-title">Session Summary</span>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="summary-label">Software</div>
+        <div class="summary-value">Autodesk Fusion 360</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label">Model</div>
+        <div class="summary-value">3D Mug (hollow with handle)</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label">Total Sketches</div>
+        <div class="summary-value">4 (Sketch4 – Sketch7)</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label">Tools Used</div>
+        <div class="summary-value">Extrude · Sweep · Shell</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label">Handle Method</div>
+        <div class="summary-value">Sweep → Join operation</div>
+      </div>
+      <div class="summary-item">
+        <div class="summary-label">Hollow Method</div>
+        <div class="summary-value">Shell from top face</div>
+      </div>
+    </div>
+    <div class="summary-reflection">
+      <p>This session was a major step in understanding <strong>parametric 3D modelling</strong>. The most challenging part was setting up the Sweep correctly — getting the profile plane and path to align required switching to the LEFT view and using a construction plane. Once the handle was joined and Shell was applied, the model instantly looked like a real object. Fusion 360's feature history (visible in the browser panel) also showed how every tool call stacks on top of the previous one, making edits non-destructive and easy to go back to.</p>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">✕</span>
+    <img id="lightboxImg" src="" alt="preview">
+  </div>
+
+  <script>
+    function openImage(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+</body>
+</html>
       <p class="video-caption">// Fusion 360 — designing a mug from scratch</p>
     </div>
+    
+    
 
     <h3>Designing a Mug in Fusion 360</h3>
-    <p>The task for today was to design a mug from scratch. The process started with a 2D sketch on the canvas, then the
-      <strong>Revolve</strong> tool was used to spin that profile 360° around a central axis — instantly generating the
-      hollow cylindrical body of the mug.</p>
+    <p>The task for today was to design a mug from scratch. The process started with a 2D sketch on the canvas, then
+      the <strong>Revolve</strong> tool was used to spin that profile 360° around a central axis — instantly generating
+      the hollow cylindrical body of the mug.</p>
     <p>The trickiest part was adding the handle. It required a separate sketch on a vertical plane and then using the
-      <strong>Extrude</strong> tool to give it thickness. Seeing a flat sketch transform into a realistic 3D object made
-      the whole session click.</p>
+      <strong>Extrude</strong> tool to give it thickness. Seeing a flat sketch transform into a realistic 3D object
+      made the whole session click.</p>
   </section>
 
-  <!-- WEEK 1 DAY 4 -->
+  <!-- ============================================================
+       WEEK 1 — DAY 4 · LOGO DESIGN IN INKSCAPE
+       — edit video path, logo image path, description below
+       ============================================================ -->
   <section>
     <h2>Week 1 — Day 4 · Logo Design in Inkscape</h2>
     <p>On Day 4, we returned to Inkscape with a more focused objective — designing an actual logo from scratch.</p>
 
     <h3>How I Designed the Logo</h3>
     <p>I began by opening Inkscape and setting up a <strong>500 × 500 px</strong> canvas. I used the <strong>Circle
-        tool</strong> with a gradient fill, then added centered text using the <strong>Text tool</strong> and Inkscape's
-      alignment tools. The final step was exporting the design as an <strong>SVG file</strong>.</p>
+        tool</strong> with a gradient fill, then added centered text using the <strong>Text tool</strong> and
+      Inkscape's alignment tools. The final step was exporting the design as an <strong>SVG file</strong>.</p>
+
+    <!-- ── edit video path below ── -->
     <div class="video-wrap">
       <video src="video.mp4/inkscape1.mp4" autoplay loop muted width="700"
         style="border-radius:8px; margin:12px 0;"></video>
       <p class="video-caption">// Logo design process in Inkscape</p>
     </div>
+
+    <!-- ── edit logo image path and description below ── -->
     <div style="display:flex; align-items:center; gap:30px; margin:20px 0;">
-      <img src="images/logo.jpeg" alt="My Logo" style="background-color:black; width:280px; flex-shrink:0; margin:0;">
+      <img src="images/logo.jpeg" alt="My Logo"
+        style="background-color:black; width:280px; flex-shrink:0; margin:0;">
       <p style="margin:0;"><strong>Custom Logo Design:</strong> A custom logo created using Inkscape. This project
         helped me develop skills in vector graphics, typography, and professional logo design.</p>
     </div>
   </section>
-  <h>Week 1 Day 5</h>
-  <p>3D Printing with Bambu Studio</P>
-    <p>Slicing and Printing an STL Model on Bambu Lab A1 Mini
-Bambu Studio is the official slicer software used with Bambu Lab printers. During the internship, STL models were imported, configured, sliced, and sent directly to the printer over LAN using Bambu Studio's Prepare and Preview workflow.</p>
-      <img src="images/bl1.png" alt="My Logo" style="background-color:black; width:280px; flex-shrink:0; margin:0;">
-<p> Configuring Slice Settings
 
-The Prepare tab in Bambu Studio shows the print configuration panel. Key parameters like printer selection, nozzle diameter, filament type, layer height (0.2mm), and line width are set here before slicing. The 0.20mm Standard profile was used for a balance of speed and quality.</p>
-      <img src="images/bl2.png" alt="My Logo" style="background-color:black; width:280px; flex-shrink:0; margin:0;">
-<p>The file browser is used to import supported 3D model formats including .3mf and .stl. Here, previously saved Bambu Studio project files (overhang and clearance test models) are visible in the Downloads folder, showing an organized workflow of test prints done during the session.</p>
-      <img src="images/bl3.png" alt="My Logo" style="background-color:black; width:280px; flex-shrink:0; margin:0;">
-<p>Model Loaded on the Print Bed
-      <img src="images/bl4.png" alt="My Logo" style="background-color:black; width:280px; flex-shrink:0; margin:0;">
-The SpeedBoatRace benchmark STL is loaded onto the virtual print bed. The model appears correctly oriented on the textured PEI plate, with the filament set to Generic PLA. This view confirms the model is print-ready before slicing.</p>
+  <!-- ============================================================
+       WEEK 1 — DAY 5 · 3D PRINTING WITH BAMBU STUDIO
+       — edit image paths and descriptions below
+       ============================================================ -->
+  <section>
+    <h2>Week 1 — Day 5 · 3D Printing with Bambu Studio</h2>
+    <p>Slicing and Printing an STL Model on Bambu Lab A1 Mini. Bambu Studio is the official slicer software used with
+      Bambu Lab printers. During the internship, STL models were imported, configured, sliced, and sent directly to
+      the printer over LAN using Bambu Studio's Prepare and Preview workflow.</p>
 
-  <!-- WEEK 2 DAY 1 -->
+    <!-- ── edit image paths below ── -->
+    <div class="img-single">
+      <img src="images/bl1.png" alt="Bambu Studio prepare tab" onclick="openImage(this.src)">
+    </div>
+    <p>The Prepare tab in Bambu Studio shows the print configuration panel. Key parameters like printer selection,
+      nozzle diameter, filament type, layer height (0.2mm), and line width are set here before slicing. The 0.20mm
+      Standard profile was used for a balance of speed and quality.</p>
+
+    <div class="img-single">
+      <img src="images/bl2.jpg" alt="Bambu Studio file browser" onclick="openImage(this.src)">
+    </div>
+    <p>The file browser is used to import supported 3D model formats including .3mf and .stl. Previously saved Bambu
+      Studio project files (overhang and clearance test models) are visible in the Downloads folder, showing an
+      organized workflow of test prints done during the session.</p>
+
+    <div class="img-single">
+      <img src="images/bl3.jpg" alt="Model loaded on print bed" onclick="openImage(this.src)">
+    </div>
+
+    <div class="img-single">
+      <img src="images/bl4.jpg" alt="SpeedBoatRace model on virtual print bed" onclick="openImage(this.src)">
+    </div>
+    <p>The SpeedBoatRace benchmark STL is loaded onto the virtual print bed. The model appears correctly oriented on
+      the textured PEI plate, with the filament set to Generic PLA. This view confirms the model is print-ready before
+      slicing.</p>
+  </section>
+
+  <!-- ============================================================
+       WEEK 2 — DAY 1 · 3D PRINTERS AT TINKERERS' LAB
+       — edit printer descriptions and filament info below
+       ============================================================ -->
   <section>
     <h2>Week 2 — Day 1 · 3D Printers at Tinkerers' Lab</h2>
     <p>Tinkerers' Lab is equipped with the latest Bambu Lab 3D printer lineup — the <strong>A1, A1 Mini, P1S, and
         H2D</strong>. Each model is designed for a different use case.</p>
 
     <h3>Filament Types</h3>
+    <!-- ── edit filament descriptions below ── -->
     <p><strong>PLA (Polylactic Acid)</strong> — The most beginner-friendly filament. Ideal for prototypes, models, and
       display parts.</p>
     <p><strong>ABS (Acrylonitrile Butadiene Styrene)</strong> — Stronger and more heat-resistant than PLA. Used for
       functional parts that need to survive real-world conditions.</p>
     <p><strong>PETG (Polyethylene Terephthalate Glycol)</strong> — Combines good strength with slight flexibility. A
       reliable choice for durable parts.</p>
-    <p><strong>TPU (Thermoplastic Polyurethane)</strong> — A flexible, rubber-like filament used for grips, gaskets, and
-      protective covers.</p>
+    <p><strong>TPU (Thermoplastic Polyurethane)</strong> — A flexible, rubber-like filament used for grips, gaskets,
+      and protective covers.</p>
 
     <div class="flowchart">
       <div class="fc-root">🧵 Filament Types</div>
       <svg width="300" height="40" style="overflow:visible">
-        <line x1="150" y1="0" x2="150" y2="20" stroke="#C8C0B0" stroke-width="2" />
-        <line x1="60" y1="20" x2="240" y2="20" stroke="#C8C0B0" stroke-width="2" />
-        <line x1="60" y1="20" x2="60" y2="38" stroke="#C8C0B0" stroke-width="2" />
-        <line x1="240" y1="20" x2="240" y2="38" stroke="#C8C0B0" stroke-width="2" />
-        <polygon points="54,34 60,40 66,34" fill="#C8C0B0" />
-        <polygon points="234,34 240,40 246,34" fill="#C8C0B0" />
+        <line x1="150" y1="0" x2="150" y2="20" stroke="#C8C0B0" stroke-width="2"/>
+        <line x1="60" y1="20" x2="240" y2="20" stroke="#C8C0B0" stroke-width="2"/>
+        <line x1="60" y1="20" x2="60" y2="38" stroke="#C8C0B0" stroke-width="2"/>
+        <line x1="240" y1="20" x2="240" y2="38" stroke="#C8C0B0" stroke-width="2"/>
+        <polygon points="54,34 60,40 66,34" fill="#C8C0B0"/>
+        <polygon points="234,34 240,40 246,34" fill="#C8C0B0"/>
       </svg>
       <div class="fc-branches">
         <div class="fc-branch">
-          <div class="fc-node blue-head">PLA<br><small style="font-weight:400;color:rgba(245,240,232,0.7)">Polylactic
-              Acid</small></div>
+          <div class="fc-node blue-head">PLA<br><small style="font-weight:400;color:rgba(245,240,232,0.7)">Polylactic Acid</small></div>
           <div class="fc-connector"></div>
           <div class="fc-node gray">Easy to print, biodegradable</div>
           <div class="fc-connector"></div>
@@ -1057,8 +2179,7 @@ The SpeedBoatRace benchmark STL is loaded onto the virtual print bed. The model 
           <div class="fc-node blue-end">Prototypes &amp; display parts</div>
         </div>
         <div class="fc-branch">
-          <div class="fc-node green-head">ABS<br><small
-              style="font-weight:400;color:rgba(245,240,232,0.7)">Acrylonitrile Butadiene Styrene</small></div>
+          <div class="fc-node green-head">ABS<br><small style="font-weight:400;color:rgba(245,240,232,0.7)">Acrylonitrile Butadiene Styrene</small></div>
           <div class="fc-connector"></div>
           <div class="fc-node gray">Strong &amp; heat resistant</div>
           <div class="fc-connector"></div>
@@ -1070,11 +2191,16 @@ The SpeedBoatRace benchmark STL is loaded onto the virtual print bed. The model 
     </div>
   </section>
 
-  <!-- A1 MINI -->
+  <!-- ============================================================
+       BAMBU LAB A1 MINI — INTERACTIVE DIAGRAM
+       — edit specs, video path, dot positions below
+       ============================================================ -->
   <section class="printer-section">
     <h2>Bambu Lab A1 Mini</h2>
     <p>The A1 Mini is Bambu Lab's compact desktop 3D printer, offering a print speed of up to 500 mm/s and a build
       volume of 180 × 180 × 180 mm. Its magnetic PEI build plate means finished prints pop off with a simple flex.</p>
+
+    <!-- ── edit video path below ── -->
     <div class="video-wrap">
       <video src="video.mp4/A1 mini.mp4" autoplay loop muted width="600"
         style="border-radius:8px; margin:12px 0;"></video>
@@ -1082,14 +2208,17 @@ The SpeedBoatRace benchmark STL is loaded onto the virtual print bed. The model 
     </div>
 
     <h3>Key Specs</h3>
+    <!-- ── edit specs below ── -->
     <p>Build Volume: 180 × 180 × 180 mm³ &nbsp;·&nbsp; Hot End Max Temp: 300°C &nbsp;·&nbsp; Print Speed: 500 mm/s
-      &nbsp;·&nbsp; Acceleration: 10,000 mm/s² &nbsp;·&nbsp; Max Bed Temp: 80°C &nbsp;·&nbsp; Supported Filaments: PLA,
-      PETG, TPU, PVA, ABS, ASA, PC</p>
+      &nbsp;·&nbsp; Acceleration: 10,000 mm/s² &nbsp;·&nbsp; Max Bed Temp: 80°C &nbsp;·&nbsp; Supported Filaments:
+      PLA, PETG, TPU, PVA, ABS, ASA, PC</p>
 
     <h3>// Click on any part to explore</h3>
     <div class="printer-wrapper">
       <div class="img-container">
+        <!-- ── edit image path below ── -->
         <img src="images/A1mini.jpeg" alt="Bambu Lab A1 Mini">
+        <!-- ── edit dot positions (left%, top%) below ── -->
         <div class="dot" style="left:38%; top:30%;" onclick="showInfo(0)"></div>
         <div class="dot" style="left:36%; top:18%;" onclick="showInfo(1)"></div>
         <div class="dot" style="left:60%; top:38%;" onclick="showInfo(2)"></div>
@@ -1104,64 +2233,88 @@ The SpeedBoatRace benchmark STL is loaded onto the virtual print bed. The model 
     </div>
   </section>
 
-  <!-- H2D -->
+  <!-- ============================================================
+       BAMBU LAB H2D
+       — edit description, specs, video path below
+       ============================================================ -->
   <section>
     <h2>Bambu Lab H2D</h2>
+    <!-- ── edit description below ── -->
     <p>The H2D is Bambu Lab's flagship industrial-grade 3D printer. Its standout feature is the <strong>dual nozzle
         system</strong>, enabling multi-color prints and soluble support structures. With a build volume of 350 × 320 ×
-      325 mm and AI-powered quality monitoring, the H2D represents the cutting edge of desktop additive manufacturing.
-    </p>
+      325 mm and AI-powered quality monitoring, the H2D represents the cutting edge of desktop additive
+      manufacturing.</p>
+
+    <!-- ── edit video path below ── -->
     <div class="video-wrap">
-      <video src="video.mp4/H2DP.mp4" autoplay loop muted width="600" style="border-radius:8px; margin:12px 0;"></video>
+      <video src="video.mp4/H2DP.mp4" autoplay loop muted width="600"
+        style="border-radius:8px; margin:12px 0;"></video>
       <p class="video-caption">// Bambu Lab H2D — dual nozzle system in action</p>
     </div>
 
     <h3>Key Specs</h3>
-    <p>Build Volume: 350 × 320 × 325 mm³ &nbsp;·&nbsp; Dual nozzle, Max Hotend Temp: 350°C &nbsp;·&nbsp; Print Speed:
-      1000 mm/s &nbsp;·&nbsp; Heated Chamber: up to 65°C &nbsp;·&nbsp; Optional 10W or 40W laser module</p>
+    <!-- ── edit specs below ── -->
+    <p>Build Volume: 350 × 320 × 325 mm³ &nbsp;·&nbsp; Dual nozzle, Max Hotend Temp: 350°C &nbsp;·&nbsp; Print
+      Speed: 1000 mm/s &nbsp;·&nbsp; Heated Chamber: up to 65°C &nbsp;·&nbsp; Optional 10W or 40W laser module</p>
   </section>
 
-  <!-- WEEK 2 DAY 2 -->
+  <!-- ============================================================
+       WEEK 2 — DAY 2 · PHONE STAND DESIGN IN FUSION 360
+       — edit video path, image path, description below
+       ============================================================ -->
   <section>
     <h2>Week 2 — Day 2 · Phone Stand Design in Fusion 360</h2>
     <p>I tried creating a phone stand with my name using Autodesk Fusion 360 and 3D printing it on the H2D.</p>
+
+    <!-- ── edit video path below ── -->
     <div class="video-wrap">
       <video src="video.mp4/fusion2.mp4" autoplay loop muted width="600"
         style="border-radius:8px; margin:12px 0;"></video>
-      <p class="video-caption">// Designing a personalised phone stand.
-        <img src="images/dt1.jpeg" alt="description" width="700" height="400">
-        <!--WEEK 2 DAY 3-->
-      <div><h>week 2 day 3</h>
-        <h3 style="margin-top:0;">About the Session</h3>
-        <p>The session was part of the <strong>Summer Internship Program 2026</strong> powered by Tinkerers' Lab,
-          Sanjivani University, held on <strong>26th May 2026</strong>.</p>
-        <p><strong>Mentor:</strong> <strong>Dr. Kiran Wakchaure</strong> — our internship mentor who guided us
-          throughout the program and organized this session for the Summer Internship participants.</p>
-        <p><strong>Speaker:</strong> Prof. Srilalitha Girija Kumari Sagi — International Business Strategist,
-          Cross-Cultural Management Expert, and Innovation &amp; Entrepreneurship Mentor with extensive experience
-          guiding students and professionals across industries.</p>
-        <p>The session was built around three core pillars:</p>
-        <p><strong>💡 Innovate</strong> — Move beyond obvious solutions. Generate meaningful ideas by questioning
-          assumptions and looking at problems from fresh angles.</p>
-        <p><strong>🧠 Empathize</strong> — Understand the real needs of the people you are designing for. The best
-          engineering solutions come from truly listening to users, not just solving what seems obvious on the surface.
-        </p>
-        <p><strong>🚀 Implement</strong> — Ideas only create impact when they are built and tested. The session
-          emphasized that action and iteration matter more than perfection.</p>
-      </div>
+      <p class="video-caption">// Designing a personalised phone stand</p>
     </div>
+
+    <!-- ── edit image path below ── -->
+    <div class="img-single">
+      <img src="images/ps1.png" alt="Phone stand design in Fusion 360" onclick="openImage(this.src)">
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WEEK 2 — DAY 3 · DESIGN THINKING SESSION
+       — edit speaker info, session description, image paths below
+       ============================================================ -->
+  <section>
+    <h2>Week 2 — Day 3 · Design Thinking Session</h2>
+
+    <h3>About the Session</h3>
+    <!-- ── edit session details below ── -->
+    <p>The session was part of the <strong>Summer Internship Program 2026</strong> powered by Tinkerers' Lab, Sanjivani
+      University, held on <strong>26th May 2026</strong>.</p>
+    <p><strong>Mentor:</strong> <strong>Dr. Kiran Wakchaure</strong> — our internship mentor who guided us throughout
+      the program and organized this session for the Summer Internship participants.</p>
+    <p><strong>Speaker:</strong> Prof. Srilalitha Girija Kumari Sagi — International Business Strategist,
+      Cross-Cultural Management Expert, and Innovation &amp; Entrepreneurship Mentor with extensive experience guiding
+      students and professionals across industries.</p>
+
+    <p>The session was built around three core pillars:</p>
+    <p><strong>💡 Innovate</strong> — Move beyond obvious solutions. Generate meaningful ideas by questioning
+      assumptions and looking at problems from fresh angles.</p>
+    <p><strong>🧠 Empathize</strong> — Understand the real needs of the people you are designing for. The best
+      engineering solutions come from truly listening to users, not just solving what seems obvious on the surface.</p>
+    <p><strong>🚀 Implement</strong> — Ideas only create impact when they are built and tested. The session emphasized
+      that action and iteration matter more than perfection.</p>
 
     <h3>What is Design Thinking?</h3>
     <p>Design Thinking is a human-centered approach to innovation and problem solving. Unlike traditional engineering
       approaches that start from a technical solution, Design Thinking starts from the <strong>user's
         perspective</strong> — their pain points, behaviors, and needs — and works backward toward a solution.</p>
-    <p>The five stages of Design Thinking are: <strong>Empathize → Define → Ideate → Prototype → Test</strong>. This is
-      not a linear process — you can loop back at any stage based on what you learn from testing.</p>
+    <p>The five stages of Design Thinking are: <strong>Empathize → Define → Ideate → Prototype → Test</strong>. This
+      is not a linear process — you can loop back at any stage based on what you learn from testing.</p>
 
     <h3>Key Takeaways from the Session</h3>
     <p>Prof. Sagi emphasized that as engineering students, we often rush straight to building — but the most important
-      step is understanding <em>who</em> you are building for and <em>why</em>. A technically perfect product that does
-      not solve a real problem has no value.</p>
+      step is understanding <em>who</em> you are building for and <em>why</em>. A technically perfect product that
+      does not solve a real problem has no value.</p>
     <p>We were also introduced to the concept of <strong>rapid prototyping</strong> — the idea that building a rough,
       quick version of your idea and testing it with real users is far more valuable than spending weeks perfecting
       something in theory. Fail fast, learn fast, improve fast.</p>
@@ -1169,6 +2322,7 @@ The SpeedBoatRace benchmark STL is loaded onto the virtual print bed. The model 
       student to believe that creativity is not a talent you are born with, but a skill you develop through practice,
       observation, and a willingness to be wrong.</p>
 
+    <!-- ── edit image paths below ── -->
     <div class="img-row">
       <img src="images/dt2.jpeg" alt="Students presenting ideas during Design Thinking session"
         onclick="openImage(this.src)">
@@ -1178,39 +2332,45 @@ The SpeedBoatRace benchmark STL is loaded onto the virtual print bed. The model 
 
     <p>During the session, students were grouped and given a real-world challenge to work through using the Design
       Thinking framework. We had to empathize with a user group, define their core problem, brainstorm ideas, and
-      present a rough solution — all within a single session. It was fast-paced, creative, and a completely different
-      experience from regular classroom learning.</p>
+      present a rough solution — all within a single session.</p>
 
     <div style="display:flex; align-items:flex-start; gap:24px; margin:20px 0; flex-wrap:wrap;">
-      <img src="images/dt4.jpeg" alt="Group activity during Design Thinking session" onclick="openImage(this.src)"
-        style="width:340px; flex-shrink:0; height:300px; object-fit:cover; object-position:center; border-radius:10px; border:1px solid var(--border); margin:0; cursor:pointer;">
+      <!-- ── edit image path below ── -->
+      <img src="images/dt4.jpeg" alt="Group activity during Design Thinking session"
+        onclick="openImage(this.src)"
+        style="width:340px; flex-shrink:0; height:300px; object-fit:cover; object-position:center;
+               border-radius:10px; border:1px solid var(--border); margin:0; cursor:pointer;">
       <div style="flex:1; min-width:220px;">
         <h3 style="margin-top:0;">My Reflection</h3>
+        <!-- ── edit reflection below ── -->
         <p>This session genuinely changed how I think about building things. Before, I would jump straight into
           designing a circuit or writing code whenever I had an idea. After this session, I understand that the most
-          important questions to ask first are — <em>Who is this for? What problem does it actually solve? Have I spoken
-            to anyone who has that problem?</em></p>
+          important questions to ask first are — <em>Who is this for? What problem does it actually solve? Have I
+            spoken to anyone who has that problem?</em></p>
         <p>I also realized that Design Thinking is directly applicable to the hardware and embedded systems work we do
-          in Mechatronics. When designing a robot or an IoT device, the physical interface, the user experience, and the
-          real-world context matter just as much as the technical implementation.</p>
+          in Mechatronics. When designing a robot or an IoT device, the physical interface, the user experience, and
+          the real-world context matter just as much as the technical implementation.</p>
       </div>
     </div>
 
+    <!-- ── edit image path below ── -->
     <div class="img-row">
-      <img src="images/dt5.jpeg" alt="Discussion and ideation at Design Thinking session" onclick="openImage(this.src)">
+      <img src="images/dt5.jpeg" alt="Discussion and ideation at Design Thinking session"
+        onclick="openImage(this.src)">
     </div>
   </section>
 
-  <!-- WEEK 2 DAY 4 -->
+  <!-- ============================================================
+       WEEK 2 — DAY 4 · LASER CUTTING
+       — edit descriptions, image paths, video path below
+       ============================================================ -->
   <section>
     <h2>Week 2 — Day 4 · Laser Cutting</h2>
     <p>For laser cutting we used a software called <strong>LaserCAD</strong>. LaserCAD is an integrated CAD/CAM and
-      machine-control application that streamlines laser cutting and engraving from design to finished parts. It is
-      developed by Wei-Hsin Computer-Tech Ltd. and is ideal for makers, schools, fab labs, and small manufacturers
-      seeking to reduce setup time, minimize material waste, and achieve repeatable, high-quality cuts and engravings.
-    </p>
+      machine-control application that streamlines laser cutting and engraving from design to finished parts.</p>
 
     <h3>How Does Laser Cutting Work?</h3>
+    <!-- ── edit video path below ── -->
     <div class="video-wrap">
       <video src="video.mp4/laser1.mp4" autoplay loop muted width="600"
         style="border-radius:8px; margin:12px 0;"></video>
@@ -1218,51 +2378,56 @@ The SpeedBoatRace benchmark STL is loaded onto the virtual print bed. The model 
     </div>
 
     <h3>CO2 Laser Cutter</h3>
-    <p>A CO2 laser cutter is a machine that uses a beam of infrared light — generated by a CO2 gas-filled tube — to cut,
-      engrave, or etch materials with high precision.</p>
-    <p><strong>How it works (simplified):</strong> Electricity excites CO2 gas and produces a laser beam at a wavelength
-      of 10.6 μm. Mirrors guide the beam to a focusing lens, which concentrates it to a tiny point on the material. The
-      intense heat vaporizes or melts the material along the cutting path.</p>
+    <p>A CO2 laser cutter is a machine that uses a beam of infrared light — generated by a CO2 gas-filled tube — to
+      cut, engrave, or etch materials with high precision.</p>
+    <p><strong>How it works (simplified):</strong> Electricity excites CO2 gas and produces a laser beam at a
+      wavelength of 10.6 μm. Mirrors guide the beam to a focusing lens, which concentrates it to a tiny point on the
+      material. The intense heat vaporizes or melts the material along the cutting path.</p>
 
     <h3>Operations It Performs</h3>
     <p><strong>Cutting</strong> — Full depth cut through the material (slow speed, high power).</p>
     <p><strong>Engraving</strong> — Surface-level marking and etching (fast speed, low power).</p>
 
+    <!-- ── edit image paths below ── -->
     <img src="images/LASER2.png" alt="CO2 laser tube diagram" width="700" height="400"
-      style="border-radius:8px; margin:12px 0;">
-    <p>High voltage electricity excites a mix of CO2, nitrogen, and helium gas inside the tube, causing CO2 molecules to
-      release infrared light. This beam bounces between two mirrors to amplify it, then exits through a partially
+      style="border-radius:8px; margin:12px 0; cursor:pointer;" onclick="openImage(this.src)">
+    <p>High voltage electricity excites a mix of CO2, nitrogen, and helium gas inside the tube, causing CO2 molecules
+      to release infrared light. This beam bounces between two mirrors to amplify it, then exits through a partially
       reflective mirror toward the cutting head.</p>
 
     <img src="images/LASER3.png" alt="Laser beam path through mirrors to cutting head" width="700" height="400"
-      style="border-radius:8px; margin:12px 0;">
+      style="border-radius:8px; margin:12px 0; cursor:pointer;" onclick="openImage(this.src)">
     <p>The machine has an aluminum frame with a honeycomb work bed at the bottom. A large glass CO2 laser tube runs
       horizontally across the top. The beam travels from the tube through three mirrors before being focused by a lens
       in the cutting nozzle onto the material below.</p>
 
     <h3>Chiller</h3>
     <img src="images/LASER4.png" alt="Water chiller unit for CO2 laser" width="700" height="400"
-      style="border-radius:8px; margin:12px 0;">
-    <p>A chiller is a water cooling device that continuously circulates cold water through the CO2 laser tube to absorb
-      and remove the heat generated during lasing. Without it, the tube overheats and cracks within minutes. Most laser
-      cutters use a CW-3000 or CW-5000 series industrial chiller, maintaining water temperature around 20–25°C for safe
-      operation.</p>
+      style="border-radius:8px; margin:12px 0; cursor:pointer;" onclick="openImage(this.src)">
+    <p>A chiller is a water cooling device that continuously circulates cold water through the CO2 laser tube to
+      absorb and remove the heat generated during lasing. Without it, the tube overheats and cracks within minutes.
+      Most laser cutters use a CW-3000 or CW-5000 series industrial chiller, maintaining water temperature around
+      20–25°C for safe operation.</p>
 
     <h3>Compressor</h3>
     <img src="images/LASER5.png" alt="Air compressor unit for laser cutter" width="700" height="400"
-      style="border-radius:8px; margin:12px 0;">
+      style="border-radius:8px; margin:12px 0; cursor:pointer;" onclick="openImage(this.src)">
     <p>A compressor supplies pressurized air through a pipe to the laser cutting head. This air is blown directly onto
       the cutting point to blow away smoke and debris, cool the material, protect the focus lens, and improve cut
-      quality with cleaner, sharper edges. Most laser cutters use a compressor set to around 0.2–0.5 MPa depending on
-      the material being cut.</p>
+      quality. Most laser cutters use a compressor set to around 0.2–0.5 MPa depending on the material being cut.</p>
   </section>
 
-  <!-- WEEK 2 DAY 5 -->
+  <!-- ============================================================
+       WEEK 2 — DAY 5 · ARDUINO IDE & MICROCONTROLLERS
+       — edit video paths, code snippet, descriptions below
+       ============================================================ -->
   <section>
-    <h2>Week 2 — Day 5 · Arduino IDE & Microcontrollers</h2>
+    <h2>Week 2 — Day 5 · Arduino IDE &amp; Microcontrollers</h2>
     <p>On this day we were introduced to Arduino IDE. As I had previously worked on IoT projects, I was familiar with
       the basics and started working on simple sketches such as blinking an LED and controlling it with a phone.</p>
     <p>First we installed Arduino IDE.</p>
+
+    <!-- ── edit video path below ── -->
     <div class="video-wrap">
       <video src="video.mp4/arudinoide0.mp4" autoplay loop muted width="700"
         style="border-radius:8px; margin:12px 0;"></video>
@@ -1271,17 +2436,18 @@ The SpeedBoatRace benchmark STL is loaded onto the virtual print bed. The model 
 
     <h3>What is Arduino IDE?</h3>
     <p>Arduino IDE is the software where you write and upload code to your Arduino board. You type your instructions,
-      hit Upload, and the board starts executing them — whether it is rotating a servo, reading a sensor, or blinking an
-      LED.</p>
+      hit Upload, and the board starts executing them — whether it is rotating a servo, reading a sensor, or blinking
+      an LED.</p>
     <p>Before this internship, I built two Arduino projects — a Radar System and a Voice-Controlled Obstacle Avoiding
       Robot. Both gave me a solid base in hardware and coding before joining the lab.</p>
 
     <h3>What is a Microcontroller?</h3>
-    <p>A microcontroller is a small chip that can read inputs, process them, and control outputs — all on its own. Think
-      of it as a tiny computer on a single chip. In the lab, we were introduced to different types: Arduino UNO, Arduino
-      Nano, Arduino Mega, ESP32, and Raspberry Pi Pico.</p>
+    <p>A microcontroller is a small chip that can read inputs, process them, and control outputs — all on its own.
+      Think of it as a tiny computer on a single chip. In the lab, we were introduced to different types: Arduino UNO,
+      Arduino Nano, Arduino Mega, ESP32, and Raspberry Pi Pico.</p>
 
     <h3>Sketch Used for Blinking LED</h3>
+    <!-- ── edit code below ── -->
     <pre>const int ledPin = 2;
 
 void setup() {
@@ -1295,195 +2461,479 @@ void loop() {
   delay(1000);
 }</pre>
 
+    <!-- ── edit video path below ── -->
     <div class="video-wrap">
-      <video src="video.mp4/led1.mp4" autoplay loop muted width="800" style="border-radius:8px; margin:12px 0;"></video>
+      <video src="video.mp4/led1.mp4" autoplay loop muted width="800"
+        style="border-radius:8px; margin:12px 0;"></video>
       <p class="video-caption">// LED blinking on Arduino — changing delay to vary speed</p>
     </div>
     <p>We tried changing the delay in the sketch to notice the difference in blinking speed.</p>
+  </section>
 
+  <!-- ============================================================
+       WEEK 2 — DAY 6 · ESP32 + FIREBASE REALTIME DATABASE
+       — edit image paths (images/fb1.png to fb12.png),
+         wiring table, code snippet, descriptions below
+       ============================================================ -->
+  <section>
+    <h2>Week 2 — Day 6 · ESP32 + Firebase Realtime Database</h2>
 
+    <!-- ── edit intro paragraph below ── -->
+    <p>On this day, I worked on connecting the <strong>ESP32 microcontroller</strong> to <strong>Google
+        Firebase</strong> — a cloud platform that stores and syncs data in real time over the internet. The goal was
+      to read temperature and humidity values from a <strong>DHT11 sensor</strong> attached to the ESP32, push those
+      readings to Firebase over WiFi, and display them live on a web dashboard.</p>
+    <p>This was my first time working with a cloud database in a hardware project. Previously I had only used the
+      ESP32 for simple LED control — this session showed me how the same board can become a fully connected IoT device
+      that streams live sensor data to any browser in the world.</p>
 
+    <h3>What is Firebase?</h3>
+    <!-- ── edit Firebase explanation below ── -->
+    <p>Firebase is a <strong>Backend-as-a-Service (BaaS)</strong> platform developed by Google. It gives developers
+      ready-made cloud infrastructure — authentication, storage, hosting, and most importantly for IoT projects, a
+      <strong>Realtime Database</strong> — so you do not have to build and manage your own server.</p>
+    <p>For this project, Firebase acts as the <strong>middle layer</strong> between the ESP32 hardware and the web
+      dashboard. The ESP32 writes sensor data to Firebase, and the dashboard reads it — both in real time, without
+      either side needing to know about the other directly.</p>
 
-
-    <!-- WEEK 2 DAY 6 -->
-    <section>
-      <h2>Week 2 — Day 6 · Wokwi & ESP32 LED Blinking</h2>
-      <p>On Day 6 we explored <strong>Wokwi</strong> — an online simulator for Arduino and ESP32 projects. Wokwi lets
-        you build and test circuits entirely in the browser without any physical hardware, making it ideal for learning
-        and prototyping.</p>
-      <p>We simulated the ESP32 LED blinking sketch directly in Wokwi, adjusting the delay and observing the effect in
-        real time inside the simulator.</p>
-    </section>
-
-    <!-- WEEK 3 DAY 1 -->
-    <section>
-      <H>Physical AI</H>
-      <p>
-Physical AI = AI that exists in the physical world — robots and machines that can sense, think, and act, not just software running on a screen.
-
-</p>
-      <h2>Week 3 — Day 1 · Microcontrollers, Actuators & Sensors</h2>
-      <p><strong>What is a Microcontroller?</strong> A microcontroller is a small computer on a single chip that
-        contains a processor, memory, and input/output peripherals — all built together.</p>
-      <p><strong>What is a Microprocessor?</strong> A microprocessor is a central processing unit (CPU) that performs
-        arithmetic, logic, control, and input/output operations but relies on external components for memory and I/O.
-      </p>
-
-      <h3>Difference Between Microcontroller and Microprocessor</h3>
-      <div class="mcu-table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Feature</th>
-              <th>Microcontroller (MCU)</th>
-              <th>Microprocessor (MPU)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Components</td>
-              <td>CPU + RAM + Flash + I/O on one chip</td>
-              <td>CPU only; needs external parts</td>
-            </tr>
-            <tr>
-              <td>Cost</td>
-              <td>Low — ₹50 to ₹500</td>
-              <td>High — ₹500 to ₹10,000+</td>
-            </tr>
-            <tr>
-              <td>Power</td>
-              <td>Very low (milliamps)</td>
-              <td>High (watts)</td>
-            </tr>
-            <tr>
-              <td>Speed</td>
-              <td>8–240 MHz</td>
-              <td>1–5 GHz+</td>
-            </tr>
-            <tr>
-              <td>Task type</td>
-              <td>Single dedicated task</td>
-              <td>Multiple tasks at once</td>
-            </tr>
-            <tr>
-              <td>Examples</td>
-              <td>Arduino, ESP32, ATmega328</td>
-              <td>Intel i5, Raspberry Pi</td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- ── DATA FLOW FLOWCHART ── -->
+    <div class="flowchart">
+      <div class="fc-root">🌡 DHT11 Sensor</div>
+      <svg width="20" height="30" style="overflow:visible">
+        <line x1="10" y1="0" x2="10" y2="28" stroke="#C8C0B0" stroke-width="2"/>
+        <polygon points="4,24 10,30 16,24" fill="#C8C0B0"/>
+      </svg>
+      <div class="fc-node blue-head" style="width:260px; text-align:center;">
+        ESP32 Microcontroller<br>
+        <small style="font-weight:400;color:rgba(245,240,232,0.7)">Reads sensor · Connects via WiFi</small>
       </div>
-
-      <H1>MICROCONTROLLERS</H1>
-      <h3>Arduino Uno</h3>
-      <p>The Arduino Uno is a popular microcontroller board based on the ATmega328P. It has 14 digital I/O pins, 6
-        analog inputs, a 16 MHz crystal oscillator, a USB connection, a power jack, an ICSP header, and a reset button.
-      </p>
-      <img src="images/arudino2.jpeg" alt="Arduino UNO board" width="600" height="400"
-        style="border-radius:8px; margin:12px 0;">
-      <div class="spec-grid">
-        <div class="spec-item">
-          <div class="spec-label">Microcontroller</div>
-          <div class="spec-value">ATmega328P</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">Operating Voltage</div>
-          <div class="spec-value">5V</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">Clock Speed</div>
-          <div class="spec-value">16 MHz</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">Flash Memory</div>
-          <div class="spec-value">32 KB</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">SRAM</div>
-          <div class="spec-value">2 KB</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">EEPROM</div>
-          <div class="spec-value">1 KB</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">Digital I/O Pins</div>
-          <div class="spec-value">14 (6 PWM)</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">Analog Inputs</div>
-          <div class="spec-value">6</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">Wireless</div>
-          <div class="spec-value">None</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">USB</div>
-          <div class="spec-value">Type-B</div>
-        </div>
+      <svg width="20" height="30" style="overflow:visible">
+        <line x1="10" y1="0" x2="10" y2="28" stroke="#C8C0B0" stroke-width="2"/>
+        <polygon points="4,24 10,30 16,24" fill="#C8C0B0"/>
+      </svg>
+      <div class="fc-node green-head" style="width:260px; text-align:center;">
+        Firebase Realtime Database<br>
+        <small style="font-weight:400;color:rgba(245,240,232,0.7)">Stores &amp; syncs data in the cloud</small>
       </div>
-
-      <h3>ESP32</h3>
-      <p>This was my first time using ESP32. The ESP32 is a microcontroller that has built-in WiFi and Bluetooth
-        capabilities.</p>
-      <img src="images/ESP32.jpeg" alt="ESP32 microcontroller board" width="700" height="400"
-        style="border-radius:8px; margin:12px 0;">
-      <div class="spec-grid">
-        <div class="spec-item">
-          <div class="spec-label">Microcontroller</div>
-          <div class="spec-value">Xtensa dual-core LX6</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">Operating Voltage</div>
-          <div class="spec-value">3.3V</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">Clock Speed</div>
-          <div class="spec-value">up to 240 MHz</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">Flash Memory</div>
-          <div class="spec-value">4 MB</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">SRAM</div>
-          <div class="spec-value">520 KB</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">Digital I/O Pins</div>
-          <div class="spec-value">34</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">Analog Inputs</div>
-          <div class="spec-value">18 (12-bit ADC)</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">WiFi</div>
-          <div class="spec-value">802.11 b/g/n</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">Bluetooth</div>
-          <div class="spec-value">v4.2 + BLE</div>
-        </div>
-        <div class="spec-item">
-          <div class="spec-label">USB</div>
-          <div class="spec-value">Micro USB</div>
-        </div>
+      <svg width="20" height="30" style="overflow:visible">
+        <line x1="10" y1="0" x2="10" y2="28" stroke="#C8C0B0" stroke-width="2"/>
+        <polygon points="4,24 10,30 16,24" fill="#C8C0B0"/>
+      </svg>
+      <div class="fc-node blue-end" style="width:260px; text-align:center;">
+        Web Dashboard<br>
+        <small style="font-weight:400;">Displays live temperature &amp; humidity</small>
       </div>
-      <p>The ESP32 integrates Wi-Fi and Bluetooth, enabling wireless communication between devices. It provides multiple
-        GPIO pins for interfacing with sensors and actuators. It can be programmed using the Arduino IDE, making it
-        accessible for both beginners and advanced developers.</p>
-    </section>
+    </div>
 
+    <h3>What is a DHT11 Sensor?</h3>
+    <!-- ── edit DHT11 description below ── -->
+    <p>The <strong>DHT11</strong> is a basic, low-cost digital sensor that measures both <strong>temperature</strong>
+      and <strong>relative humidity</strong>. It has a built-in analog-to-digital converter, so it outputs a clean
+      digital signal directly — no extra ADC circuit needed.</p>
+    <p><strong>How it works:</strong> Inside the DHT11 is a <strong>NTC thermistor</strong> (which changes resistance
+      with temperature) and a <strong>capacitive humidity sensor</strong> (which changes capacitance as moisture
+      levels change). A small onboard chip reads both values and sends them out as a single digital pulse over one
+      data wire connected to the ESP32.</p>
 
-    <h3>Servo Motor Sketch</h3>
-    <img src="images/servo motor.jpeg" alt="ESP32 microcontroller board" width="700" height="600"
-      style="border-radius:8px; margin:12px 0;">
+    <!-- ── edit DHT11 specs below ── -->
+    <div class="spec-grid">
+      <div class="spec-item">
+        <div class="spec-label">Temperature Range</div>
+        <div class="spec-value">0°C – 50°C</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Temperature Accuracy</div>
+        <div class="spec-value">± 2°C</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Humidity Range</div>
+        <div class="spec-value">20% – 80% RH</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Humidity Accuracy</div>
+        <div class="spec-value">± 5% RH</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Operating Voltage</div>
+        <div class="spec-value">3.3V – 5V</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Data Protocol</div>
+        <div class="spec-value">Single-wire digital</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Sampling Rate</div>
+        <div class="spec-value">1 reading / second</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Pins</div>
+        <div class="spec-value">VCC · DATA · GND</div>
+      </div>
+    </div>
+
+    <h3>How ESP32 + DHT11 + Firebase Work Together</h3>
+    <!-- ── edit explanation below ── -->
+    <p>The <strong>DHT11 sensor</strong> is wired to one of the ESP32's GPIO pins. Every few seconds, the ESP32 sends
+      a pulse on that pin and the DHT11 responds with the current temperature and humidity values encoded as a digital
+      signal.</p>
+    <p>The ESP32 then connects to your local WiFi network using its built-in WiFi chip and sends those readings to
+      Firebase using the <strong>Firebase_ESP_Client</strong> Arduino library. Inside Firebase, the data is stored as
+      a simple JSON tree:</p>
+
+    <!-- ── edit JSON structure below if your paths differ ── -->
+    <pre>{
+  "sensor": {
+    "temperature": 35.3,
+    "humidity": 36,
+    "status": "connected"
+  }
+}</pre>
+
+    <p>The web dashboard reads this same path in Firebase and updates the displayed values automatically whenever new
+      data arrives — no page refresh needed. This is the core feature of Firebase Realtime Database:
+      <strong>any change is pushed to all connected clients instantly.</strong></p>
+
+    <h3>Wiring — DHT11 to ESP32</h3>
+    <!-- ── edit wiring table below to match your actual wiring ── -->
+    <div class="mcu-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>DHT11 Pin</th>
+            <th>ESP32 Pin</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>VCC</td>
+            <td>3.3V</td>
+            <td>Power supply</td>
+          </tr>
+          <tr>
+            <td>DATA</td>
+            <td>GPIO 4</td>
+            <td>Digital data pin — change if yours differs</td>
+          </tr>
+          <tr>
+            <td>GND</td>
+            <td>GND</td>
+            <td>Common ground</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Arduino Code — ESP32 Reading DHT11 and Pushing to Firebase</h3>
+    <!-- ── edit code below if your sketch differs ── -->
+    <pre>#include &lt;WiFi.h&gt;
+#include &lt;Firebase_ESP_Client.h&gt;
+#include &lt;DHT.h&gt;
+
+// ── WiFi Credentials — replace with your network ──
+#define WIFI_SSID     "YOUR_WIFI_NAME"
+#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
+
+// ── Firebase Credentials — from Firebase Console ──
+#define API_KEY      "YOUR_FIREBASE_API_KEY"
+#define DATABASE_URL "https://YOUR_PROJECT_ID-default-rtdb.asia-southeast1.firebasedatabase.app/"
+
+// ── DHT11 Setup ──
+#define DHTPIN  4
+#define DHTTYPE DHT11
+DHT dht(DHTPIN, DHTTYPE);
+
+FirebaseData fbdo;
+FirebaseAuth auth;
+FirebaseConfig config;
+
+void setup() {
+  Serial.begin(115200);
+  dht.begin();
+
+  // Connect to WiFi
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\nWiFi Connected!");
+
+  // Connect to Firebase
+  config.api_key = API_KEY;
+  config.database_url = DATABASE_URL;
+  Firebase.begin(&config, &auth);
+}
+
+void loop() {
+  float temp = dht.readTemperature();
+  float hum  = dht.readHumidity();
+
+  if (!isnan(temp) && !isnan(hum)) {
+    Firebase.RTDB.setFloat(&fbdo, "/sensor/temperature", temp);
+    Firebase.RTDB.setFloat(&fbdo, "/sensor/humidity",    hum);
+    Serial.print("Temp: "); Serial.print(temp);
+    Serial.print(" C  Hum: "); Serial.println(hum);
+  }
+  delay(3000); // send every 3 seconds
+}</pre>
+
+    <h3>Firebase Setup — Step by Step</h3>
+    <p>The following screenshots walk through the complete Firebase Console setup. Each image has a <strong>red
+        box</strong> showing exactly where to click. API keys and email addresses have been redacted.</p>
+
+    <!-- ── STEP 1 — edit alt text or description below ── -->
+    <h3>Step 1 — Open Firebase Studio</h3>
+    <div class="img-single">
+      <img src="images/fb1.png" alt="Firebase Studio landing page" onclick="openImage(this.src)">
+    </div>
+    <p><strong>What's happening:</strong> Firebase Studio's landing page offers an AI-assisted prompt box to scaffold
+      a new app, or the option to start coding a workspace from scratch.</p>
+    <p><strong>Action (red box):</strong> The "Prototype an app with AI" input box is highlighted — this is where a
+      project description is entered. For this project we skipped ahead to the Firebase Console directly.</p>
+
+    <!-- ── STEP 2 ── -->
+    <h3>Step 2 — Firebase Console · Get Started</h3>
+    <div class="img-single">
+      <img src="images/fb2.png" alt="Firebase Console home screen" onclick="openImage(this.src)">
+    </div>
+    <p><strong>What's happening:</strong> The Firebase Console home screen shown immediately after signing in with a
+      Google account. This is the entry point for creating a new Firebase project.</p>
+    <p><strong>Action (red box):</strong> Click the "Get started by setting up a Firebase project" card to begin the
+      project creation wizard.</p>
+
+    <!-- ── STEP 3 ── -->
+    <h3>Step 3 — Create Project · Enable Google Analytics</h3>
+    <div class="img-single">
+      <img src="images/fb3.png" alt="Enable Google Analytics step" onclick="openImage(this.src)">
+    </div>
+    <p><strong>What's happening:</strong> During project creation, Firebase asks whether to enable Google Analytics.
+      Analytics provides usage reporting and integrates with Crashlytics and Cloud Messaging.</p>
+    <p><strong>Action (red box):</strong> The "Enable Google Analytics for this project" toggle is switched on, then
+      Create Project is clicked to finish setup.</p>
+
+    <!-- ── STEP 4 ── -->
+    <h3>Step 4 — Navigate Project Settings</h3>
+    <div class="img-single">
+      <img src="images/fb4.png" alt="Project settings navigation" onclick="openImage(this.src)">
+    </div>
+    <p><strong>What's happening:</strong> Once the project is created, the left-hand navigation gives access to all
+      Firebase products — Authentication, Realtime Database, Hosting, and more.</p>
+    <p><strong>Action (red box):</strong> Clicking Settings expands the menu showing General, Service accounts, Data
+      privacy etc. — used in later steps to retrieve SDK configuration details.</p>
+
+    <!-- ── STEP 5 ── -->
+    <h3>Step 5 — Enable Authentication · Google Sign-In</h3>
+    <div class="img-single">
+      <img src="images/fb5.png" alt="Authentication Google provider enabled" onclick="openImage(this.src)">
+    </div>
+    <p><strong>What's happening:</strong> The Authentication → Sign-in method tab lists all available sign-in
+      providers. Enabling at least one provider secures access to the project's data.</p>
+    <p><strong>Action (red box):</strong> The Google provider status now shows "Enabled" — confirming users can
+      authenticate using their Google account.</p>
+
+    <!-- ── STEP 6 ── -->
+    <h3>Step 6 — Realtime Database · Security Rules</h3>
+    <div class="img-single">
+      <img src="images/fb6.png" alt="Realtime Database security rules" onclick="openImage(this.src)">
+    </div>
+    <p><strong>What's happening:</strong> The Rules tab defines who can read and write data. Rules can be set to allow
+      access only until a certain timestamp — useful for temporary testing.</p>
+    <p><strong>Action (red box):</strong> The rules editor shows .read and .write set with a time-based condition,
+      allowing the ESP32 to write sensor data during development.</p>
+
+    <!-- ── STEP 7 ── -->
+    <h3>Step 7 — Create the Realtime Database</h3>
+    <div class="img-single">
+      <img src="images/fb7.png" alt="Set up database region dialog" onclick="openImage(this.src)">
+    </div>
+    <p><strong>What's happening:</strong> Before data can be stored, a Realtime Database instance must be created and
+      a server region chosen. This determines where data is physically hosted.</p>
+    <p><strong>Action (red box):</strong> In the Set up database dialog, the location is set to Singapore
+      (asia-southeast1), then Next is clicked to proceed to security rules.</p>
+
+    <!-- ── STEP 8 ── -->
+    <h3>Step 8 — Retrieve Admin SDK Configuration</h3>
+    <div class="img-single">
+      <img src="images/fb8.png" alt="Admin SDK configuration snippet" onclick="openImage(this.src)">
+    </div>
+    <p><strong>What's happening:</strong> The Service Accounts tab under Project Settings provides the Firebase Admin
+      SDK configuration snippet, including the service account credentials and database URL.</p>
+    <p><strong>Action (red box):</strong> The Node.js Admin SDK snippet shows the initializeApp() call with the
+      service account credential and databaseURL — sensitive identifiers have been redacted.</p>
+
+    <!-- ── STEP 9 ── -->
+    <h3>Step 9 — Register a Web App</h3>
+    <div class="img-single">
+      <img src="images/fb9.png" alt="Register a web app" onclick="openImage(this.src)">
+    </div>
+    <p><strong>What's happening:</strong> To get the Web SDK config for the dashboard, a web app must be registered
+      under Project Settings → General → Your apps.</p>
+    <p><strong>Action (red box):</strong> The Web platform icon &lt;/&gt; is selected to register a new web app and
+      generate its Firebase configuration object.</p>
+
+    <!-- ── STEP 10 ── -->
+    <h3>Step 10 — ESP32 Arduino Code · WiFi &amp; Firebase Setup</h3>
+    <div class="img-single">
+      <img src="images/fb10.png" alt="Arduino IDE Firebase credentials" onclick="openImage(this.src)">
+    </div>
+    <p><strong>What's happening:</strong> In Arduino IDE the ESP32 sketch includes WiFi.h and
+      Firebase_ESP_Client.h. Credentials for the WiFi network and Firebase project are defined as constants at
+      the top.</p>
+    <p><strong>Action (red box):</strong> The Firebase Credentials block shows where API_KEY and DATABASE_URL
+      placeholders are filled in with values from the Firebase Console (Steps 8 and 9).</p>
+
+    <!-- ── STEP 11 ── -->
+    <h3>Step 11 — Web App Firebase Configuration Snippet</h3>
+    <div class="img-single">
+      <img src="images/fb11.png" alt="Firebase web config snippet API key redacted"
+        onclick="openImage(this.src)">
+    </div>
+    <p><strong>What's happening:</strong> After registering the web app, Firebase generates a config object
+      containing apiKey, authDomain, databaseURL, projectId, and other identifiers needed to initialize the SDK
+      in the dashboard.</p>
+    <p><strong>Action (red box):</strong> The firebaseConfig object is copied into the dashboard JavaScript. The
+      apiKey has been blacked out for security — in practice it should also be restricted via Google Cloud API key
+      settings.</p>
+
+    <!-- ── STEP 12 ── -->
+    <h3>Step 12 — Live Dashboard · Sensor Data Output</h3>
+    <div class="img-single">
+      <img src="images/fb12.png" alt="Live dashboard temperature humidity" onclick="openImage(this.src)">
+    </div>
+    <p><strong>What's happening:</strong> The final result — a web dashboard connected to the Firebase Realtime
+      Database, displaying live readings pushed by the ESP32 + DHT11 sensor.</p>
+    <p><strong>Action (red box):</strong> The Temperature, Humidity, and Device Status cards update automatically
+      as new values are written to the database — here showing 35.3°C, 36% humidity, and ESP32 Connected,
+      confirming the end-to-end pipeline is working.</p>
+
+    <h3>Summary</h3>
+    <!-- ── edit summary points below ── -->
+    <p>→ Created a Firebase project and enabled Google Analytics.</p>
+    <p>→ Enabled Authentication with Google sign-in provider.</p>
+    <p>→ Created a Realtime Database in the Singapore (asia-southeast1) region.</p>
+    <p>→ Set security rules to allow read/write during development.</p>
+    <p>→ Retrieved Admin SDK and Web SDK configuration values (databaseURL, apiKey).</p>
+    <p>→ Wired the DHT11 sensor to the ESP32 and configured the Arduino sketch.</p>
+    <p>→ Verified the setup via a live dashboard showing real-time temperature and humidity.</p>
+  </section>
+
+  <!-- ============================================================
+       WEEK 3 — DAY 1 · MICROCONTROLLERS, ACTUATORS & SENSORS
+       — edit table data, image paths, video paths, code below
+       ============================================================ -->
+  <section>
+    <h2>Week 3 — Day 1 · Physical AI, Microcontrollers, Actuators &amp; Sensors</h2>
+
+    <!-- ── edit Physical AI description below ── -->
+    <p><strong>Physical AI</strong> = AI that exists in the physical world — robots and machines that can sense,
+      think, and act, not just software running on a screen.</p>
+
+    <p><strong>What is a Microcontroller?</strong> A microcontroller is a small computer on a single chip that
+      contains a processor, memory, and input/output peripherals — all built together.</p>
+    <p><strong>What is a Microprocessor?</strong> A microprocessor is a central processing unit (CPU) that performs
+      arithmetic, logic, control, and input/output operations but relies on external components for memory and I/O.</p>
+
+    <h3>Difference Between Microcontroller and Microprocessor</h3>
+    <!-- ── edit table rows below ── -->
+    <div class="mcu-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Microcontroller (MCU)</th>
+            <th>Microprocessor (MPU)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Components</td>
+            <td>CPU + RAM + Flash + I/O on one chip</td>
+            <td>CPU only; needs external parts</td>
+          </tr>
+          <tr>
+            <td>Cost</td>
+            <td>Low — ₹50 to ₹500</td>
+            <td>High — ₹500 to ₹10,000+</td>
+          </tr>
+          <tr>
+            <td>Power</td>
+            <td>Very low (milliamps)</td>
+            <td>High (watts)</td>
+          </tr>
+          <tr>
+            <td>Speed</td>
+            <td>8–240 MHz</td>
+            <td>1–5 GHz+</td>
+          </tr>
+          <tr>
+            <td>Task type</td>
+            <td>Single dedicated task</td>
+            <td>Multiple tasks at once</td>
+          </tr>
+          <tr>
+            <td>Examples</td>
+            <td>Arduino, ESP32, ATmega328</td>
+            <td>Intel i5, Raspberry Pi</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Microcontrollers</h2>
+
+    <h3>Arduino Uno</h3>
+    <!-- ── edit image path below ── -->
+    <img src="images/arudino2.jpeg" alt="Arduino UNO board" width="600" height="400"
+      style="border-radius:8px; margin:12px 0; cursor:pointer;" onclick="openImage(this.src)">
+    <!-- ── edit spec values below ── -->
+    <div class="spec-grid">
+      <div class="spec-item"><div class="spec-label">Microcontroller</div><div class="spec-value">ATmega328P</div></div>
+      <div class="spec-item"><div class="spec-label">Operating Voltage</div><div class="spec-value">5V</div></div>
+      <div class="spec-item"><div class="spec-label">Clock Speed</div><div class="spec-value">16 MHz</div></div>
+      <div class="spec-item"><div class="spec-label">Flash Memory</div><div class="spec-value">32 KB</div></div>
+      <div class="spec-item"><div class="spec-label">SRAM</div><div class="spec-value">2 KB</div></div>
+      <div class="spec-item"><div class="spec-label">EEPROM</div><div class="spec-value">1 KB</div></div>
+      <div class="spec-item"><div class="spec-label">Digital I/O Pins</div><div class="spec-value">14 (6 PWM)</div></div>
+      <div class="spec-item"><div class="spec-label">Analog Inputs</div><div class="spec-value">6</div></div>
+      <div class="spec-item"><div class="spec-label">Wireless</div><div class="spec-value">None</div></div>
+      <div class="spec-item"><div class="spec-label">USB</div><div class="spec-value">Type-B</div></div>
+    </div>
+
+    <h3>ESP32</h3>
+    <p>This was my first time using ESP32. The ESP32 is a microcontroller that has built-in WiFi and Bluetooth
+      capabilities.</p>
+    <!-- ── edit image path below ── -->
+    <img src="images/ESP32.jpeg" alt="ESP32 microcontroller board" width="700" height="400"
+      style="border-radius:8px; margin:12px 0; cursor:pointer;" onclick="openImage(this.src)">
+    <!-- ── edit spec values below ── -->
+    <div class="spec-grid">
+      <div class="spec-item"><div class="spec-label">Microcontroller</div><div class="spec-value">Xtensa dual-core LX6</div></div>
+      <div class="spec-item"><div class="spec-label">Operating Voltage</div><div class="spec-value">3.3V</div></div>
+      <div class="spec-item"><div class="spec-label">Clock Speed</div><div class="spec-value">up to 240 MHz</div></div>
+      <div class="spec-item"><div class="spec-label">Flash Memory</div><div class="spec-value">4 MB</div></div>
+      <div class="spec-item"><div class="spec-label">SRAM</div><div class="spec-value">520 KB</div></div>
+      <div class="spec-item"><div class="spec-label">Digital I/O Pins</div><div class="spec-value">34</div></div>
+      <div class="spec-item"><div class="spec-label">Analog Inputs</div><div class="spec-value">18 (12-bit ADC)</div></div>
+      <div class="spec-item"><div class="spec-label">WiFi</div><div class="spec-value">802.11 b/g/n</div></div>
+      <div class="spec-item"><div class="spec-label">Bluetooth</div><div class="spec-value">v4.2 + BLE</div></div>
+      <div class="spec-item"><div class="spec-label">USB</div><div class="spec-value">Micro USB</div></div>
+    </div>
+    <p>The ESP32 integrates Wi-Fi and Bluetooth, enabling wireless communication between devices. It provides multiple
+      GPIO pins for interfacing with sensors and actuators. It can be programmed using the Arduino IDE, making it
+      accessible for both beginners and advanced developers.</p>
+      <h3>Week 3 day 2</h3>
+
+    <h3>Servo Motor</h3>
+    <!-- ── edit image path below ── -->
+    <img src="images/servo motor.jpeg" alt="Servo motor" width="700" height="600"
+      style="border-radius:8px; margin:12px 0; cursor:pointer;" onclick="openImage(this.src)">
     <p>A servo motor is a rotary actuator that provides precise control of position, speed, and movement angle. It is
       commonly used in robotics, automation systems, RC vehicles, and embedded projects. A servo motor contains a DC
       motor, gears, a control circuit, and a feedback device (usually a potentiometer) that allows it to move to a
       specific angle accurately.</p>
+
+    <!-- ── edit servo code below ── -->
     <pre>#include &lt;Servo.h&gt;
 
 Servo myServo;
@@ -1501,168 +2951,568 @@ void loop() {
     myServo.write(angle);
     delay(15);
   }
+  
 }</pre>
 
+
+
+    <!-- ── edit video path below ── -->
     <div class="video-wrap">
       <video src="video.mp4/arudino1.mp4" autoplay loop muted width="700"
         style="border-radius:8px; margin:12px 0;"></video>
       <p class="video-caption">// Servo motor sweeping 0° to 180° using the sketch above</p>
     </div>
-
     <p><strong>Tried making a radar using Arduino and ultrasonic sensor with servo motor.</strong></p>
+    <!---------------------------------------SERVO MOTOR----------------------------->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SG90 Servo Motor Datasheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ivory: #F5F0E8;
+  --stone: #C8C0B0;
+  --mist: #8EA8B8;
+  --steel: #4A6880;
+  --deep: #2C4A62;
+  --navy: #1B2E4A;
+  --bg: #ffffff;
+  --card: #EDE8DF;
+  --border: #C8C0B0;
+  --text: #1B2E4A;
+  --muted: #7a8a96;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Exo 2',sans-serif;padding:40px 20px;max-width:960px;margin:0 auto;}
+h1{font-size:2rem;font-weight:800;color:var(--navy);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px;}
+h2{font-size:1.4rem;font-weight:700;color:var(--deep);margin:32px 0 12px;border-left:4px solid var(--steel);padding-left:12px;}
+h3{font-size:1.05rem;font-weight:600;color:var(--steel);margin:20px 0 8px;}
+p{line-height:1.7;color:#3a4f62;margin-bottom:10px;font-size:0.95rem;}
+strong{color:var(--deep);}
 
-    <h3>Sensors</h3>
-    <p><strong>Ultrasonic Sensor (HC-SR04)</strong> — Measures distance by emitting an ultrasonic pulse and timing how
-      long it takes to bounce back. Commonly used in obstacle detection and radar projects.</p>
+.doc-meta{font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:var(--muted);letter-spacing:0.1em;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.doc-meta span{margin-right:24px;}
+
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin:14px 0 20px;}
+.spec-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 14px;}
+.spec-label{font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:3px;}
+.spec-value{font-size:0.88rem;font-weight:600;color:var(--navy);}
+
+.pin-table-wrap{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:20px 0;}
+.pin-table-wrap table{width:100%;border-collapse:collapse;}
+.pin-table-wrap thead tr{background:var(--deep);}
+.pin-table-wrap thead th{padding:10px 16px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;text-align:left;border-bottom:1px solid #1a2a40;}
+.pin-table-wrap thead th:nth-child(1){color:var(--mist);width:22%;}
+.pin-table-wrap thead th:nth-child(2){color:var(--ivory);}
+.pin-table-wrap thead th:nth-child(3){color:var(--stone);}
+.pin-table-wrap tbody tr{border-bottom:1px solid var(--border);background:var(--bg);}
+.pin-table-wrap tbody tr:last-child{border-bottom:none;}
+.pin-table-wrap tbody tr:hover{background:var(--card);}
+.pin-table-wrap td{padding:10px 16px;font-size:13px;}
+.pin-table-wrap td:nth-child(1){font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--steel);white-space:nowrap;}
+.pin-table-wrap td:nth-child(2){color:var(--deep);border-left:1px solid var(--border);}
+.pin-table-wrap td:nth-child(3){color:#3a5a6a;border-left:1px solid var(--border);}
+
+.wire-dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:middle;}
+
+.skills-row{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;}
+.skill-badge{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--steel);border-radius:6px;padding:6px 14px;font-size:0.82rem;color:var(--deep);font-family:'Share Tech Mono',monospace;}
+
+pre{background:var(--navy);border:1px solid #243a52;border-left:4px solid var(--steel);border-radius:8px;padding:16px;font-family:'Share Tech Mono',monospace;font-size:0.85rem;color:var(--mist);overflow-x:auto;margin:16px 0;}
+
+.git-commands{display:flex;flex-direction:column;gap:10px;margin:20px 0;}
+.git-cmd{background:#ece7dd;border:1px solid var(--stone);border-left:4px solid var(--mist);border-radius:8px;padding:14px 18px;cursor:pointer;transition:border-color 0.2s,background 0.2s;}
+.git-cmd:hover{background:#e6e0d6;border-color:var(--steel);}
+.git-cmd.open{border-left-color:var(--deep);background:#e8e2d8;}
+.cmd-top{display:flex;align-items:center;gap:16px;}
+.cmd-num{font-family:'Share Tech Mono',monospace;font-size:0.7rem;color:var(--steel);min-width:28px;}
+.cmd-code{font-family:'Share Tech Mono',monospace;font-size:0.9rem;color:var(--ivory);background:var(--deep);padding:6px 14px;border-radius:6px;flex-shrink:0;}
+.cmd-desc{font-size:0.8rem;color:var(--muted);flex:1;}
+.cmd-arrow{font-size:0.75rem;color:var(--stone);transition:transform 0.3s;margin-left:auto;}
+.git-cmd.open .cmd-arrow{transform:rotate(180deg);color:var(--deep);}
+.cmd-explain{max-height:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s ease;opacity:0;font-family:'Share Tech Mono',monospace;font-size:0.82rem;color:var(--steel);line-height:1.7;padding-left:44px;}
+.git-cmd.open .cmd-explain{max-height:200px;opacity:1;margin-top:10px;}
+
+.summary-block{margin-top:32px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:28px;}
+.summary-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.summary-title{font-family:'Share Tech Mono',monospace;font-size:0.8rem;letter-spacing:0.12em;color:var(--steel);text-transform:uppercase;}
+.summary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:22px;}
+.summary-item{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:10px 14px;}
+.summary-label{font-family:'Share Tech Mono',monospace;font-size:0.64rem;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+.summary-value{font-size:0.88rem;font-weight:600;color:var(--navy);}
+
+.warning-block{background:#fff8f0;border:1px solid #e0c090;border-left:4px solid #c87820;border-radius:8px;padding:14px 18px;margin:16px 0;}
+.warning-block p{color:#7a4a10;margin:0;font-size:0.88rem;}
+
+.section-divider{border:none;border-top:1px solid var(--border);margin:32px 0;}
+
+.internal-table-wrap{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin:20px 0;}
+.internal-table-wrap table{width:100%;border-collapse:collapse;}
+.internal-table-wrap thead tr{background:var(--deep);}
+.internal-table-wrap thead th{padding:10px 16px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;text-align:left;border-bottom:1px solid #1a2a40;}
+.internal-table-wrap thead th:nth-child(1){color:var(--mist);width:22%;}
+.internal-table-wrap thead th:nth-child(2){color:var(--ivory);}
+.internal-table-wrap thead th:nth-child(3){color:var(--stone);}
+.internal-table-wrap tbody tr{border-bottom:1px solid var(--border);background:var(--bg);}
+.internal-table-wrap tbody tr:last-child{border-bottom:none;}
+.internal-table-wrap tbody tr:hover{background:var(--card);}
+.internal-table-wrap td{padding:10px 16px;font-size:13px;}
+.internal-table-wrap td:nth-child(1){font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--steel);white-space:nowrap;}
+.internal-table-wrap td:nth-child(2){color:var(--deep);border-left:1px solid var(--border);}
+.internal-table-wrap td:nth-child(3){color:#3a5a6a;border-left:1px solid var(--border);}
+.arrow-right{display:none;}
+
+.op-mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;}
+.op-mode{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 18px;}
+.op-mode-title{font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:var(--navy);font-weight:600;margin-bottom:6px;}
+.op-mode-desc{font-size:0.82rem;color:#3a5060;line-height:1.6;}
+
+footer{margin-top:60px;font-family:'Share Tech Mono',monospace;font-size:0.65rem;color:var(--stone);letter-spacing:0.1em;text-align:center;padding-top:20px;border-top:1px solid var(--border);}
+
+@media(max-width:600px){.op-mode-grid{grid-template-columns:1fr;}.arrow-right{display:none;}}
+</style>
+</head>
+<body>
+
+<h1>SG90 Servo Motor</h1>
+<p style="color:var(--muted);font-size:1rem;margin-bottom:6px;">Micro Servo · Positional Rotation · RC/Embedded Systems</p>
+<div class="doc-meta">
+  <span>REV: DS-SG90-01</span>
+  <span>TYPE: Actuator</span>
+  <span>PROTOCOL: PWM</span>
+  <span>INTERFACE: 3-Wire</span>
+  <span>CATEGORY: Servo Motor</span>
+</div>
+
+<h2>Overview</h2>
+<p>The <strong>SG90</strong> is a lightweight, low-cost micro servo motor widely used in robotics, RC vehicles, and embedded systems projects. It provides <strong>precise angular position control</strong> from 0° to 180° using a PWM (Pulse Width Modulation) signal. Internally it combines a DC motor, a reduction gear train, a potentiometer for position feedback, and a control IC — all in a compact plastic housing.</p>
+<p>It is the most commonly used servo in Arduino and ESP32 projects due to its simplicity, compatibility with the <code>Servo.h</code> library, and 3-wire interface (Power, Ground, Signal).</p>
+
+<h2>Electrical Specifications</h2>
+<div class="spec-grid">
+  <div class="spec-item"><div class="spec-label">Operating Voltage</div><div class="spec-value">4.8V – 6.0V</div></div>
+  <div class="spec-item"><div class="spec-label">Stall Torque (4.8V)</div><div class="spec-value">1.2 kg·cm</div></div>
+  <div class="spec-item"><div class="spec-label">Stall Torque (6.0V)</div><div class="spec-value">1.6 kg·cm</div></div>
+  <div class="spec-item"><div class="spec-label">No-load Current</div><div class="spec-value">~100 mA</div></div>
+  <div class="spec-item"><div class="spec-label">Stall Current</div><div class="spec-value">~650 mA</div></div>
+  <div class="spec-item"><div class="spec-label">Dead Band Width</div><div class="spec-value">10 µs</div></div>
+</div>
+
+<h2>Mechanical Specifications</h2>
+<div class="spec-grid">
+  <div class="spec-item"><div class="spec-label">Rotation Range</div><div class="spec-value">0° – 180°</div></div>
+  <div class="spec-item"><div class="spec-label">Operating Speed (4.8V)</div><div class="spec-value">0.12 sec / 60°</div></div>
+  <div class="spec-item"><div class="spec-label">Operating Speed (6.0V)</div><div class="spec-value">0.10 sec / 60°</div></div>
+  <div class="spec-item"><div class="spec-label">Gear Type</div><div class="spec-value">Plastic (Nylon)</div></div>
+  <div class="spec-item"><div class="spec-label">Weight</div><div class="spec-value">9 g</div></div>
+  <div class="spec-item"><div class="spec-label">Dimensions</div><div class="spec-value">22.2 × 11.8 × 31 mm</div></div>
+  <div class="spec-item"><div class="spec-label">Connector Wire Length</div><div class="spec-value">~25 cm</div></div>
+  <div class="spec-item"><div class="spec-label">Horn Type</div><div class="spec-value">Plastic, cross/single arm</div></div>
+</div>
+
+<h2>PWM Signal Specifications</h2>
+<div class="spec-grid">
+  <div class="spec-item"><div class="spec-label">PWM Frequency</div><div class="spec-value">50 Hz</div></div>
+  <div class="spec-item"><div class="spec-label">Period</div><div class="spec-value">20 ms</div></div>
+  <div class="spec-item"><div class="spec-label">Pulse — 0°</div><div class="spec-value">~1 ms (1000 µs)</div></div>
+  <div class="spec-item"><div class="spec-label">Pulse — 90°</div><div class="spec-value">~1.5 ms (1500 µs)</div></div>
+  <div class="spec-item"><div class="spec-label">Pulse — 180°</div><div class="spec-value">~2 ms (2000 µs)</div></div>
+  <div class="spec-item"><div class="spec-label">Logic Level</div><div class="spec-value">3.3V / 5V compatible</div></div>
+</div>
+
+<h2>Pin Configuration</h2>
+<div class="pin-table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Pin / Wire</th>
+        <th>Function</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="wire-dot" style="background:#c0392b;"></span>Red</td>
+        <td>VCC — Power Supply</td>
+        <td>Connect to 5V (not 3.3V — servo needs 4.8–6V)</td>
+      </tr>
+      <tr>
+        <td><span class="wire-dot" style="background:#2c3e50;"></span>Brown / Black</td>
+        <td>GND — Ground</td>
+        <td>Common ground with Arduino / ESP32</td>
+      </tr>
+      <tr>
+        <td><span class="wire-dot" style="background:#e67e22;"></span>Orange / Yellow</td>
+        <td>Signal — PWM Input</td>
+        <td>Connect to any PWM-capable GPIO pin</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Internal Components</h2>
+<p>A servo motor is not just a motor — it is a closed-loop control system built into a small housing. Here is what is inside:</p>
+<div class="internal-table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Function</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>DC Motor</td>
+        <td>Provides the rotational force</td>
+        <td>Runs directly on the supplied voltage (4.8V – 6V)</td>
+      </tr>
+      <tr>
+        <td>Gear Train</td>
+        <td>Reduces speed, increases torque</td>
+        <td>Nylon / plastic gears in SG90 — metal in higher-end servos</td>
+      </tr>
+      <tr>
+        <td>Potentiometer</td>
+        <td>Tracks the output shaft angle</td>
+        <td>Acts as position feedback — allows the IC to know current angle</td>
+      </tr>
+      <tr>
+        <td>Control IC</td>
+        <td>Compares PWM signal with potentiometer reading</td>
+        <td>Drives the motor until actual angle matches the commanded angle</td>
+      </tr>
+      <tr>
+        <td>Output Shaft + Horn</td>
+        <td>Physical connection point for load</td>
+        <td>Plastic cross/single-arm horn included with SG90</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2>Wiring — SG90 to Arduino UNO</h2>
+<div class="pin-table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>SG90 Wire</th>
+        <th>Arduino UNO Pin</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="wire-dot" style="background:#c0392b;"></span>Red (VCC)</td>
+        <td>5V</td>
+        <td>Use external 5V supply for multiple servos</td>
+      </tr>
+      <tr>
+        <td><span class="wire-dot" style="background:#2c3e50;"></span>Brown (GND)</td>
+        <td>GND</td>
+        <td>Shared ground essential</td>
+      </tr>
+      <tr>
+        <td><span class="wire-dot" style="background:#e67e22;"></span>Orange (Signal)</td>
+        <td>Pin 9 (PWM)</td>
+        <td>Any PWM pin works — 3, 5, 6, 9, 10, 11</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="warning-block">
+  <p><strong>⚠ Power Note:</strong> Never power the servo directly from the Arduino's 5V pin in high-load applications. The SG90 can draw up to 650 mA at stall — this exceeds the Arduino's onboard regulator limit and may reset or damage the board. Use a separate 5V supply with a shared GND.</p>
+</div>
+
+<h2>Arduino Code — Basic Sweep</h2>
+<pre>#include &lt;Servo.h&gt;
+
+Servo myServo;
+
+void setup() {
+  myServo.attach(9);   // Signal wire connected to pin 9
+}
+
+void loop() {
+  // Sweep 0° → 180°
+  for (int angle = 0; angle &lt;= 180; angle++) {
+    myServo.write(angle);
+    delay(15);
+  }
+  // Sweep 180° → 0°
+  for (int angle = 180; angle &gt;= 0; angle--) {
+    myServo.write(angle);
+    delay(15);
+  }
+}</pre>
+
+<h2>Arduino Code — Move to Specific Angle</h2>
+<pre>#include &lt;Servo.h&gt;
+
+Servo myServo;
+
+void setup() {
+  myServo.attach(9);
+
+  myServo.write(0);    // Move to 0°
+  delay(1000);
+  myServo.write(90);   // Move to 90° (centre)
+  delay(1000);
+  myServo.write(180);  // Move to 180°
+  delay(1000);
+}
+
+void loop() {
+  // Hold last position
+}</pre>
+
+<h2>Key Functions — Servo.h Library</h2>
+<p style="font-family:'Share Tech Mono',monospace;font-size:0.75rem;color:var(--stone);margin-bottom:8px;">// click on any function to learn more</p>
+<div class="git-commands">
+  <div class="git-cmd" onclick="toggleCmd(this)">
+    <div class="cmd-top"><span class="cmd-num">01</span><span class="cmd-code">myServo.attach(pin)</span><span class="cmd-desc">Attaches servo to a PWM pin</span><span class="cmd-arrow">▼</span></div>
+    <div class="cmd-explain">Links the Servo object to a specific Arduino pin. Must be called in setup() before any other servo commands. You can optionally pass min and max pulse widths: attach(pin, min, max) — useful for fine-tuning range.</div>
+  </div>
+  <div class="git-cmd" onclick="toggleCmd(this)">
+    <div class="cmd-top"><span class="cmd-num">02</span><span class="cmd-code">myServo.write(angle)</span><span class="cmd-desc">Moves servo to a given angle</span><span class="cmd-arrow">▼</span></div>
+    <div class="cmd-explain">Sends a PWM pulse corresponding to the angle (0–180). The servo immediately begins rotating to that position. Movement is not instantaneous — the servo takes time to reach the target. Use delay() after write() to allow it to arrive.</div>
+  </div>
+  <div class="git-cmd" onclick="toggleCmd(this)">
+    <div class="cmd-top"><span class="cmd-num">03</span><span class="cmd-code">myServo.read()</span><span class="cmd-desc">Returns last written angle</span><span class="cmd-arrow">▼</span></div>
+    <div class="cmd-explain">Returns the last angle value passed to write(). Note: this is NOT the actual physical angle measured from the potentiometer — it is just the last value your sketch sent. Useful for tracking position in code logic.</div>
+  </div>
+  <div class="git-cmd" onclick="toggleCmd(this)">
+    <div class="cmd-top"><span class="cmd-num">04</span><span class="cmd-code">myServo.writeMicroseconds(µs)</span><span class="cmd-desc">Sets pulse width directly in µs</span><span class="cmd-arrow">▼</span></div>
+    <div class="cmd-explain">More precise than write(angle). Pass the pulse width in microseconds — typically 1000 µs (0°), 1500 µs (90°), 2000 µs (180°). Use this for finer angular resolution or when calibrating a specific servo's actual range.</div>
+  </div>
+  <div class="git-cmd" onclick="toggleCmd(this)">
+    <div class="cmd-top"><span class="cmd-num">05</span><span class="cmd-code">myServo.detach()</span><span class="cmd-desc">Releases the pin from servo control</span><span class="cmd-arrow">▼</span></div>
+    <div class="cmd-explain">Stops generating the PWM signal on the attached pin. The servo will hold its last position momentarily, then go limp. Useful when you want to use the pin for something else, or to stop the servo from humming at a held position.</div>
+  </div>
+</div>
+
+<h2>Operating Modes</h2>
+<div class="op-mode-grid">
+  <div class="op-mode">
+    <div class="op-mode-title">// POSITIONAL MODE (default)</div>
+    <div class="op-mode-desc">Moves to and holds a specific angle between 0° and 180°. The control circuit uses the internal potentiometer as feedback to maintain the position against external load. This is the standard mode for the SG90.</div>
+  </div>
+  <div class="op-mode">
+    <div class="op-mode-title">// CONTINUOUS ROTATION (modified)</div>
+    <div class="op-mode-desc">Some servo variants are modified to rotate continuously like a DC motor — clockwise, counter-clockwise, or stop. In this mode, pulse width controls speed and direction rather than angle. The SG90 standard version does NOT support this without hardware modification.</div>
+  </div>
+</div>
+
+<h2>Applications</h2>
+<div class="skills-row">
+  <span class="skill-badge">Radar / Scanner Systems</span>
+  <span class="skill-badge">Robotic Arms</span>
+  <span class="skill-badge">RC Aircraft Flaps</span>
+  <span class="skill-badge">Pan-Tilt Camera Mounts</span>
+  <span class="skill-badge">Door Lock Mechanisms</span>
+  <span class="skill-badge">Gripper Mechanisms</span>
+  <span class="skill-badge">Obstacle Avoiding Robots</span>
+  <span class="skill-badge">Solar Trackers</span>
+</div>
+
+<hr class="section-divider">
+
+<div class="summary-block">
+  <div class="summary-header">
+    <span style="font-size:1.1rem;">📋</span>
+    <span class="summary-title">Quick Reference Summary</span>
+  </div>
+  <div class="summary-grid">
+    <div class="summary-item"><div class="summary-label">Model</div><div class="summary-value">Tower Pro SG90</div></div>
+    <div class="summary-item"><div class="summary-label">Voltage</div><div class="summary-value">4.8V – 6.0V</div></div>
+    <div class="summary-item"><div class="summary-label">Rotation</div><div class="summary-value">0° – 180°</div></div>
+    <div class="summary-item"><div class="summary-label">Torque (4.8V)</div><div class="summary-value">1.2 kg·cm</div></div>
+    <div class="summary-item"><div class="summary-label">PWM Period</div><div class="summary-value">20 ms (50 Hz)</div></div>
+    <div class="summary-item"><div class="summary-label">Pulse Range</div><div class="summary-value">1 ms – 2 ms</div></div>
+    <div class="summary-item"><div class="summary-label">Signal Pin</div><div class="summary-value">Orange / Yellow</div></div>
+    <div class="summary-item"><div class="summary-label">Library</div><div class="summary-value">Servo.h (built-in)</div></div>
+    <div class="summary-item"><div class="summary-label">Weight</div><div class="summary-value">9 g</div></div>
+    <div class="summary-item"><div class="summary-label">Gear Type</div><div class="summary-value">Nylon / Plastic</div></div>
+  </div>
+</div>
+
+<footer>Tinkerers' Lab · Sanjivani University · Snehal Kale · 2026 · SG90 Servo Motor Datasheet</footer>
+
+<script>
+function toggleCmd(el){el.classList.toggle('open');}
+</script>
+
+</body>
+</html>
+
+
+
+
+    <h3>Ultrasonic Sensor (HC-SR04)</h3>
+    <!-- ── edit image paths below ── -->
     <img src="images/us1.jpeg" alt="HC-SR04 ultrasonic sensor" width="600" height="400"
-      style="border-radius:8px; margin:12px 0;">
-    <p>Ultrasonic Sensor (HC-SR04)
-
-      The HC-SR04 is a distance-measuring sensor that uses ultrasonic sound waves to detect objects and calculate their
-      distance from the sensor. It consists of four pins: VCC, TRIG, ECHO, and GND. The TRIG pin is used to transmit
-      ultrasonic waves, while the ECHO pin receives the reflected waves. By measuring the time taken for the sound waves
-      to travel to an object and return, the sensor accurately determines the distance. It is widely used in obstacle
-      detection, robotics, and safety systems.</p>
+      style="border-radius:8px; margin:12px 0; cursor:pointer;" onclick="openImage(this.src)">
+    <p>The HC-SR04 is a distance-measuring sensor that uses ultrasonic sound waves to detect objects and calculate
+      their distance from the sensor. It consists of four pins: VCC, TRIG, ECHO, and GND. The TRIG pin transmits
+      ultrasonic waves, while the ECHO pin receives the reflected waves. By measuring the time taken for the sound
+      waves to travel to an object and return, the sensor accurately determines the distance.</p>
 
     <img src="images/us2.jpeg" alt="HC-SR04 wiring diagram" width="600" height="400"
-      style="border-radius:8px; margin:12px 0;">
-    <B> Distance (cm) = (Time × 0.0343) / 2</B>
-    <P>I Tried measuring distance using ultrasonic sensor and ESP32 and uploaded the above </P>
-    <video src="video.mp4/us01.mp4" autoplay loop muted width="700" style="border-radius:8px; margin:12px 0;"></video>
-    <p> Code used for measuring distance</p>
-    <br>,<p>#define TRIG_PIN 5
-      <br>#define ECHO_PIN 18
+      style="border-radius:8px; margin:12px 0; cursor:pointer;" onclick="openImage(this.src)">
+    <p><strong>Distance (cm) = (Time × 0.0343) / 2</strong></p>
+    <p>Tried measuring distance using ultrasonic sensor and ESP32.</p>
 
-      <br>void setup() {
-      <br>Serial.begin(115200);
+    <!-- ── edit video path below ── -->
+    <div class="video-wrap">
+      <video src="video.mp4/us01.mp4" autoplay loop muted width="700"
+        style="border-radius:8px; margin:12px 0;"></video>
+      <p class="video-caption">// Measuring distance with HC-SR04 and ESP32</p>
+    </div>
 
-      <br>pinMode(TRIG_PIN, OUTPUT);
-      <br> pinMode(ECHO_PIN, INPUT);
-      <br>}
+    <!-- ── edit ultrasonic code below ── -->
+    <pre>#define TRIG_PIN 5
+#define ECHO_PIN 18
 
-      <br>void loop() {
-      <br>long duration;
-      <br> float distance;
+void setup() {
+  Serial.begin(115200);
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
+}
 
-      <br>// Clear the TRIG pin
-      <br> digitalWrite(TRIG_PIN, LOW);
-      <br>delayMicroseconds(2);
+void loop() {
+  long duration;
+  float distance;
 
-      <br> // Send 10 µs pulse
-      <br> digitalWrite(TRIG_PIN, HIGH);
-      <br> delayMicroseconds(10);
-      <br>digitalWrite(TRIG_PIN, LOW);
+  digitalWrite(TRIG_PIN, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
 
-      <br>// Read ECHO pin
-      <br> duration = pulseIn(ECHO_PIN, HIGH);
+  duration = pulseIn(ECHO_PIN, HIGH);
+  distance = (duration * 0.0343) / 2;
 
-      <br> // Calculate distance in cm
-      <br> distance = (duration * 0.0343) / 2;
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
 
-      <br> Serial.print("Distance: ");
-      <br> Serial.print(distance);
-      <br> Serial.println(" cm");
+  delay(500);
+}</pre>
 
-      <br>delay(500);
-      <br>}
-    </p>
-    <br>
-    <H>ADXL345 3- AXIS DIGITAL ACCELEROMETER</H>
-    <p>The ADXL345 is a small, low-power 3-axis digital accelerometer that measures acceleration along the X, Y, and Z
-      axes. It can detect both static acceleration (gravity) and dynamic acceleration (movement, vibration, shock, or
-      tilt).</p>
-    <video src="video.mp4/3axis.mp4" autoplay loop muted width="700" style="border-radius:8px; margin:12px 0;"></video>
-    <br>
-    <p>Measures acceleration in 3 directions (X, Y, Z)</p>
-    <p>Working Principle
+    <h3>ADXL345 3-Axis Digital Accelerometer</h3>
+    <p>The ADXL345 is a small, low-power 3-axis digital accelerometer that measures acceleration along the X, Y, and
+      Z axes. It can detect both static acceleration (gravity) and dynamic acceleration (movement, vibration, shock,
+      or tilt).</p>
 
-      <br>
-    <p> The ADXL345 uses MEMS (Micro-Electro-Mechanical Systems) technology. Inside the sensor is a tiny suspended
-      structure. When the sensor moves or tilts, this structure shifts slightly, changing its capacitance. The sensor
-      converts these changes into digital acceleration values for the X, Y, and Z axes.</p>
-    <br>
-    <p>If you tested the ADXL345 and saw values close to 9.81 m/s² even when it was not moving, that's normal.
+    <!-- ── edit video path below ── -->
+    <div class="video-wrap">
+      <video src="video.mp4/3axis.mp4" autoplay loop muted width="700"
+        style="border-radius:8px; margin:12px 0;"></video>
+      <p class="video-caption">// ADXL345 3-axis accelerometer live readings</p>
+    </div>
 
-      The sensor measures all acceleration acting on it, including Earth's gravity. When the sensor is resting on a
-      table:
-
-      X ≈ 0 m/s²
-      Y ≈ 0 m/s²
-      Z ≈ 9.81 m/s²
-    </p>
-
+    <p>The ADXL345 uses <strong>MEMS (Micro-Electro-Mechanical Systems)</strong> technology. Inside the sensor is a
+      tiny suspended structure. When the sensor moves or tilts, this structure shifts slightly, changing its
+      capacitance. The sensor converts these changes into digital acceleration values for the X, Y, and Z axes.</p>
+    <p>If you tested the ADXL345 and saw values close to 9.81 m/s² even when it was not moving, that is normal — the
+      sensor measures all acceleration acting on it, including Earth's gravity. When resting flat on a table:
+      X ≈ 0 m/s², Y ≈ 0 m/s², Z ≈ 9.81 m/s².</p>
 
     <h3>Electronics</h3>
-    <p>Basic electronic components used in the lab include resistors, LEDs, capacitors, breadboards, and jumper wires —
-      the building blocks of every circuit we assembled during the internship.</p>
+    <p>Basic electronic components used in the lab include resistors, LEDs, capacitors, breadboards, and jumper wires
+      — the building blocks of every circuit assembled during the internship.</p>
   </section>
-  <h> WEEK 4 DAY 4</h>
-  <P>Now Iam starting with my project work</p>
-    <p> I started with collecting all the electronic components</p>
 
-  <P></P>
+  <!-- ============================================================
+       WEEK 4 — DAY 4 · PROJECT WORK
+       — edit description below
+       ============================================================ -->
+  <section>
+    <h2>Week 4 — Day 4 · Project Work Begins</h2>
+    <!-- ── edit project intro below ── -->
+    <p>Now I am starting with my project work.</p>
+    <p>I started by collecting all the electronic components needed for the build.</p>
+  </section>
 
-
-  <!-- CONCLUSION -->
+  <!-- ============================================================
+       CONCLUSION
+       — edit all paragraphs below
+       ============================================================ -->
   <section>
     <h2>Conclusion · What This Internship Taught Me</h2>
-    <p>Three weeks at Tinkerers' Lab was one of the most hands-on and eye-opening learning experiences I have had as an
-      engineering student. Before this internship, I had only worked on individual hobby projects at home. Here, I was
-      surrounded by professional-grade tools, experienced mentors, and a lab culture that genuinely encouraged curiosity
-      and experimentation.</p>
+    <!-- ── edit conclusion paragraphs below ── -->
+    <p>Three weeks at Tinkerers' Lab was one of the most hands-on and eye-opening learning experiences I have had as
+      an engineering student. Before this internship, I had only worked on individual hobby projects at home. Here, I
+      was surrounded by professional-grade tools, experienced mentors, and a lab culture that genuinely encouraged
+      curiosity and experimentation.</p>
 
     <h3>Technical Skills Gained</h3>
     <p>I came in knowing the basics of Arduino and programming, but left with a much broader toolkit. I learned how to
-      use <strong>Git and GitHub</strong> for version control — a skill that every developer needs but very few diploma
-      students learn in first year. I got hands-on time with <strong>Inkscape</strong> for vector design and
+      use <strong>Git and GitHub</strong> for version control — a skill that every developer needs but very few
+      diploma students learn in first year. I got hands-on time with <strong>Inkscape</strong> for vector design and
       <strong>Autodesk Fusion 360</strong> for 3D parametric modelling, both of which I had never used before.</p>
-    <p>Working with the <strong>Bambu Lab A1 Mini and H2D</strong> 3D printers gave me a real understanding of additive
-      manufacturing — from choosing the right filament to understanding why print speed and bed temperature matter. The
-      laser cutting session introduced me to subtractive manufacturing and showed me how a digital design in LaserCAD
-      becomes a physical cut piece within minutes.</p>
-    <p>On the electronics side, spending time with the <strong>ESP32</strong> and exploring Wokwi for simulation opened
-      up a whole new world of wireless embedded systems beyond the standard Arduino UNO I had worked with before.</p>
+    <p>Working with the <strong>Bambu Lab A1 Mini and H2D</strong> 3D printers gave me a real understanding of
+      additive manufacturing — from choosing the right filament to understanding why print speed and bed temperature
+      matter. The laser cutting session introduced me to subtractive manufacturing and showed me how a digital design
+      in LaserCAD becomes a physical cut piece within minutes.</p>
+    <p>On the electronics side, spending time with the <strong>ESP32</strong> and connecting it to Firebase opened up
+      a whole new world of wireless embedded systems and cloud-connected IoT beyond the standard Arduino UNO I had
+      worked with before.</p>
 
     <h3>Beyond the Technical</h3>
     <p>The Design Thinking session with Prof. Srilalitha Girija Kumari Sagi was a turning point in how I think about
       engineering problems. It taught me that the best solution is not always the most technically impressive one — it
-      is the one that actually solves the right problem for the right person. That mindset shift will stay with me
-      through the rest of my engineering education and career.</p>
+      is the one that actually solves the right problem for the right person.</p>
     <p>I also learned the value of <strong>documentation</strong>. Building this portfolio — writing about each day,
-      capturing screenshots and videos, explaining concepts in my own words — forced me to deeply understand everything
-      I was doing rather than just going through the motions.</p>
+      capturing screenshots and videos, explaining concepts in my own words — forced me to deeply understand
+      everything I was doing rather than just going through the motions.</p>
 
     <h3>What's Next</h3>
-    <p>I plan to continue building on everything I learned here. My immediate next steps are to complete a more advanced
-      Arduino project combining the servo motor, ultrasonic sensor, and ESP32 Wi-Fi capabilities into a single system. I
-      also want to design a complete enclosure for it in Fusion 360 and have it 3D printed — bringing together nearly
+    <p>I plan to continue building on everything I learned here. My immediate next steps are to complete a more
+      advanced project combining the servo motor, ultrasonic sensor, ESP32, and Firebase into a single system. I also
+      want to design a complete enclosure for it in Fusion 360 and have it 3D printed — bringing together nearly
       everything from this internship into one project.</p>
-    <p>I am grateful to <strong>Tinkerers' Lab, Sanjivani University</strong> and all the mentors who guided me through
-      these three weeks. This experience has made me significantly more confident in both my technical abilities and my
-      approach to problem-solving.</p>
+    <p>I am grateful to <strong>Tinkerers' Lab, Sanjivani University</strong> and all the mentors who guided me
+      through these weeks. This experience has made me significantly more confident in both my technical abilities and
+      my approach to problem-solving.</p>
   </section>
 
+  <!-- LIGHTBOX — do not edit this -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
     <span class="lightbox-close">✕</span>
     <img id="lightboxImg" src="" alt="preview">
   </div>
 
+  <!-- ── edit footer text below ── -->
   <footer>Tinkerers' Lab · Sanjivani University · Snehal Kale · 2026</footer>
 
   <script>
+    // ── do not edit this script ──
     function toggleCmd(el) { el.classList.toggle('open'); }
-    function openImage(src) { document.getElementById('lightboxImg').src = src; document.getElementById('lightbox').classList.add('open'); }
-    function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
+    function openImage(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
 
+    // ── edit part names and descriptions below ──
     const parts = [
-      { num: "PART 01", name: "Print Head", what: "The core printing unit", desc: "The print head holds the hot end and nozzle assembly. It melts incoming filament and precisely deposits it layer by layer. The A1 Mini uses a direct drive extruder — the motor is right at the print head, giving better control over flexible materials." },
-      { num: "PART 02", name: "Filament Sensor", what: "Detects filament presence and flow", desc: "Monitors whether filament is present and feeding correctly. If the spool runs out mid-print, the sensor triggers an automatic pause so you can reload and continue seamlessly." },
-      { num: "PART 03", name: "X-axis Rail", what: "Horizontal movement guide", desc: "A precision linear guide rail that allows the print head to travel left and right. The quality of this rail directly affects print accuracy — any wobble results in visible artifacts in the finished print." },
-      { num: "PART 04", name: "Z-axis Frame", what: "Vertical movement structure", desc: "The vertical aluminum extrusion column that raises the print head after each layer is completed. The rigidity of this frame is critical — any flex translates directly into layer misalignment." },
-      { num: "PART 05", name: "Build Plate", what: "The printing surface", desc: "The heated surface on which your 3D object is printed. The A1 Mini uses a flexible magnetic PEI build plate — prints stick firmly during printing and release easily once the plate cools." },
-      { num: "PART 06", name: "Touchscreen", what: "Onboard control interface", desc: "A full-color touchscreen that lets you operate the printer independently. Use it to start prints, adjust settings, run bed leveling calibrations, or monitor print progress in real time." },
-      { num: "PART 07", name: "Main Body", what: "Base chassis and electronics housing", desc: "The structural foundation housing the motherboard, stepper motor drivers, power supply unit, and all internal wiring. The steel and aluminum chassis keeps everything rigid, minimizing vibration at high speeds." }
+      { num: "PART 01", name: "Print Head",      what: "The core printing unit",              desc: "The print head holds the hot end and nozzle assembly. It melts incoming filament and precisely deposits it layer by layer. The A1 Mini uses a direct drive extruder — the motor is right at the print head, giving better control over flexible materials." },
+      { num: "PART 02", name: "Filament Sensor", what: "Detects filament presence and flow",  desc: "Monitors whether filament is present and feeding correctly. If the spool runs out mid-print, the sensor triggers an automatic pause so you can reload and continue seamlessly." },
+      { num: "PART 03", name: "X-axis Rail",     what: "Horizontal movement guide",           desc: "A precision linear guide rail that allows the print head to travel left and right. The quality of this rail directly affects print accuracy — any wobble results in visible artifacts in the finished print." },
+      { num: "PART 04", name: "Z-axis Frame",    what: "Vertical movement structure",         desc: "The vertical aluminum extrusion column that raises the print head after each layer is completed. The rigidity of this frame is critical — any flex translates directly into layer misalignment." },
+      { num: "PART 05", name: "Build Plate",     what: "The printing surface",                desc: "The heated surface on which your 3D object is printed. The A1 Mini uses a flexible magnetic PEI build plate — prints stick firmly during printing and release easily once the plate cools." },
+      { num: "PART 06", name: "Touchscreen",     what: "Onboard control interface",           desc: "A full-color touchscreen that lets you operate the printer independently. Use it to start prints, adjust settings, run bed leveling calibrations, or monitor print progress in real time." },
+      { num: "PART 07", name: "Main Body",       what: "Base chassis and electronics housing",desc: "The structural foundation housing the motherboard, stepper motor drivers, power supply unit, and all internal wiring. The steel and aluminum chassis keeps everything rigid, minimizing vibration at high speeds." }
     ];
 
     const dots = document.querySelectorAll('.dot');
@@ -1672,11 +3522,15 @@ void loop() {
       dots.forEach(d => d.classList.remove('active'));
       dots[index].classList.add('active');
       panel.classList.remove('shown');
-      panel.innerHTML = `<div class="part-num">${p.num}</div><div class="part-name">${p.name}</div><div class="divider"></div><div class="part-what">What it is: ${p.what}</div><div class="part-desc">${p.desc}</div>`;
+      panel.innerHTML = `
+        <div class="part-num">${p.num}</div>
+        <div class="part-name">${p.name}</div>
+        <div class="divider"></div>
+        <div class="part-what">What it is: ${p.what}</div>
+        <div class="part-desc">${p.desc}</div>`;
       setTimeout(() => panel.classList.add('shown'), 10);
     }
   </script>
 
 </body>
-
 </html>
