@@ -3479,7 +3479,7 @@ void loop() {
        — edit description below
        ============================================================ -->
   <section>
-    <h2>Week 4 — Day 4 · Project Work Begins</h2>
+    <h2>Week 4 — Day 1· Project Work Begins</h2>
     <!-- ── edit project intro below ── -->
     <p>Now I am starting with my project work.</p>
     <p>I started by collecting all the electronic components needed for the build.</p>
@@ -3528,11 +3528,18 @@ void loop() {
     style="width:200px; height:240px; object-fit:cover; object-position:center top;
            border-radius:10px; border:1px solid var(--border); cursor:pointer; margin:0;">
            <div style="background:var(--card); border:1px solid var(--border); border-left:3px solid var(--steel); border-radius:8px; padding:16px 20px; margin:16px 0;">
-  <p style="margin-bottom:6px;">💡 <strong>Inspired by the work of Aditya Potadar</strong> — a fellow engineering student who built a similar smart helmet system and shared it on LinkedIn. Seeing a student-level build of this concept made me realize it was achievable within my internship timeline and budget.</p>
-  <p style="margin:0;">His post showed the complete hardware setup mounted on a real helmet — ESP32, GPS module, and GSM module all working together. That single post gave me the blueprint and the confidence to start building my own version.</p>
-  <a href="https://l1nk.dev/twpq7i3" target="_blank" class="about-link" style="display:inline-block; margin-top:12px;">
-    ⌥ View Original LinkedIn Post by Aditya Potadar →
-  </a>
+<p style="margin-bottom:6px;">
+💡 <strong>Inspired by the work of Aditya Potadar</strong> — a fellow engineering student who built a similar smart helmet system and shared it on LinkedIn. Seeing a student-level build of this concept made me realize it was achievable within my internship timeline and budget.
+</p>
+
+<p style="margin:0;">
+His post showed the complete hardware setup mounted on a real helmet — ESP32, GPS module, and GSM module all working together. That single post gave me the blueprint and the confidence to start building my own version.
+</p>
+
+<a href="https://l1nk.dev/0d5wi8t" target="_blank" class="about-link" 
+   style="display:inline-block; margin-top:12px;">
+  ⌥ View Original LinkedIn Post by Aditya Potadar →
+</a>
 </div>
 </div>
 </section>
@@ -3576,7 +3583,144 @@ void loop() {
     </div>
   </div>
 </section>
-<
+<h2>Week 4 day 3</h2>
+<!-- Text on left, Image on right -->
+<div style="display:flex; align-items:flex-start; gap:24px; margin:20px 0; flex-wrap:wrap;">
+  <div style="flex:1; min-width:220px;">
+    <h3 style="margin-top:0;">Soldering Components on Zero PCB</h3>
+    <p>I started the actual hardware build of my project by soldering all the components onto a <strong>Zero PCB</strong>. Unlike a breadboard which is only for prototyping, a Zero PCB gives permanent and reliable connections — essential for a wearable project like a helmet that will experience vibration and movement.</p>
+    <p>Each component was carefully placed and soldered one by one — making sure the connections were clean, tight, and correctly positioned before moving to the next one. Multiple colored jumper wires were used to connect the different modules to the ESP32, keeping track of which wire goes where using a color coding system.</p>
+    <p>This was one of the most satisfying parts of the build — watching a collection of loose components slowly become a structured, organized circuit board.</p>
+  </div>
+  <img src="images/sho4.jpeg" alt="Soldering components on Zero PCB"
+    onclick="openImage(this.src)"
+    style="width:280px; flex-shrink:0; border-radius:10px; border:1px solid var(--border); margin:0; cursor:pointer;">
+</div>
+
+<!-- Video on left, Text on right -->
+<div style="display:flex; align-items:flex-start; gap:24px; margin:20px 0; flex-wrap:wrap;">
+  <div style="flex-shrink:0;">
+    <video src="video.mp4/sho3.mp4" autoplay loop muted width="280"
+      style="border-radius:10px; border:1px solid var(--border); display:block;"></video>
+    <p class="video-caption">// Soldering project components on Zero PCB</p>
+  </div>
+  <div style="flex:1; min-width:220px;">
+    <h3 style="margin-top:0;">Why Zero PCB?</h3>
+    <p>A <strong>Zero PCB</strong> (also called a perfboard or dotted PCB) is a general-purpose circuit board with a grid of holes where components can be soldered permanently. Unlike a breadboard, connections on a Zero PCB do not come loose with movement or vibration.</p>
+    <p>For a helmet project that will be worn and tested in real conditions, having solid permanent connections is critical. A loose wire on a breadboard could mean the system fails exactly when it is needed most — during an emergency.</p>
+    <p>Soldering everything onto the Zero PCB also made the overall circuit much more <strong>compact and organized</strong> — important for fitting it neatly onto the helmet without it looking messy or bulky.</p>
+  </div>
+</div>
+<h3>How All the Sensors Work Together</h3>
+<p>The real power of this project is not any single component — it is how all the modules <strong>communicate and work together as one system</strong>. Here is the complete flow of how the helmet works from the moment it is powered on to the moment an alert is sent:</p>
+    <img src="images/pcb1.jpeg" alt="PCB ALL COMPONENTS MOUNTED" width="600" height="400"
+
+
+
+<h3>Role of Each Component</h3>
+<p><strong>🧠 ESP32 — The Brain</strong> — The ESP32 is the central controller that runs all the logic. It reads data from the MPU-6050, calculates the jerk value, decides whether a crash has occurred, triggers the GPS read, and commands the SIM800L to send the alert. Everything passes through the ESP32.</p>
+
+<p><strong>📐 MPU-6050 — The Crash Detector</strong> — This sensor has a 3-axis accelerometer and a 3-axis gyroscope built into one chip. It communicates with the ESP32 over <strong>I2C protocol</strong> using just two wires — SDA and SCL. The ESP32 reads the raw acceleration values on all three axes (X, Y, Z) many times per second and calculates the <strong>jerk</strong> — which is the rate of change of acceleration. A normal ride has smooth, gradual changes. A crash causes a sudden violent spike — and that spike is what triggers the alert.</p>
+
+<p><strong>🛰 Neo-6M GPS — The Location Tracker</strong> — The GPS module communicates with the ESP32 over <strong>UART (Serial)</strong>. It receives signals from satellites and provides accurate latitude and longitude coordinates. The ESP32 parses this data using the <strong>TinyGPS++ library</strong> and formats it into a Google Maps link that is included in the emergency SMS.</p>
+
+<p><strong>📡 SIM800L — The Communicator</strong> — The SIM800L is a GSM module that connects to a mobile network using a SIM card. It also communicates with the ESP32 over <strong>UART</strong> using AT commands. When triggered, it sends an SMS containing the rider's GPS location link and makes an automatic voice call to the saved emergency contact number.</p>
+
+<p><strong>🔋 Power System — TP4056 + MT3608</strong> — The Li-Po battery powers the entire system. The <strong>TP4056</strong> is a charging module that safely charges the Li-Po battery via USB. The <strong>MT3608</strong> is a boost converter that steps up the battery voltage to a stable level required by the SIM800L — since the GSM module needs more current than the ESP32 can supply directly.</p>
+
+<h3>Communication Protocols Used</h3>
+<div class="mcu-table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Module</th>
+        <th>Protocol</th>
+        <th>Pins Used</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>MPU-6050</td>
+        <td>I2C</td>
+        <td>SDA → GPIO21 · SCL → GPIO22</td>
+      </tr>
+      <tr>
+        <td>Neo-6M GPS</td>
+        <td>UART</td>
+        <td>TX → GPIO16 · RX → GPIO17</td>
+      </tr>
+      <tr>
+        <td>SIM800L GSM</td>
+        <td>UART + AT Commands</td>
+        <td>TX → GPIO4 · RX → GPIO2</td>
+      </tr>
+      <tr>
+        <td>TP4056 Charger</td>
+        <td>Direct Power</td>
+        <td>Connected to Li-Po battery terminals</td>
+      </tr>
+      <tr>
+        <td>MT3608 Booster</td>
+        <td>Direct Power</td>
+        <td>Powers SIM800L separately</td>
+      </tr>
+    </tbody>
+  </table>
+</div><section>
+  <h2>Week 4 — Day 4 · Expert Session on Digital Visibility</h2>
+
+  <!-- Poster image full width -->
+  <div class="img-single">
+    <img src="images/dv1.png" alt="Digital Visibility Session Poster" onclick="openImage(this.src)">
+  </div>
+
+  <p>On Day 4 of Week 4, Tinkerers' Lab organized an <strong>Expert Session on Digital Visibility</strong> — a topic that is incredibly relevant for every engineering student stepping into the professional world. The session was held on <strong>11th June 2026</strong> at Tinkerers' Lab, Sanjivani University at <strong>10:30 AM</strong>.</p>
+
+  <!-- Speaker Introduction Card -->
+  <div class="about-card" style="margin:24px 0;">
+    <div class="about-avatar">👨‍🏫</div>
+    <div class="about-body">
+      <div class="about-name">Prof. Dhananjay Kumbhar</div>
+      <div class="about-role">Assistant Professor · Director – Training and Placement · Sanjivani University</div>
+      <p class="about-quote">
+        "Your digital presence is your first impression in the professional world — make it count."
+      </p>
+      <p class="about-desc">
+        Prof. Dhananjay Kumbhar is a distinguished educator and institutional leader at Sanjivani University. As the <strong>Director of Training and Placement</strong>, he has been instrumental in bridging the gap between students and industry — helping hundreds of students build their professional profiles and secure opportunities in top companies.
+      </p>
+      <p class="about-desc">
+        Recognized for his contributions in <strong>education management, institutional excellence, and academic leadership</strong>, Prof. Kumbhar brings a unique perspective that combines academic knowledge with real-world industry expectations. His session on Digital Visibility was one of the most practically useful sessions of the entire internship.
+      </p>
+      <div class="skills-row">
+        <span class="skill-badge">Training & Placement</span>
+        <span class="skill-badge">Academic Leadership</span>
+        <span class="skill-badge">Digital Presence</span>
+        <span class="skill-badge">Distinguished Speaker</span>
+        <span class="skill-badge">Institutional Excellence</span>
+      </div>
+    </div>
+  </div>
+
+  <h3>What is Digital Visibility?</h3>
+  <p>Digital Visibility refers to <strong>how easily you can be found, recognized, and remembered on the internet</strong> — especially in a professional context. In today's world, before any recruiter calls you for an interview, they search for you online. What they find — or do not find — can make or break your opportunity.</p>
+  <p>For engineering students, Digital Visibility means having a strong presence on platforms like <strong>LinkedIn, GitHub, and personal portfolio websites</strong> — showcasing your projects, skills, certifications, and achievements in a way that is visible to the right people.</p>
+<div style="display: flex; gap: 15px;">
+  <img src="images/dv2.jpeg" style="width: 50%;" alt="Digital Visibility Session 1">
+  <img src="images/dv3.jpeg" style="width: 50%;" alt="Digital Visibility Session 2">
+</div>
+  <h3>Key Points from the Session</h3>
+  <p><strong>🌐 Your Online Profile is Your Resume 2.0</strong> — A LinkedIn profile that is complete, active, and well-written can open doors that a paper resume never could. Recruiters actively search LinkedIn for candidates — if you are not there, you simply do not exist to them.</p>
+  <p><strong>📌 Consistency Across Platforms</strong> — Your name, photo, and professional headline should be consistent across LinkedIn, GitHub, and any other platform you use. Inconsistency creates confusion and looks unprofessional.</p>
+  <p><strong>🚀 Share What You Build</strong> — Every project you complete, every certificate you earn, every new skill you learn should be shared publicly. This creates a trail of evidence that proves your abilities far better than simply listing them on a resume.</p>
+  <p><strong>🔗 GitHub is Your Technical Portfolio</strong> — For engineering students, GitHub is not optional. A well-maintained GitHub profile with clean repositories, good README files, and regular commits shows that you are actively building and learning.</p>
+  <p><strong>💡 Personal Branding Starts Now</strong> — You do not need to wait until you graduate to start building your professional brand. Every post, every project share, every meaningful comment you make online contributes to how the world sees you professionally.</p>
+
+  <h3>My Takeaway</h3>
+  <p>This session hit close to home because I realized that I had been building projects throughout this internship but barely sharing any of it publicly. Prof. Kumbhar's session made me understand that <strong>building is only half the work — sharing it is the other half</strong>. From this point forward, I committed to keeping my GitHub updated, sharing my internship work on LinkedIn, and making sure that the projects I build are visible to the world.</p>
+  <p>As someone who has already built a Radar System, a Voice-Controlled Robot, and now a Rider Safety Helmet — I have real work to show. This session gave me the push to actually show it.</p>
+
+</section>
+
   <!-- ============================================================
        CONCLUSION
        — edit all paragraphs below
@@ -3670,6 +3814,7 @@ void loop() {
       setTimeout(() => panel.classList.add('shown'), 10);
     }
   </script>
+  
 
 </body>
-</html>
+</html> 
